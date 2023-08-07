@@ -1,7 +1,5 @@
 import React from 'react';
 import Modal from '../Modal';
-import WarningTitle from '@/atoms/WarningTitle';
-import List from '@/atoms/List';
 import Button from '@/atoms/Button';
 import Warning from '@/molecules/Warning';
 

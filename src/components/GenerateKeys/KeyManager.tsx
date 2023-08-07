@@ -57,7 +57,7 @@ export default function KeyManager() {
       />
       {viewWarning && (
         <WarningLogin
-          handleNext={handleContinueLogin}
+          handleContinue={handleContinueLogin}
           closeModal={handleCloseWarningLogin}
         />
       )}

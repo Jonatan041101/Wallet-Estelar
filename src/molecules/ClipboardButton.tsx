@@ -4,23 +4,31 @@ import Button from '@/atoms/Button';
 import { useState } from 'react';
 import CheckComponent from '../atoms/CheckComponent';
 import Icons from '../atoms/icons';
-
-const ClipboardButton = ({ text }: { text: string }) => {
+interface Props {
+  text: string;
+  handleClose: () => void;
+}
+function ClipboardButton({ text, handleClose }: Props) {
   const [copy, setCopy] = useState<boolean>(false);
 
-  async function handleCopy() {
+  const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(text);
+
       alert('Texto copiado al portapapeles');
     } catch (err) {
       console.error('Error al copiar texto:', err);
     }
-  }
-  function handleChangeCopy(evt: React.ChangeEvent<HTMLInputElement>) {
+  };
+  const handleChangeCopy = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const { checked } = evt.target;
     setCopy(checked);
-  }
-  function handleCloseModal() {}
+  };
+  const handleCloseModal = () => {
+    if (copy) {
+      handleClose();
+    }
+  };
   return (
     <div className="copy">
       <div className="copy__clip">
@@ -42,9 +50,8 @@ const ClipboardButton = ({ text }: { text: string }) => {
           handleClick={handleCloseModal}
           text="Cerrar"
         />
-        C
       </div>
     </div>
   );
-};
+}
 export default ClipboardButton;

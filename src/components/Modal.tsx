@@ -22,4 +22,3 @@ export default function Modal({ children, title, closeModal }: Props) {
     </div>
   );
 }
-// Generar un nuevo par de llaves

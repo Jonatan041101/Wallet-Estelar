@@ -3,8 +3,6 @@ import createAccount from '@/services/createAccount';
 import { AccountGenerate } from '@/types/types';
 import React, { useEffect, useState } from 'react';
 import Modal from '../Modal';
-import WarningTitle from '@/atoms/WarningTitle';
-import List from '@/atoms/List';
 import Key from './Key';
 import ClipboardButton from '@/molecules/ClipboardButton';
 import Warning from '@/molecules/Warning';
@@ -44,7 +42,7 @@ export default function Keys({ handleClose }: Props) {
       <Key keyText={account.publicKey} nameKey="Public Key" />
       <Key keyText={account.secretKey} nameKey="Secret Key" />
 
-      <ClipboardButton text={textCopy} />
+      <ClipboardButton text={textCopy} handleClose={handleClose} />
     </Modal>
   );
 }
