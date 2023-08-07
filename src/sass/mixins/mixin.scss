@@ -1,0 +1,19 @@
+@mixin flex($a, $b, $c, $d, $e) {
+  display: flex;
+  flex-flow: $a $b;
+  justify-content: $c;
+  align-items: $d;
+  gap: $e;
+}
+@mixin responsive($medida: $medida-tablet) {
+  @media screen and (max-width: $medida) {
+    @content;
+  }
+}
+
+@mixin shadow {
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.05);
+}
+@mixin view-shadow {
+  box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.09);
+}
