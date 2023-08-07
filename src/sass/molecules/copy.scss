@@ -1,0 +1,26 @@
+.copy {
+  color: $color-text-cancel;
+  @include flex(column, nowrap, flex-start, flex-start, 1.5em);
+  &__clip {
+    @include flex(row, nowrap, flex-start, flex-start, 0.2em);
+    color: $color-text-cancel;
+  }
+  &__button {
+    color: $color-text-cancel;
+    @include flex(row, nowrap, flex-start, flex-start, 0.5em);
+    transition: 0.3s ease;
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+  &__i {
+    color: $color-text-cancel;
+    width: 1.5em;
+    height: 1.5em;
+  }
+
+  &__close {
+    width: 100%;
+    @include flex(row, nowrap, flex-end, flex-end, 0.5em);
+  }
+}
