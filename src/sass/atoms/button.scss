@@ -1,0 +1,43 @@
+.button {
+  cursor: pointer;
+  padding: 0.6em 1.5em;
+  border-radius: 0.2em;
+  &__complete {
+    border: 1.5px solid $color-violet-hover;
+    background: $color-violet;
+    &:hover {
+      background: $color-violet-hover;
+      border-color: $color-violet;
+    }
+  }
+  &__cancel {
+    color: $color-violet-hover;
+    border: 1.5px solid $color-violet-hover;
+    background: transparent;
+    &:hover {
+      color: #fff;
+      background: $color-violet;
+    }
+  }
+  &__under {
+    color: #fff;
+    text-decoration: underline;
+    padding: 0;
+    border: 0;
+  }
+  &__wallet {
+    @include flex(row, nowrap, flex-start, center, 0.5em);
+    padding: 0.6em 1.2em;
+    border: 1.5px solid $color-border;
+    border-radius: 0.3em;
+    cursor: pointer;
+    transition: 0.3s ease;
+    &:hover {
+      border-color: $color-hover-wallet;
+    }
+  }
+  &__i {
+    width: 1.5em;
+    height: 1.5em;
+  }
+}
