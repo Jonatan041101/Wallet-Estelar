@@ -1,6 +1,6 @@
 @import './mixins/mixin.scss', './variables/variables.scss',
   './reset/reset.scss', './atoms/button.scss', './atoms/check.scss',
-  './atoms/list.scss';
+  './atoms/list.scss', './components/otherwallet.scss';
 
 .body {
   background: $color-header;
