@@ -280,6 +280,74 @@ button {
   line-height: 1.5;
 }
 
+.copy {
+  color: #6260eb;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1.5em;
+}
+.copy__clip {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0.2em;
+  color: #6260eb;
+}
+.copy__button {
+  color: #6260eb;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0.5em;
+  transition: 0.3s ease;
+}
+.copy__button:hover {
+  opacity: 0.6;
+}
+.copy__i {
+  color: #6260eb;
+  width: 1.5em;
+  height: 1.5em;
+}
+.copy__close {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 0.5em;
+}
+
+.warning {
+  border-radius: 0.5em;
+  padding: 1em 0.5em;
+}
+.warning__red {
+  background: #482f42;
+  border: 1.5px solid #89344c;
+}
+.warning__violet {
+  background: #2c2a57;
+  border: 1.5px solid #33248c;
+}
+.warning__h3 {
+  font-size: 1.2em;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0.3em;
+}
+.warning__i {
+  width: 1em;
+  height: 1em;
+  color: #ee5a74;
+}
+
 .otherwallet {
   padding: 2em;
 }
