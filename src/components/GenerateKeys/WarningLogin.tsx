@@ -4,6 +4,7 @@ import useBoolean from '@/hooks/useBoolean';
 import Button from '@/atoms/Button';
 import CheckComponent from '@/atoms/CheckComponent';
 import Warning from '@/molecules/Warning';
+import { errorMsg } from '@/utils/toastMsg';
 
 interface Props {
   closeModal: () => void;
@@ -21,9 +22,10 @@ export default function WarningLogin({ closeModal, handleContinue }: Props) {
     handleChangeBoolean();
   };
   const handleContinueLogin = () => {
-    if (view) {
-      handleContinue();
+    if (!view) {
+      return errorMsg('Lee con atención');
     }
+    handleContinue();
   };
   return (
     <Modal closeModal={closeModal} title="Conectar con una clave secreta">

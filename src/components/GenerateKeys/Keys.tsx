@@ -39,8 +39,8 @@ export default function Keys({ handleClose }: Props) {
   return (
     <Modal closeModal={handleClose} title="Generar un nuevo par de llaves">
       <Warning list={list} text="ATENCIÓN:" classWarning="warning__red" />
-      <Key keyText={account.publicKey} nameKey="Public Key" />
-      <Key keyText={account.secretKey} nameKey="Secret Key" />
+      <Key id="publicKey" keyText={account.publicKey} nameKey="Public Key" />
+      <Key id="secretKey" keyText={account.secretKey} nameKey="Secret Key" />
 
       <ClipboardButton text={textCopy} handleClose={handleClose} />
     </Modal>

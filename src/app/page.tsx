@@ -1,7 +1,10 @@
 import KeyManager from '@/components/GenerateKeys/KeyManager';
 import Options from '@/components/OthersWallet/Options';
-
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 export default function Home() {
+  console.log(process.env.NEXT_PUBLIC_URL);
+
   return (
     <main className="main">
       <div className="main__wallets">
@@ -9,6 +12,7 @@ export default function Home() {
         <Options />
       </div>
       <KeyManager />
+      <ToastContainer />
     </main>
   );
 }

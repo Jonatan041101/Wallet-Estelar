@@ -11,7 +11,7 @@ export default defineConfig({
   },
   e2e: {
     specPattern: 'cypress/e2e/**/*.cy.{js,jsx,ts,tsx}',
-    baseUrl: process.env.NEXT_PUBLIC_URL ?? 'http://localhost:3000/',
+    baseUrl: process.env.NEXT_PUBLIC_URL ?? 'http://localhost:3002/',
     supportFile: false,
     setupNodeEvents(on, config) {},
   },
