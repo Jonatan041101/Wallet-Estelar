@@ -1,5 +1,6 @@
 @import './mixins/mixin.scss', './variables/variables.scss',
-  './reset/reset.scss', './atoms/button.scss', './atoms/check.scss';
+  './reset/reset.scss', './atoms/button.scss', './atoms/check.scss',
+  './atoms/list.scss';
 
 .body {
   background: $color-header;
