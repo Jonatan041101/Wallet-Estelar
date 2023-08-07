@@ -9,7 +9,9 @@
     "lint": "next lint",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
-    "test": "jest"
+    "test": "jest",
+    "sass": "cd ./src && sass sass/main.scss css/main.css",
+    "sass:w": "npm run sass -- --watch"
   },
   "dependencies": {
     "@types/node": "20.4.6",

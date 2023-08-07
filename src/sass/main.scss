@@ -1,0 +1,48 @@
+@import './mixins/mixin.scss', './variables/variables.scss',
+  './reset/reset.scss';
+
+.body {
+  background: $color-header;
+  // font-family: var(--font-noto-sans);
+  @include flex(column, nowrap, space-between, center, 0);
+  &__container {
+    width: 100%;
+    @include flex(column, nowrap, space-between, center, 0);
+  }
+}
+
+.main {
+  color: #fff;
+  width: 100%;
+  max-width: $max-width;
+  padding: 2em 0 0 0;
+  background: $color-header;
+  @include flex(column, nowrap, center, center, 0);
+  @include responsive($query-850) {
+    @include flex(column, nowrap, flex-start, center, 0);
+  }
+  &__wallets {
+    @include flex(column, nowrap, center, center, 3em);
+    padding: 4em 0;
+  }
+  &__h1 {
+    font-size: 2.5em;
+    text-align: center;
+  }
+}
+.layout {
+  margin: 2em 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  &__nav--bottom {
+    display: none;
+    width: 100%;
+    background: #fff;
+    position: fixed;
+    bottom: 0;
+    @include responsive($query-550) {
+      display: block;
+    }
+  }
+}
