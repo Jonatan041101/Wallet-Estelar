@@ -1,3 +1,4 @@
+import KeyManager from '@/components/GenerateKeys/KeyManager';
 import Options from '@/components/OthersWallet/Options';
 
 export default function Home() {
@@ -7,6 +8,7 @@ export default function Home() {
         <h1 className="main__h1">Conectar con una billetera</h1>
         <Options />
       </div>
+      <KeyManager />
     </main>
   );
 }
