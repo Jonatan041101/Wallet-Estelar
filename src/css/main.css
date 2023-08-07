@@ -424,6 +424,33 @@ button {
   gap: 0.5em;
 }
 
+.key__h4 {
+  margin: 0.5em 0;
+}
+.key__key {
+  background: #303448;
+  border: 2.5px solid #3a3e4d;
+  border-radius: 0.5em;
+  color: #d4d5d8;
+  font-size: 1.1em;
+  padding: 0 0.3em;
+  overflow-wrap: break-word;
+}
+
+.generator {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+}
+.generator__connect {
+  text-decoration: underline;
+}
+.generator__news {
+  text-decoration: underline;
+}
+
 .body {
   background: #292d3e;
   display: flex;
