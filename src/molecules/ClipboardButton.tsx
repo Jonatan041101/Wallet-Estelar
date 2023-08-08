@@ -5,28 +5,30 @@ import { useState } from 'react';
 import CheckComponent from '../atoms/CheckComponent';
 import Icons from '../atoms/icons';
 import { errorMsg, successMsg } from '@/utils/toastMsg';
+import { MessageError, MessageSucces } from '@/utils/constants';
 interface Props {
   text: string;
   handleClose: () => void;
 }
 function ClipboardButton({ text, handleClose }: Props) {
-  const [copy, setCopy] = useState<boolean>(false);
+  const [isCopied, setIsCopied] = useState<boolean>(false);
 
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(text);
-      successMsg('Copiado al portapapeles');
+      successMsg(MessageSucces.COPIED_TO_CLIPBOARD);
     } catch (err) {
       console.error('Error al copiar texto:', err);
+      errorMsg(MessageError.ERROR_COPYING);
     }
   };
   const handleChangeCopy = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const { checked } = evt.target;
-    setCopy(checked);
+    setIsCopied(checked);
   };
   const handleCloseModal = () => {
-    if (!copy) {
-      return errorMsg('Guarde sus llaves');
+    if (!isCopied) {
+      return errorMsg(MessageError.SAVE_KEYS);
     }
     handleClose();
   };
@@ -42,7 +44,7 @@ function ClipboardButton({ text, handleClose }: Props) {
       </div>
       <CheckComponent
         text="Guardé mi clave secreta en un lugar seguro"
-        copy={copy}
+        isCopied={isCopied}
         handleChangeCopy={handleChangeCopy}
       />
       <div className="copy__close">

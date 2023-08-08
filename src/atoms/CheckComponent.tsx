@@ -2,13 +2,13 @@ import React from 'react';
 import Icons from './icons';
 
 interface Props {
-  copy: boolean;
+  isCopied: boolean;
   text: string;
   handleChangeCopy: (evt: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default function CheckComponent({
-  copy,
+  isCopied,
   text,
   handleChangeCopy,
 }: Props) {
@@ -18,10 +18,10 @@ export default function CheckComponent({
         <input
           className="check__input"
           type="checkbox"
-          checked={copy}
+          checked={isCopied}
           onChange={handleChangeCopy}
         />
-        {copy && (
+        {isCopied && (
           <i className="check__i">
             <Icons icon="check" />
           </i>

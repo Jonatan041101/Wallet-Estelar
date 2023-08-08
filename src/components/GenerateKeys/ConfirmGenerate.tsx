@@ -7,7 +7,7 @@ interface Props {
   handleContinue: () => void;
   handleClose: () => void;
 }
-const list: string[] = [
+const warnings: string[] = [
   ` Pegar su clave secreta lo hace vulnerable a accidentes, ataques y estafas
 que pueden provocar la pérdida de fondos.`,
   `Es más seguro crear una cuenta utilizando métodos que no compartan su clave
@@ -22,7 +22,7 @@ export default function ConfirmGenerate({
     <Modal closeModal={handleClose} title="Generar un nuevo par de llaves">
       <Warning
         classWarning="warning__red"
-        list={list}
+        list={warnings}
         text="ATENCIÓN: Las carteras de claves secretas no son seguras:"
       />
       <div className="modal__buttons">

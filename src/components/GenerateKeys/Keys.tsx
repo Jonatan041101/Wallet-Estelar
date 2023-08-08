@@ -17,7 +17,7 @@ const INTIAL_STATE: State['account'] = {
 interface Props {
   handleClose: () => void;
 }
-const list: string[] = [
+const warnings: string[] = [
   `Es muy importante guardar su clave secreta y guardarla en un lugar seguro.`,
   `Si lo pierde, perderá el acceso a su cuenta. Nadie en el universo conocido podrá ayudarte a volver a entrar.`,
   `SDF no almacena una copia de sus claves y no puede ayudarlo a recuperar las claves perdidas.`,
@@ -38,7 +38,7 @@ export default function Keys({ handleClose }: Props) {
    `;
   return (
     <Modal closeModal={handleClose} title="Generar un nuevo par de llaves">
-      <Warning list={list} text="ATENCIÓN:" classWarning="warning__red" />
+      <Warning list={warnings} text="ATENCIÓN:" classWarning="warning__red" />
       <Key id="publicKey" keyText={account.publicKey} nameKey="Public Key" />
       <Key id="secretKey" keyText={account.secretKey} nameKey="Secret Key" />
 

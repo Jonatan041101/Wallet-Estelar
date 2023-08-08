@@ -1,7 +1,8 @@
 import { toast } from 'react-toastify';
+import { MessageError, MessageSucces } from './constants';
 
-export const errorMsg = (error: string) => {
-  toast.error(`🚫 ${error}`, {
+export const errorMsg = (message: MessageError) => {
+  toast.error(`🚫 ${message}`, {
     position: 'bottom-center',
     autoClose: 3000,
     hideProgressBar: false,
@@ -12,8 +13,8 @@ export const errorMsg = (error: string) => {
     theme: 'light',
   });
 };
-export const successMsg = (text: string) => {
-  toast.success(`✅ ${text}`, {
+export const successMsg = (message: MessageSucces) => {
+  toast.success(`✅ ${message}`, {
     position: 'bottom-center',
     autoClose: 3000,
     hideProgressBar: false,

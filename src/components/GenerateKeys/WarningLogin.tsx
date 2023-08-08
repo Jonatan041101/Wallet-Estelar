@@ -5,12 +5,13 @@ import Button from '@/atoms/Button';
 import CheckComponent from '@/atoms/CheckComponent';
 import Warning from '@/molecules/Warning';
 import { errorMsg } from '@/utils/toastMsg';
+import { MessageError } from '@/utils/constants';
 
 interface Props {
   closeModal: () => void;
   handleContinue: () => void;
 }
-const list: string[] = [
+const warnings: string[] = [
   `Copiar y pegar su clave secreta lo hace vulnerable a accidentes, ataques y estafas que pueden provocar la pérdida de fondos.`,
   `Si este sitio web se vio comprometido o si visita una réplica de phishing de este sitio, su clave secreta puede ser robada si utiliza este método.`,
   `Es más seguro usar métodos de conexión que no compartan su clave secreta con sitios web, como carteras de hardware o extensiones de navegador.`,
@@ -23,20 +24,20 @@ export default function WarningLogin({ closeModal, handleContinue }: Props) {
   };
   const handleContinueLogin = () => {
     if (!view) {
-      return errorMsg('Lee con atención');
+      return errorMsg(MessageError.READ_CAREFULLY);
     }
     handleContinue();
   };
   return (
     <Modal closeModal={closeModal} title="Conectar con una clave secreta">
       <Warning
-        list={list}
+        list={warnings}
         text="ATENCIÓN: No se recomienda ingresar su clave secreta en ningún sitio web"
         classWarning="warning__red"
       />
       <CheckComponent
         text="Entiendo y acepto los riesgos de ingresar mi clave secreta."
-        copy={view}
+        isCopied={view}
         handleChangeCopy={handleChangeCopy}
       />
       <div className="modal__buttons">
