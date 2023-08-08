@@ -1,5 +1,6 @@
 import { useBearStore } from '@/store/store';
 import useNavigate from './useNavigate';
+import { useEffect } from 'react';
 
 export default function useExistAcount() {
   const { publicKey } = useBearStore((state) => ({
@@ -11,7 +12,7 @@ export default function useExistAcount() {
       return handleNavigate('/');
     }
   };
-  return {
-    checkedExistPublicKeyInStore,
-  };
+  useEffect(() => {
+    checkedExistPublicKeyInStore();
+  }, []);
 }
