@@ -1,4 +1,5 @@
 'use client';
+import Button from '@/atoms/Button';
 import useData from '@/hooks/useData';
 import React from 'react';
 
@@ -17,11 +18,17 @@ export default function Balance() {
                   ? 'Lumens (XLM)'
                   : balance.asset_type}
               </p>
+              <Button
+                classNameBtn="button__complete"
+                text="Enviar"
+                handleClick={() => {}}
+                icon="send"
+              />
             </article>
           ))}
         </section>
       ) : (
-        <p>No tienes fondos</p>
+        <p>0 Lumens (XLM)</p>
       )}
     </div>
   );
