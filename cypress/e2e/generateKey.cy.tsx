@@ -1,5 +1,3 @@
-import expect from '../../setupTests';
-
 const buttonTextKey = 'Generar par de claves para una nueva cuenta';
 const textLiKeyConfirm =
   'Pegar su clave secreta lo hace vulnerable a accidentes, ataques y estafas que pueden provocar la pérdida de fondos.';
@@ -45,8 +43,8 @@ describe('', () => {
   it('When I click copy to clipboard give copy message', () => {
     cy.contains('button', 'Continuar').click();
     cy.get('.copy__button').should('exist');
-    cy.get('.copy__button').click();
-    cy.wrap(30000);
+    cy.get('.copy__button').should('exist').click();
+    cy.wait(2000);
     cy.contains('Copiado al portapapeles').should('be.visible');
   });
 });
