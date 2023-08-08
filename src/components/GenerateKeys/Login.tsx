@@ -38,11 +38,11 @@ export default function Login({ closeModal }: Props) {
           </li>
         </ul>
       </Warning>
-
       <Input
         handleChange={() => {}}
         placeholder="Comienza con S, ejemplo: SCHK…ZLJK"
         labelText="TU CLAVE SECRETA"
+        type="password"
         value=""
       />
       <div className="modal__buttons">
