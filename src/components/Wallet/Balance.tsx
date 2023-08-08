@@ -16,7 +16,7 @@ export default function Balance() {
           ))}
         </section>
       ) : (
-        <p>0 Lumens (XLM)</p>
+        <p className="balance__p">0 Lumens (XLM)</p>
       )}
     </div>
   );

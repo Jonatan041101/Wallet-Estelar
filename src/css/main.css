@@ -475,6 +475,14 @@ button {
   align-items: flex-start;
   gap: 1em;
 }
+.public__contain {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0;
+}
 .public__h3 {
   font-size: 2em;
   color: #fff;
