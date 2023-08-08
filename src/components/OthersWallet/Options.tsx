@@ -5,7 +5,7 @@ export interface Wallet {
   icon: IconsTypes;
   text: string;
 }
-const walletsMap: Wallet[] = [{ icon: 'abedo', text: 'Conéctate con Albedo' }];
+const walletsMap: Wallet[] = [{ icon: 'albedo', text: 'Conéctate con Albedo' }];
 export default function Options() {
   return (
     <section className="otherwallet">

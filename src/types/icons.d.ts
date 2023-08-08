@@ -4,7 +4,7 @@ export type IconsTypes =
   | 'cross-modal'
   | 'sun'
   | 'moon'
-  | 'abedo'
+  | 'albedo'
   | 'github'
   | 'copy'
   | 'check';

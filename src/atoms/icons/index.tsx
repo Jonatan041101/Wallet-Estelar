@@ -5,7 +5,7 @@ import CrossModal from './CrossModal';
 import Cross from './Cross';
 import Sun from './Sun';
 import Moon from './Moon';
-import Abedo from './Abedo';
+import Albedo from './Albedo';
 import GitHub from './GitHub';
 import Copy from './Copy';
 import Check from './Check';
@@ -22,7 +22,7 @@ export default function Icons({ icon }: Props) {
       {icon === 'cross' && <Cross />}
       {icon === 'sun' && <Sun />}
       {icon === 'moon' && <Moon />}
-      {icon === 'abedo' && <Abedo />}
+      {icon === 'albedo' && <Albedo />}
       {icon === 'github' && <GitHub />}
       {icon === 'copy' && <Copy />}
       {icon === 'check' && <Check />}
