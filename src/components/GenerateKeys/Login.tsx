@@ -3,6 +3,7 @@ import Modal from '../Modal';
 import Button from '@/atoms/Button';
 import Warning from '@/molecules/Warning';
 import Input from '@/atoms/Input';
+import FormLogin from './FormLogin';
 
 interface Props {
   closeModal: () => void;
@@ -38,20 +39,7 @@ export default function Login({ closeModal }: Props) {
           </li>
         </ul>
       </Warning>
-      <Input
-        handleChange={() => {}}
-        placeholder="Comienza con S, ejemplo: SCHK…ZLJK"
-        labelText="TU CLAVE SECRETA"
-        type="password"
-        value=""
-      />
-      <div className="modal__buttons">
-        <Button
-          text="Conectar"
-          classNameBtn="button__complete"
-          handleClick={() => {}}
-        />
-      </div>
+      <FormLogin />
     </Modal>
   );
 }

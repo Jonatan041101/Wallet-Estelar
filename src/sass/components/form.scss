@@ -1,0 +1,4 @@
+.form {
+  @include flex(column, nowrap, flex-start, flex-start, 0.5em);
+  width: 100%;
+}
