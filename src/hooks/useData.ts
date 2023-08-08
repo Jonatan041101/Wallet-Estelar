@@ -1,3 +1,4 @@
+'use client';
 import { useBearStore } from '@/store/store';
 import { server } from '@/utils/server';
 import { useEffect, useState } from 'react';

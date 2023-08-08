@@ -1,3 +1,3 @@
 import { Server } from 'stellar-sdk';
 
-export const server = new Server('https://horizon.stellar.org');
+export const server = new Server('https://horizon-testnet.stellar.org');
