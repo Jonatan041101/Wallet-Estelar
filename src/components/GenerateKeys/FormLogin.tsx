@@ -5,13 +5,13 @@ import Form from '../Form';
 import { errorMsg } from '@/utils/toastMsg';
 import { MessageError } from '@/utils/constants';
 import { Keypair } from 'stellar-sdk';
-const validation = /^S[A-Za-z0-9]{55}$/i;
+import { VALIDATIONS } from '@/utils/validations';
 export default function FormLogin() {
   const [secretKey, setSecretKey] = useState<string>('');
   const handleLogin = async (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     try {
-      if (!validation.test(secretKey)) {
+      if (!VALIDATIONS.secretKey.test(secretKey)) {
         return errorMsg(MessageError.ERROR_SECRET_KEY);
       }
       const account = Keypair.fromSecret(secretKey);
