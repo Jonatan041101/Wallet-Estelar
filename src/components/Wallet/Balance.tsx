@@ -4,16 +4,23 @@ import React from 'react';
 
 export default function Balance() {
   const account = useData();
-  console.log({ account });
-
   return (
     <div>
-      {account &&
+      <h2>Tu balance</h2>
+      {account ? (
         account.balances.map((balance, index) => (
           <article key={index}>
-            {balance.asset_type} {balance.balance}
+            <p>
+              {balance.balance}{' '}
+              {balance.asset_type === 'native'
+                ? 'Lumens (XLM)'
+                : balance.asset_type}
+            </p>
           </article>
-        ))}
+        ))
+      ) : (
+        <p>No tienes fondos</p>
+      )}
     </div>
   );
 }
