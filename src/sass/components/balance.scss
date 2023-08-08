@@ -1,0 +1,19 @@
+.balance {
+  @include flex(column, nowrap, flex-start, flex-start, 1.5em);
+  &__title {
+    color: #fff;
+    width: 100%;
+    font-size: 2em;
+  }
+  &__section {
+    width: 100%;
+  }
+  &__article {
+    width: 100%;
+  }
+  &__p {
+    color: $gray-color-text;
+    font-size: 2em;
+    font-weight: 500;
+  }
+}
