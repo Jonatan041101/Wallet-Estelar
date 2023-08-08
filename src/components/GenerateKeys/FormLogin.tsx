@@ -6,8 +6,12 @@ import { errorMsg } from '@/utils/toastMsg';
 import { MessageError } from '@/utils/constants';
 import { Keypair } from 'stellar-sdk';
 import { VALIDATIONS } from '@/utils/validations';
+import { useBearStore } from '@/store/store';
 export default function FormLogin() {
   const [secretKey, setSecretKey] = useState<string>('');
+  const { login } = useBearStore((state) => ({
+    login: state.getAcc,
+  }));
   const handleLogin = async (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     try {
@@ -15,8 +19,13 @@ export default function FormLogin() {
         return errorMsg(MessageError.ERROR_SECRET_KEY);
       }
       const account = Keypair.fromSecret(secretKey);
-      const key = account.publicKey();
-      console.log({ key });
+      const publicKey = account.publicKey();
+      if (publicKey) {
+        login({
+          publicKey,
+          secretKey,
+        });
+      }
     } catch (error) {
       const err = error as Error;
       if (err.message === 'invalid encoded string') {
