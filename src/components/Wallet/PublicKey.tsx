@@ -2,12 +2,21 @@
 import Button from '@/atoms/Button';
 import activeAccount from '@/services/activeAccount';
 import { useBearStore } from '@/store/store';
+import { MessageSucces } from '@/utils/constants';
+import { successMsg } from '@/utils/toastMsg';
 import React from 'react';
 
 export default function PublicKey() {
   const { publicKey } = useBearStore((state) => state.account);
-  const handleActiveAccount = () => {
-    activeAccount(publicKey);
+  const handleActiveAccount = async () => {
+    try {
+      const transaction = await activeAccount(publicKey);
+      if (transaction) {
+        successMsg(`La cuenta a sido activada hash:${transaction.hash}`);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
   return (
     <article className="public">
