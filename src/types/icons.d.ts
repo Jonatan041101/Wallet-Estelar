@@ -7,4 +7,5 @@ export type IconsTypes =
   | 'albedo'
   | 'github'
   | 'copy'
-  | 'check';
+  | 'check'
+  | 'send';

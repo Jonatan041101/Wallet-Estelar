@@ -9,6 +9,7 @@ import Albedo from './Albedo';
 import GitHub from './GitHub';
 import Copy from './Copy';
 import Check from './Check';
+import Send from './Send';
 
 interface Props {
   icon: IconsTypes;
@@ -26,6 +27,7 @@ export default function Icons({ icon }: Props) {
       {icon === 'github' && <GitHub />}
       {icon === 'copy' && <Copy />}
       {icon === 'check' && <Check />}
+      {icon === 'send' && <Send />}
     </>
   );
 }
