@@ -2,6 +2,7 @@
 import Button from '@/atoms/Button';
 import useData from '@/hooks/useData';
 import React from 'react';
+import Asset from './Asset';
 
 export default function Balance() {
   const account = useData();
@@ -11,20 +12,7 @@ export default function Balance() {
       {account ? (
         <section className="balance__section">
           {account.balances.map((balance, index) => (
-            <article className="balance__article" key={index}>
-              <p className="balance__p">
-                {balance.balance}{' '}
-                {balance.asset_type === 'native'
-                  ? 'Lumens (XLM)'
-                  : balance.asset_type}
-              </p>
-              <Button
-                classNameBtn="button__complete"
-                text="Enviar"
-                handleClick={() => {}}
-                icon="send"
-              />
-            </article>
+            <Asset balance={balance} key={index} />
           ))}
         </section>
       ) : (
