@@ -1,3 +1,4 @@
+'use client';
 import { useBearStore } from '@/store/store';
 import React from 'react';
 

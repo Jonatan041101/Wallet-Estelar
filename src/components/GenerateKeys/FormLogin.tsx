@@ -7,8 +7,11 @@ import { MessageError } from '@/utils/constants';
 import { Keypair } from 'stellar-sdk';
 import { VALIDATIONS } from '@/utils/validations';
 import { useBearStore } from '@/store/store';
+import useNavigate from '@/hooks/useNavigate';
+
 export default function FormLogin() {
   const [secretKey, setSecretKey] = useState<string>('');
+  const { handleNavigate } = useNavigate();
   const { login } = useBearStore((state) => ({
     login: state.getAcc,
   }));
@@ -25,6 +28,7 @@ export default function FormLogin() {
           publicKey,
           secretKey,
         });
+        handleNavigate('/wallet');
       }
     } catch (error) {
       const err = error as Error;
