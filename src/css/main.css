@@ -256,6 +256,16 @@ button {
   color: #d4d5d8;
 }
 
+.input__input {
+  padding: 0.5em;
+  border-radius: 0.3em;
+  border: 1.5px solid #4b4f5d;
+  outline: none;
+}
+.input__input:focus {
+  border-color: #5332e6;
+}
+
 .list {
   padding: 1em 0em 1em 2em;
   display: flex;
