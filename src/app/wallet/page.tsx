@@ -4,7 +4,7 @@ import React from 'react';
 
 export default function PageWallet() {
   return (
-    <div>
+    <div className="wallet">
       <Balance />
       <PublicKey />
     </div>
