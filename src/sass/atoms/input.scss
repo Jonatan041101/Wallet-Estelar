@@ -1,7 +1,11 @@
 .input {
   &__label {
+    width: 100%;
+    cursor: pointer;
   }
   &__input {
+    width: 100%;
+    margin: 1em 0 0 0;
     padding: 0.5em;
     border-radius: 0.3em;
     border: 1.5px solid $color-hover-wallet;

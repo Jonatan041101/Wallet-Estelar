@@ -256,7 +256,13 @@ button {
   color: #d4d5d8;
 }
 
+.input__label {
+  width: 100%;
+  cursor: pointer;
+}
 .input__input {
+  width: 100%;
+  margin: 1em 0 0 0;
   padding: 0.5em;
   border-radius: 0.3em;
   border: 1.5px solid #4b4f5d;

@@ -2,6 +2,7 @@ import React from 'react';
 import Modal from '../Modal';
 import Button from '@/atoms/Button';
 import Warning from '@/molecules/Warning';
+import Input from '@/atoms/Input';
 
 interface Props {
   closeModal: () => void;
@@ -37,11 +38,12 @@ export default function Login({ closeModal }: Props) {
           </li>
         </ul>
       </Warning>
-      <label className="input__label">TU CLAVE SECRETA</label>
-      <input
-        className="input__input"
+
+      <Input
+        handleChange={() => {}}
         placeholder="Comienza con S, ejemplo: SCHK…ZLJK"
-        type="password"
+        labelText="TU CLAVE SECRETA"
+        value=""
       />
       <div className="modal__buttons">
         <Button
