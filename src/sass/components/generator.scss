@@ -1,0 +1,9 @@
+.generator {
+  @include flex(column, nowrap, center, center, 2em);
+  &__connect {
+    text-decoration: underline;
+  }
+  &__news {
+    text-decoration: underline;
+  }
+}

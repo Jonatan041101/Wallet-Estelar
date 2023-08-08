@@ -1,0 +1,29 @@
+.check {
+  @include flex(row, nowrap, flex-start, flex-start, 0.5em);
+
+  &__container {
+    position: relative;
+    width: 1.2em;
+    height: 1.2em;
+    border: 1.5px solid $color-text-cancel;
+    border-radius: 0.2em;
+  }
+  &__input {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+  &__i {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    background: $color-violet;
+  }
+  &__p {
+    color: $gray-color-text;
+  }
+}

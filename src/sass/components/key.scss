@@ -1,0 +1,14 @@
+.key {
+  &__h4 {
+    margin: 0.5em 0;
+  }
+  &__key {
+    background: $color-background-key;
+    border: 2.5px solid $color-border-key;
+    border-radius: 0.5em;
+    color: $gray-color-text;
+    font-size: 1.1em;
+    padding: 0 0.3em;
+    overflow-wrap: break-word;
+  }
+}

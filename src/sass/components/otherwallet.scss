@@ -1,0 +1,22 @@
+.otherwallet {
+  padding: 2em;
+  &__div {
+  }
+  &__btn {
+    @include flex(row, nowrap, flex-start, center, 0.5em);
+    padding: 0.6em 1.2em;
+    border: 1.5px solid $color-border;
+    border-radius: 0.3em;
+    cursor: pointer;
+    transition: 0.3s ease;
+    &:hover {
+      border-color: $color-hover-wallet;
+    }
+  }
+  &__i {
+    width: 1.5em;
+    height: 1.5em;
+  }
+  &__span {
+  }
+}

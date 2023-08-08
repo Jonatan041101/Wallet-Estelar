@@ -1,5 +1,8 @@
 @import './mixins/mixin.scss', './variables/variables.scss',
-  './reset/reset.scss';
+  './reset/reset.scss', './atoms/button.scss', './atoms/check.scss',
+  './atoms/list.scss', './molecules/copy.scss', './molecules/warning.scss',
+  './components/otherwallet.scss', './components/modal.scss',
+  './components/key.scss', './components/generator.scss';
 
 .body {
   background: $color-header;
