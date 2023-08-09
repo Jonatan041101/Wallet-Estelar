@@ -10,6 +10,7 @@ export enum MessageError {
   ERROR_COPYING = 'Ocurrio un error al copiar al portapapeles ',
   INVALID_SECRET_KEY = 'La llave secreta ingresada no pertenece a una cuenta',
   ERROR_ACTIVATE_ACCOUNT = 'Ocurrio un error al querer activar su cuenta',
+  INVALID_NUMBER = 'El valor ingresado no es numero',
 }
 export enum ERROR_CONECTION {
   STRING_IS_INVALID = 'invalid encoded string',
