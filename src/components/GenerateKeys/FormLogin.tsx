@@ -3,7 +3,7 @@ import Input from '@/atoms/Input';
 import React, { useState } from 'react';
 import Form from '../Form';
 import { errorMsg } from '@/utils/toastMsg';
-import { MessageError } from '@/utils/constants';
+import { ERROR_CONECTION, MessageError } from '@/utils/constants';
 import { Keypair } from 'stellar-sdk';
 import { VALIDATIONS } from '@/utils/validations';
 import { useBearStore } from '@/store/store';
@@ -32,7 +32,7 @@ export default function FormLogin() {
       }
     } catch (error) {
       const err = error as Error;
-      if (err.message === 'invalid encoded string') {
+      if (err.message === ERROR_CONECTION.STRING_IS_INVALID) {
         errorMsg(MessageError.INVALID_SECRET_KEY);
       }
     }
