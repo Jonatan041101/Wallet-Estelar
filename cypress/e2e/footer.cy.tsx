@@ -3,7 +3,7 @@ describe('Footer Component', () => {
     cy.visit('/');
   });
 
-  it('should open another tab each link in the footer', () => {
+  it('Should open another tab each link in the footer', () => {
     cy.get('.footer__ul a[href="https://www.stellar.org/terms-of-service"]')
       .should('exist')
       .and('have.attr', 'target', '_blank');
