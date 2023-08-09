@@ -1,5 +1,6 @@
 .balance {
   @include flex(column, nowrap, flex-start, flex-start, 1.5em);
+  width: 100%;
   &__title {
     color: #fff;
     width: 100%;
@@ -10,6 +11,7 @@
   }
   &__article {
     width: 100%;
+    @include flex(row, nowrap, space-between, flex-start, 1.5em);
   }
   &__p {
     color: $gray-color-text;

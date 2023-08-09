@@ -514,6 +514,7 @@ button {
   justify-content: flex-start;
   align-items: flex-start;
   gap: 1.5em;
+  width: 100%;
 }
 .balance__title {
   color: #fff;
@@ -525,6 +526,11 @@ button {
 }
 .balance__article {
   width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5em;
 }
 .balance__p {
   color: #d4d5d8;
