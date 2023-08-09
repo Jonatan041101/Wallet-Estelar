@@ -5,3 +5,5 @@ export const profiles: string[] = [
   'https://res.cloudinary.com/damjxqb5f/image/upload/v1691288131/descarga_2_xaft7y.png',
   'https://res.cloudinary.com/damjxqb5f/image/upload/v1691288131/descarga_5_orjgyz.png',
 ];
+export const getProfileRandom = () =>
+  profiles[Math.floor(Math.random() * profiles.length)];
