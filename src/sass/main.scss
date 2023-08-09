@@ -15,6 +15,10 @@
     width: 100%;
     @include flex(column, nowrap, space-between, center, 0);
   }
+  &__children {
+    flex-grow: 1;
+    display: flex;
+  }
 }
 
 .main {

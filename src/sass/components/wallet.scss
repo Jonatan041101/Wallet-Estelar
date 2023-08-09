@@ -2,5 +2,7 @@
   width: 100%;
   max-width: $max-width;
   padding: 0 3em;
+  background: $color-background-key;
+  flex-grow: 1;
   @include flex(column, nowrap, flex-start, flex-start, 2em);
 }
