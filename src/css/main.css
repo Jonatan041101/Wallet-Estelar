@@ -641,6 +641,13 @@ button {
   font-size: 0.85em;
   background: #5332e6;
 }
+.header__profile {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1em;
+}
 
 .footer {
   color: #fff;

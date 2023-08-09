@@ -36,4 +36,7 @@
     font-size: 0.85em;
     background: $color-violet;
   }
+  &__profile {
+    @include flex(row, nowrap, space-between, center, 1em);
+  }
 }
