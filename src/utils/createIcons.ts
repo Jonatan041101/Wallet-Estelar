@@ -1,17 +1,17 @@
 import { readdirSync, writeFileSync } from 'fs';
 
-const cleanFileName = (fileName: string) => {
-  const name = fileName.split('.')[0];
-  return name;
-};
+const PATH_ICONS = './src/atoms/icons';
+const PATH_CREATE_TYPES_ICONS = './src/types/icons.d.ts';
+
+const cleanFileName = (fileName: string) => fileName.split('.')[0];
 export const creteIconsTypes = () => {
   let typesIcons = 'export type IconsTypes = ';
-  readdirSync('./src/atoms/icons').filter((fileName) => {
+  readdirSync(PATH_ICONS).filter((fileName) => {
     const cleanName = cleanFileName(fileName);
     if (cleanName !== 'index' && cleanName !== 'icons') {
       typesIcons += `| '${cleanName}' `;
     }
   });
 
-  writeFileSync('./src/types/icons.d.ts', typesIcons);
+  writeFileSync(PATH_CREATE_TYPES_ICONS, typesIcons);
 };
