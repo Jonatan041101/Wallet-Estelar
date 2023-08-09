@@ -259,8 +259,14 @@ button {
   color: #fff;
   background: #5332e6;
 }
-.check__p {
+.check__label {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5em;
   color: #d4d5d8;
+  cursor: pointer;
 }
 
 .input__label {

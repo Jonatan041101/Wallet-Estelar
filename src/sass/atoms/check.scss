@@ -25,7 +25,9 @@
     color: #fff;
     background: $color-violet;
   }
-  &__p {
+  &__label {
+    @include flex(row, nowrap, flex-start, center, 0.5em);
     color: $gray-color-text;
+    cursor: pointer;
   }
 }
