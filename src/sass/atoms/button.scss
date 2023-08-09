@@ -11,6 +11,13 @@
       border-color: $color-violet;
     }
   }
+  &__transparent {
+    background: transparent;
+    color: #fff;
+    & i {
+      color: $color-violet;
+    }
+  }
   &__cancel {
     color: $color-violet-hover;
     border: 1.5px solid $color-violet-hover;

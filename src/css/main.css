@@ -193,6 +193,13 @@ button {
   background: #937eef;
   border-color: #5332e6;
 }
+.button__transparent {
+  background: transparent;
+  color: #fff;
+}
+.button__transparent i {
+  color: #5332e6;
+}
 .button__cancel {
   color: #937eef;
   border: 1.5px solid #937eef;
