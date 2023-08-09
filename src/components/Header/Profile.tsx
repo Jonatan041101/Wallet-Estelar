@@ -3,7 +3,7 @@ import Button from '@/atoms/Button';
 import useNavigate from '@/hooks/useNavigate';
 import { useBearStore } from '@/store/store';
 import { handleCopy } from '@/utils/copied';
-import { getProfileRandom } from '@/utils/profiles';
+import { getRandomProfile } from '@/utils/profiles';
 import Image from 'next/image';
 import React from 'react';
 
@@ -15,7 +15,7 @@ export default function Profile() {
       resetAccount,
     }),
   );
-  const profile = getProfileRandom();
+  const profile = getRandomProfile();
   const handleCopied = () => {
     if (publicKey.length > 0) {
       handleCopy(publicKey);
