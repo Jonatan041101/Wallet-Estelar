@@ -6,6 +6,10 @@ import Modal from '../Modal';
 import useBoolean from '@/hooks/useBoolean';
 import Form from '../Form';
 import Input from '@/atoms/Input';
+import { errorMsg } from '@/utils/toastMsg';
+import { MessageError } from '@/utils/constants';
+import { parserAmountToDecimal } from '@/utils/parserAmount';
+import { VALIDATIONS } from '@/utils/validations';
 interface Props {
   balance:
     | Horizon.BalanceLineNative
@@ -31,8 +35,21 @@ export default function Asset({ balance }: Props) {
   const { view, handleChangeBoolean } = useBoolean();
   const asset =
     balance.asset_type === 'native' ? 'Lumens (XLM)' : balance.asset_type;
-  const handleSendTransaction = (evt: React.FormEvent<HTMLFormElement>) => {
+  const handleSendTransaction = async (
+    evt: React.FormEvent<HTMLFormElement>,
+  ) => {
     evt.preventDefault();
+    if (isNaN(Number(amount)) || amount.length === 0) {
+      return errorMsg(MessageError.INVALID_NUMBER);
+    }
+    if (!VALIDATIONS.publicKey.test(publicKey)) {
+      return errorMsg(MessageError.ERROR_PUBLIC_KEY);
+    }
+    const parserAmount = parserAmountToDecimal(amount);
+    try {
+    } catch (error) {
+      console.log(error);
+    }
   };
   const handleChangeTransaction = (
     evt: React.ChangeEvent<HTMLInputElement>,
