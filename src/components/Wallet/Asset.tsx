@@ -6,10 +6,12 @@ import Modal from '../Modal';
 import useBoolean from '@/hooks/useBoolean';
 import Form from '../Form';
 import Input from '@/atoms/Input';
-import { errorMsg } from '@/utils/toastMsg';
-import { MessageError } from '@/utils/constants';
+import { errorMsg, successMsg } from '@/utils/toastMsg';
+import { MessageError, MessageSucces } from '@/utils/constants';
 import { parserAmountToDecimal } from '@/utils/parserAmount';
 import { VALIDATIONS } from '@/utils/validations';
+import { useBearStore } from '@/store/store';
+import { sendTransaction } from '@/services/payment';
 interface Props {
   balance:
     | Horizon.BalanceLineNative
@@ -33,6 +35,9 @@ export default function Asset({ balance }: Props) {
   const [{ amount, publicKey }, setTransaction] =
     useState<State['transaction']>(INITIAL_STATE);
   const { view, handleChangeBoolean } = useBoolean();
+  const { secretKey } = useBearStore(({ account }) => ({
+    secretKey: account.secretKey,
+  }));
   const asset =
     balance.asset_type === 'native' ? 'Lumens (XLM)' : balance.asset_type;
   const handleSendTransaction = async (
@@ -47,6 +52,8 @@ export default function Asset({ balance }: Props) {
     }
     const parserAmount = parserAmountToDecimal(amount);
     try {
+      await sendTransaction(secretKey, publicKey, parserAmount);
+      successMsg(MessageSucces.COPIED_TO_CLIPBOARD);
     } catch (error) {
       console.log(error);
     }
