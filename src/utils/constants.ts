@@ -13,6 +13,7 @@ export enum MessageError {
   INVALID_SECRET_KEY = 'La llave secreta ingresada no pertenece a una cuenta',
   ERROR_ACTIVATE_ACCOUNT = 'Ocurrio un error al querer activar su cuenta',
   INVALID_NUMBER = 'El valor ingresado no es numero',
+  ERROR_IN_TRANSACTION = 'Ocurrio un error en la transacción',
 }
 export enum ERROR_CONECTION {
   STRING_IS_INVALID = 'invalid encoded string',
