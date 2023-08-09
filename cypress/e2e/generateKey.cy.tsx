@@ -4,12 +4,12 @@ const textLiKeyConfirm =
 describe('Button Component', () => {
   beforeEach(() => {
     cy.visit('/');
-    cy.contains('button', buttonTextKey).should('be.visible');
-
-    cy.get('button').contains('span', buttonTextKey).click({ force: true });
+    cy.contains('button', buttonTextKey).click();
   });
 
-  it('Should render the button text correctly.', () => {});
+  it('Should render the button text correctly.', () => {
+    cy.contains('button', buttonTextKey).should('be.visible');
+  });
 
   it('Should call the handleClick function when the button is clicked and close when the cross is clicked', () => {
     cy.contains('li', textLiKeyConfirm).should('exist');
