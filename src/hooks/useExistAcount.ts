@@ -3,9 +3,12 @@ import useNavigate from './useNavigate';
 import { useEffect } from 'react';
 
 export default function useExistAcount() {
-  const { publicKey } = useBearStore((state) => ({
-    publicKey: state.account.publicKey,
-  }));
+  const { publicKey, resetAccount } = useBearStore(
+    ({ resetAccount, account }) => ({
+      publicKey: account.publicKey,
+      resetAccount,
+    }),
+  );
   const { handleNavigate } = useNavigate();
   const checkedExistPublicKeyInStore = () => {
     if (publicKey.length !== 56) {
@@ -14,5 +17,8 @@ export default function useExistAcount() {
   };
   useEffect(() => {
     checkedExistPublicKeyInStore();
+    return () => {
+      resetAccount();
+    };
   }, []);
 }
