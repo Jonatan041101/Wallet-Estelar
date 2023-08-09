@@ -1,7 +1,7 @@
 const buttonText = 'Conectar con una clave secreta';
 const textLiLoginConfirm =
   'Copiar y pegar su clave secreta lo hace vulnerable a accidentes, ataques y estafas que pueden provocar la pérdida de fondos.';
-const secretKeyFail = 'AASDASD0ASDASD0ASDASD0ASDSA0DASDJASDAKS';
+const secretKey = 'SDMKSLMZTXCXG4OAJVZKISPJ4NML2H23DWNXZI4XJBG3L2PNQ4XJYRJ5';
 describe('Button Component', () => {
   beforeEach(() => {
     cy.visit('/');
@@ -91,7 +91,7 @@ describe('Button Component', () => {
     cy.get('.check__input').should('be.checked');
     cy.contains('button', 'Continuar').click();
     cy.contains('label', 'TU CLAVE SECRETA').should('be.visible');
-    cy.get('input[type="password"]').type(secretKeyFail);
+    cy.get('input[type="password"]').type(secretKey);
     cy.get('button[class="button button__complete"]').click();
     cy.wait(1000);
     cy.contains('La llave secreta que a ingresado es incorrecta');
