@@ -1,5 +1,7 @@
 import Icons from '@/atoms/icons/icons';
+import Image from 'next/image';
 import React from 'react';
+import Profile from './Profile';
 
 export default function Header() {
   return (
@@ -12,12 +14,14 @@ export default function Header() {
         </a>
         <h3 className="header__h3">Visor de cuenta</h3>
       </div>
-
-      <button className="header__btn">
-        <i className="header__mode">
-          <Icons icon="Sun" />
-        </i>
-      </button>
+      <div className="header__profile">
+        <Profile />
+        <button className="header__btn">
+          <i className="header__mode">
+            <Icons icon="Sun" />
+          </i>
+        </button>
+      </div>
     </div>
   );
 }
