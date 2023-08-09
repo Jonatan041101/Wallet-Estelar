@@ -4,6 +4,7 @@ import useNavigate from '@/hooks/useNavigate';
 import { useBearStore } from '@/store/store';
 import { handleCopy } from '@/utils/copied';
 import { getRandomProfile } from '@/utils/profiles';
+import { shortPublicKey } from '@/utils/shortString';
 import Image from 'next/image';
 import React from 'react';
 
@@ -25,6 +26,7 @@ export default function Profile() {
     handleNavigate('/');
     resetAccount();
   };
+  const shortPK = shortPublicKey(publicKey);
   return (
     publicKey.length > 0 && (
       <div className="profile">
@@ -42,10 +44,7 @@ export default function Profile() {
             classNameBtn="button__transparent"
             id="public-key"
             handleClick={handleCopied}
-            text={`${publicKey.slice(0, 5)}...${publicKey.slice(
-              publicKey.length - 5,
-              publicKey.length,
-            )}`}
+            text={shortPK}
             icon="Copy"
           />
         </article>
