@@ -1,5 +1,6 @@
 export type MessageSuccessWithVariable =
-  `La cuenta ha sido activada hash:${string}`;
+  | `La cuenta ha sido activada hash:${string}`
+  | `Se ha enviado ${string} a ${string}`;
 export enum MessageSucces {
   COPIED_TO_CLIPBOARD = 'Copiado al portapapeles',
 }
