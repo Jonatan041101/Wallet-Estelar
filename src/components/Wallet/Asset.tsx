@@ -6,12 +6,19 @@ import Modal from '../Modal';
 import useBoolean from '@/hooks/useBoolean';
 import Form from '../Form';
 import Input from '@/atoms/Input';
-import { errorMsg, successMsg } from '@/utils/toastMsg';
+import {
+  errorMsg,
+  optionsAsync,
+  succesMsgAsync,
+  successMsg,
+} from '@/utils/toastMsg';
 import { MessageError, MessageSucces } from '@/utils/constants';
 import { parserAmountToDecimal } from '@/utils/parserAmount';
 import { VALIDATIONS } from '@/utils/validations';
 import { useBearStore } from '@/store/store';
 import { sendTransaction } from '@/services/payment';
+import { toast } from 'react-toastify';
+import LoaderAndText from '@/molecules/LoaderAndText';
 interface Props {
   balance:
     | Horizon.BalanceLineNative
@@ -52,9 +59,21 @@ export default function Asset({ balance }: Props) {
     }
     const parserAmount = parserAmountToDecimal(amount);
     try {
+      const notificationId = toast(
+        <LoaderAndText text="Espere un momento a que se termine la transacción" />,
+        optionsAsync,
+      );
+
       await sendTransaction(secretKey, publicKey, parserAmount);
-      successMsg(MessageSucces.COPIED_TO_CLIPBOARD);
+      const countAmount = `${parserAmount} ${asset}`;
+      succesMsgAsync(
+        notificationId,
+        `Se ha enviado ${countAmount} a ${publicKey}`,
+      );
     } catch (error) {
+      if (error instanceof Error) {
+        errorMsg(MessageError.ERROR_IN_TRANSACTION);
+      }
       console.log(error);
     }
   };
