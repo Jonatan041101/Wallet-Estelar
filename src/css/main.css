@@ -578,6 +578,58 @@ button {
     transform: rotate(360deg);
   }
 }
+.header {
+  width: 100%;
+  max-width: 1100px;
+  color: #fff;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1em;
+  background: #292d3e;
+  padding: 3em 1.5em;
+}
+.header__left {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1em;
+}
+.header__btn {
+  border: 1.5px solid #3a3e4d;
+  border-radius: 50%;
+  height: 3em;
+  width: 3em;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  transition: 0.5s ease;
+}
+.header__btn:hover {
+  opacity: 0.6;
+}
+.header__mode {
+  width: 1.25em;
+  height: 1.25em;
+  color: #d4d5d8;
+}
+.header__i {
+  width: 96px;
+  height: 24px;
+  color: #fff;
+}
+.header__h3 {
+  text-transform: uppercase;
+  padding: 0.25em 0.5em;
+  border-radius: 0.2em;
+  font-size: 0.85em;
+  background: #5332e6;
+}
+
 .body {
   background: #292d3e;
   display: flex;

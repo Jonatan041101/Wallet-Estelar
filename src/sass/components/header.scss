@@ -1,0 +1,39 @@
+.header {
+  width: 100%;
+  max-width: $max-width;
+  color: #fff;
+  @include flex(row, nowrap, space-between, center, 1em);
+  background: $color-header;
+  padding: 3em 1.5em;
+  &__left {
+    @include flex(row, nowrap, flex-start, center, 1em);
+  }
+  &__btn {
+    border: 1.5px solid $color-border;
+    border-radius: 50%;
+    height: 3em;
+    width: 3em;
+    @include flex(row, nowrap, center, center, 1em);
+    transition: 0.5s ease;
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+  &__mode {
+    width: 1.25em;
+    height: 1.25em;
+    color: #d4d5d8;
+  }
+  &__i {
+    width: 96px;
+    height: 24px;
+    color: #fff;
+  }
+  &__h3 {
+    text-transform: uppercase;
+    padding: 0.25em 0.5em;
+    border-radius: 0.2em;
+    font-size: 0.85em;
+    background: $color-violet;
+  }
+}
