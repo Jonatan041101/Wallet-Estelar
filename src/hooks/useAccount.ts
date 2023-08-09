@@ -1,6 +1,7 @@
 import { useBearStore } from '@/store/store';
 import useNavigate from './useNavigate';
 import { useEffect } from 'react';
+import { VALIDATIONS } from '@/utils/validations';
 
 export default function useAccount() {
   const { publicKey, resetAccount } = useBearStore(
@@ -11,7 +12,7 @@ export default function useAccount() {
   );
   const { handleNavigate } = useNavigate();
   const checkedExistPublicKeyInStore = () => {
-    if (publicKey.length !== 56) {
+    if (!VALIDATIONS.publicKey.test(publicKey)) {
       return handleNavigate('/');
     }
   };
