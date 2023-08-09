@@ -1,5 +1,5 @@
 import React from 'react';
-import Icons from './icons';
+import Icons from './icons/icons';
 
 interface Props {
   isCopied: boolean;
@@ -14,20 +14,22 @@ export default function CheckComponent({
 }: Props) {
   return (
     <div className="check">
-      <div className="check__container">
-        <input
-          className="check__input"
-          type="checkbox"
-          checked={isCopied}
-          onChange={handleChangeCopy}
-        />
-        {isCopied && (
-          <i className="check__i">
-            <Icons icon="check" />
-          </i>
-        )}
-      </div>
-      <p className="check__p">{text}</p>
+      <label className="check__label">
+        <div className="check__container">
+          <input
+            className="check__input"
+            type="checkbox"
+            checked={isCopied}
+            onChange={handleChangeCopy}
+          />
+          {isCopied && (
+            <i className="check__i">
+              <Icons icon="check" />
+            </i>
+          )}
+        </div>
+        {text}
+      </label>
     </div>
   );
 }

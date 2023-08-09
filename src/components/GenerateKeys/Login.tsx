@@ -2,6 +2,8 @@ import React from 'react';
 import Modal from '../Modal';
 import Button from '@/atoms/Button';
 import Warning from '@/molecules/Warning';
+import Input from '@/atoms/Input';
+import FormLogin from './FormLogin';
 
 interface Props {
   closeModal: () => void;
@@ -37,19 +39,7 @@ export default function Login({ closeModal }: Props) {
           </li>
         </ul>
       </Warning>
-      <label className="input__label">TU CLAVE SECRETA</label>
-      <input
-        className="input__input"
-        placeholder="Comienza con S, ejemplo: SCHK…ZLJK"
-        type="password"
-      />
-      <div className="modal__buttons">
-        <Button
-          text="Conectar"
-          classNameBtn="button__complete"
-          handleClick={() => {}}
-        />
-      </div>
+      <FormLogin />
     </Modal>
   );
 }

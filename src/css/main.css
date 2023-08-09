@@ -179,6 +179,11 @@ button {
   cursor: pointer;
   padding: 0.6em 1.5em;
   border-radius: 0.2em;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5em;
 }
 .button__complete {
   border: 1.5px solid #937eef;
@@ -242,6 +247,8 @@ button {
   z-index: 2;
   top: 0;
   opacity: 0;
+  width: 100%;
+  height: 100%;
   cursor: pointer;
 }
 .check__i {
@@ -252,8 +259,30 @@ button {
   color: #fff;
   background: #5332e6;
 }
-.check__p {
+.check__label {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5em;
   color: #d4d5d8;
+  cursor: pointer;
+}
+
+.input__label {
+  width: 100%;
+  cursor: pointer;
+}
+.input__input {
+  width: 100%;
+  margin: 1em 0 0 0;
+  padding: 0.5em;
+  border-radius: 0.3em;
+  border: 1.5px solid #4b4f5d;
+  outline: none;
+}
+.input__input:focus {
+  border-color: #5332e6;
 }
 
 .list {
@@ -451,6 +480,104 @@ button {
   text-decoration: underline;
 }
 
+.public {
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1em;
+}
+.public__contain {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0;
+}
+.public__h3 {
+  font-size: 2em;
+  color: #fff;
+}
+.public__p {
+  font-size: 2em;
+  border: 1px solid #3a3e4d;
+  border-radius: 0.5em;
+  padding: 0.2em;
+  color: #d4d5d8;
+  width: 100%;
+  overflow-wrap: break-word;
+}
+
+.wallet {
+  width: 100%;
+  max-width: 1100px;
+  padding: 0 3em;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 2em;
+}
+
+.balance {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1.5em;
+  width: 100%;
+}
+.balance__title {
+  color: #fff;
+  width: 100%;
+  font-size: 2em;
+}
+.balance__section {
+  width: 100%;
+}
+.balance__article {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5em;
+}
+.balance__p {
+  color: #d4d5d8;
+  font-size: 2em;
+  font-weight: 500;
+}
+
+.loader {
+  width: 24px;
+  height: 24px;
+  border: 1px solid #000;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+.loader__text {
+  color: #000;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5em;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 .body {
   background: #292d3e;
   display: flex;

@@ -1,27 +1,38 @@
 import { toast } from 'react-toastify';
-import { MessageError, MessageSucces } from './constants';
+import type { ToastOptions, Id } from 'react-toastify';
+import {
+  MessageError,
+  MessageSucces,
+  MessageSuccessWithVariable,
+} from './constants';
 
-export const errorMsg = (message: MessageError) => {
-  toast.error(`🚫 ${message}`, {
-    position: 'bottom-center',
-    autoClose: 3000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: 'light',
-  });
+export const toastOptions: ToastOptions = {
+  position: 'bottom-center',
+  autoClose: 3000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+  theme: 'light',
 };
-export const successMsg = (message: MessageSucces) => {
-  toast.success(`✅ ${message}`, {
-    position: 'bottom-center',
+export const optionsAsync: ToastOptions = {
+  ...toastOptions,
+  autoClose: false,
+  hideProgressBar: true,
+};
+export const errorMsg = (message: MessageError) => {
+  toast.error(`🚫 ${message}`, toastOptions);
+};
+export const successMsg = (
+  message: MessageSucces | MessageSuccessWithVariable,
+) => {
+  toast.success(`✅ ${message}`, toastOptions);
+};
+export const succesMsgAsync = (id: Id, message: MessageSuccessWithVariable) => {
+  toast.update(id, {
+    render: message,
+    type: 'success',
     autoClose: 3000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: 'light',
   });
 };
