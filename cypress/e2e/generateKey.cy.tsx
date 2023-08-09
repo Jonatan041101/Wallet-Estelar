@@ -5,7 +5,7 @@ describe('Button Component', () => {
   beforeEach(() => {
     cy.visit('/');
     cy.contains('button', buttonTextKey).should('be.visible');
-    cy.get('button').contains('span', buttonTextKey).click({ force: true });
+    cy.get('button').contains('span', buttonTextKey).click();
   });
 
   it('Should call the handleClick function when the button is clicked and close when the cross is clicked', () => {

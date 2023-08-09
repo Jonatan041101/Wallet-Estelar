@@ -6,7 +6,7 @@ describe('Button Component', () => {
   beforeEach(() => {
     cy.visit('/');
     cy.contains('button', buttonText).should('be.visible');
-    cy.contains('button', buttonText).click({ force: true });
+    cy.contains('button', buttonText).click();
   });
 
   it('Should render the button text correctly', () => {
