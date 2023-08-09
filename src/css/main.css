@@ -184,6 +184,7 @@ button {
   justify-content: flex-start;
   align-items: center;
   gap: 0.5em;
+  transition: 0.3s ease;
 }
 .button__complete {
   border: 1.5px solid #937eef;
@@ -197,9 +198,13 @@ button {
   background: transparent;
   color: #fff;
   padding: 0.1em;
+  font-size: 0.8em;
+}
+.button__transparent:hover {
+  opacity: 0.6;
 }
 .button__transparent i {
-  color: #5332e6;
+  color: #937eef;
 }
 .button__cancel {
   color: #937eef;
@@ -226,7 +231,6 @@ button {
   border: 1.5px solid #3a3e4d;
   border-radius: 0.3em;
   cursor: pointer;
-  transition: 0.3s ease;
 }
 .button__wallet:hover {
   border-color: #4b4f5d;
