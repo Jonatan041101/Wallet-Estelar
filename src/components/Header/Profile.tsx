@@ -40,6 +40,7 @@ export default function Profile() {
           </div>
           <Button
             classNameBtn="button__transparent"
+            id="public-key"
             handleClick={handleCopied}
             text={`${publicKey.slice(0, 5)}...${publicKey.slice(
               publicKey.length - 5,
