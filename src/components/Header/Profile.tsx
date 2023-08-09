@@ -11,36 +11,34 @@ export default function Profile() {
   }));
   const profile = getProfileRandom();
   return (
-    <>
-      {publicKey.length > 0 && (
-        <div className="profile">
-          <article className="profile__article">
-            <div className="profile__img">
-              <Image
-                className="profile__image"
-                src={profile}
-                alt="Imagen de perfil random"
-                width={20}
-                height={20}
-              />
-            </div>
-            <Button
-              classNameBtn="button__transparent"
-              handleClick={() => {}}
-              text={`${publicKey.slice(0, 5)}...${publicKey.slice(
-                publicKey.length - 5,
-                publicKey.length,
-              )}`}
-              icon="Copy"
+    publicKey.length > 0 && (
+      <div className="profile">
+        <article className="profile__article">
+          <div className="profile__img">
+            <Image
+              className="profile__image"
+              src={profile}
+              alt="Imagen de perfil random"
+              width={20}
+              height={20}
             />
-          </article>
+          </div>
           <Button
             classNameBtn="button__transparent"
             handleClick={() => {}}
-            text="Cerrar sesión"
+            text={`${publicKey.slice(0, 5)}...${publicKey.slice(
+              publicKey.length - 5,
+              publicKey.length,
+            )}`}
+            icon="Copy"
           />
-        </div>
-      )}
-    </>
+        </article>
+        <Button
+          classNameBtn="button__transparent"
+          handleClick={() => {}}
+          text="Cerrar sesión"
+        />
+      </div>
+    )
   );
 }
