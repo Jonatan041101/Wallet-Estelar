@@ -3,7 +3,7 @@ import { useBearStore } from '@/store/store';
 import { server } from '@/utils/server';
 import { useEffect } from 'react';
 
-export default function useData() {
+export default function useLoadAccount() {
   const { publicKey, balanceAccount, changeBalanceAccount } = useBearStore(
     ({ changeBalanceAccount, account, balanceAccount }) => ({
       publicKey: account.publicKey,

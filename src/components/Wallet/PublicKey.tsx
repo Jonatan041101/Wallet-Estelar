@@ -1,6 +1,6 @@
 'use client';
 import Button from '@/atoms/Button';
-import useData from '@/hooks/useLoadAccount';
+import useLoadAccount from '@/hooks/useLoadAccount';
 import LoaderAndText from '@/molecules/LoaderAndText';
 import activeAccount from '@/services/activeAccount';
 import { useBearStore } from '@/store/store';
@@ -10,7 +10,7 @@ import React from 'react';
 import { toast } from 'react-toastify';
 export default function PublicKey() {
   const { publicKey } = useBearStore((state) => state.account);
-  const { getData } = useData();
+  const { getData } = useLoadAccount();
   const handleActiveAccount = async () => {
     try {
       const notificationId = toast(
