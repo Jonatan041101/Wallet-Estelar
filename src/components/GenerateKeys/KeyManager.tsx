@@ -49,11 +49,13 @@ export default function KeyManager() {
         classNameBtn="button__under"
         handleClick={handleOpenWarningLogin}
         text="Conectar con una clave secreta"
+        id="login"
       />
       <Button
         classNameBtn="button__under"
         handleClick={handleOpenConfirm}
         text="Generar par de claves para una nueva cuenta"
+        id="generate-keys"
       />
       {viewWarning && (
         <WarningLogin
