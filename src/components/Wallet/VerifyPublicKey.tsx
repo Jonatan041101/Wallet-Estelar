@@ -1,7 +1,7 @@
 'use client';
-import useExistAcount from '@/hooks/useExistAcount';
+import useAccount from '@/hooks/useAccount';
 
 export default function VerifyPublicKey() {
-  useExistAcount();
+  useAccount();
   return null;
 }
