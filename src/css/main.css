@@ -196,6 +196,7 @@ button {
 .button__transparent {
   background: transparent;
   color: #fff;
+  padding: 0.1em;
 }
 .button__transparent i {
   color: #5332e6;
@@ -670,6 +671,33 @@ button {
   gap: 0.5em;
 }
 
+.profile {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.4em;
+}
+.profile__article {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.4em;
+}
+.profile__img {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  background: #303448;
+  border: 1px solid #3a3e4d;
+  border-radius: 50%;
+  cursor: pointer;
+}
 .body {
   background: #292d3e;
   display: flex;
