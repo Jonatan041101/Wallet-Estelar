@@ -33,11 +33,13 @@ export default function Profile() {
             icon="Copy"
           />
         </article>
-        <Button
-          classNameBtn="button__transparent"
-          handleClick={() => {}}
-          text="Cerrar sesión"
-        />
+        <div className="profile__logout">
+          <Button
+            classNameBtn="button__transparent"
+            handleClick={() => {}}
+            text="Cerrar sesión"
+          />
+        </div>
       </div>
     )
   );

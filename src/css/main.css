@@ -688,6 +688,8 @@ button {
   justify-content: flex-start;
   align-items: center;
   gap: 0.4em;
+  padding: 0 0.5em 0 0;
+  border-right: 1.5px solid #3a3e4d;
 }
 .profile__img {
   width: 45px;
@@ -702,6 +704,11 @@ button {
   border-radius: 50%;
   cursor: pointer;
 }
+.profile__logout button {
+  color: #937eef;
+  font-weight: 600;
+}
+
 .body {
   background: #292d3e;
   display: flex;
