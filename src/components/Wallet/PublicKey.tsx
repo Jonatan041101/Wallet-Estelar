@@ -21,7 +21,7 @@ export default function PublicKey() {
       if (transaction) {
         succesMsgAsync(
           notificationId,
-          `La cuenta a sido activada hash:${transaction.hash}`,
+          `La cuenta ha sido activada hash:${transaction.hash}`,
         );
       }
       getData();
