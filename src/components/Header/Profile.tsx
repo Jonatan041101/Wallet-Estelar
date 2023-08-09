@@ -1,5 +1,6 @@
 'use client';
 import Button from '@/atoms/Button';
+import useNavigate from '@/hooks/useNavigate';
 import { useBearStore } from '@/store/store';
 import { handleCopy } from '@/utils/copied';
 import { getProfileRandom } from '@/utils/profiles';
@@ -7,14 +8,22 @@ import Image from 'next/image';
 import React from 'react';
 
 export default function Profile() {
-  const { publicKey } = useBearStore(({ account }) => ({
-    publicKey: account.publicKey,
-  }));
+  const { handleNavigate } = useNavigate();
+  const { publicKey, resetAccount } = useBearStore(
+    ({ account, resetAccount }) => ({
+      publicKey: account.publicKey,
+      resetAccount,
+    }),
+  );
   const profile = getProfileRandom();
   const handleCopied = () => {
     if (publicKey.length > 0) {
       handleCopy(publicKey);
     }
+  };
+  const handleLogout = () => {
+    handleNavigate('/');
+    resetAccount();
   };
   return (
     publicKey.length > 0 && (
@@ -42,7 +51,7 @@ export default function Profile() {
         <div className="profile__logout">
           <Button
             classNameBtn="button__transparent"
-            handleClick={() => {}}
+            handleClick={handleLogout}
             text="Cerrar sesión"
           />
         </div>
