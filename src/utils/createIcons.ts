@@ -5,7 +5,7 @@ const PATH_CREATE_TYPES_ICONS = './src/types/icons.d.ts';
 
 const cleanFileName = (fileName: string) => fileName.split('.')[0];
 export const creteIconsTypes = () => {
-  let typesIcons = 'export type IconsTypes = ';
+  let typesIcons = 'export type IconTypes = ';
   readdirSync(PATH_ICONS).filter((fileName) => {
     const cleanName = cleanFileName(fileName);
     if (cleanName !== 'index' && cleanName !== 'icons') {
