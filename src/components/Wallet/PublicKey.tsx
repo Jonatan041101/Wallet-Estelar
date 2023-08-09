@@ -4,7 +4,7 @@ import useData from '@/hooks/useData';
 import LoaderAndText from '@/molecules/LoaderAndText';
 import activeAccount from '@/services/activeAccount';
 import { useBearStore } from '@/store/store';
-import { optionsAsync } from '@/utils/toastMsg';
+import { optionsAsync, succesMsgAsync } from '@/utils/toastMsg';
 import React from 'react';
 import { toast } from 'react-toastify';
 export default function PublicKey() {
@@ -18,11 +18,10 @@ export default function PublicKey() {
       );
       const transaction = await activeAccount(publicKey);
       if (transaction) {
-        toast.update(notificationId, {
-          render: `La cuenta a sido activada hash:${transaction.hash}`,
-          type: 'success',
-          autoClose: 3000,
-        });
+        succesMsgAsync(
+          notificationId,
+          `La cuenta a sido activada hash:${transaction.hash}`,
+        );
       }
       getAccountData();
     } catch (error) {

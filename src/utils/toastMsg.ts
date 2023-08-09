@@ -1,5 +1,5 @@
 import { toast } from 'react-toastify';
-import type { ToastOptions } from 'react-toastify';
+import type { ToastOptions, Id } from 'react-toastify';
 import {
   MessageError,
   MessageSucces,
@@ -28,4 +28,11 @@ export const successMsg = (
   message: MessageSucces | MessageSuccessWithVariable,
 ) => {
   toast.success(`✅ ${message}`, toastOptions);
+};
+export const succesMsgAsync = (id: Id, message: MessageSuccessWithVariable) => {
+  toast.update(id, {
+    render: message,
+    type: 'success',
+    autoClose: 3000,
+  });
 };
