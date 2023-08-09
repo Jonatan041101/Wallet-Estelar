@@ -31,8 +31,10 @@ export default function FormLogin() {
         handleNavigate('/wallet');
       }
     } catch (error) {
-      const err = error as Error;
-      if (err.message === ERROR_CONECTION.STRING_IS_INVALID) {
+      if (
+        error instanceof Error &&
+        error.message === ERROR_CONECTION.STRING_IS_INVALID
+      ) {
         errorMsg(MessageError.INVALID_SECRET_KEY);
       }
     }
