@@ -7,6 +7,7 @@ export interface Wallet {
   balanceAccount: AccountResponse | null;
   getAcc: (account: AccountGenerate) => void;
   changeBalanceAccount: (balanceAccount: AccountResponse) => void;
+  resetAccount: () => void;
 }
 
 export const accountSlice: StateCreator<Wallet> = (set) => ({
@@ -26,5 +27,12 @@ export const accountSlice: StateCreator<Wallet> = (set) => ({
   },
   changeBalanceAccount: (balanceAccount) => {
     set((state) => ({ ...state, balanceAccount }));
+  },
+  resetAccount: () => {
+    set((state) => ({
+      ...state,
+      account: { publicKey: '', secretKey: '' },
+      balanceAccount: null,
+    }));
   },
 });
