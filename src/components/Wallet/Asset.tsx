@@ -60,7 +60,7 @@ export default function Asset({ balance }: Props) {
               name="publicKey"
               handleChange={handleChangeTransaction}
               labelText="Pubic Key"
-              placeholder=""
+              placeholder="Comienza con G ejemplo: GBS7...H6XG"
               type="text"
               value={publicKey}
             />
@@ -68,7 +68,7 @@ export default function Asset({ balance }: Props) {
               name="amount"
               handleChange={handleChangeTransaction}
               labelText={`Cantidad de ${asset} para enviar`}
-              placeholder=""
+              placeholder={`Ejemplo 1.0000000 un ${asset}`}
               type="number"
               value={amount}
             />
