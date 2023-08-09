@@ -3,7 +3,7 @@
 import Button from '@/atoms/Button';
 import { useState } from 'react';
 import CheckComponent from '../atoms/CheckComponent';
-import Icons from '../atoms/icons';
+import Icons from '../atoms/icons/icons';
 import { errorMsg, successMsg } from '@/utils/toastMsg';
 import { MessageError, MessageSucces } from '@/utils/constants';
 interface Props {

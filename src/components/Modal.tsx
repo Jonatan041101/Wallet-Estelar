@@ -1,4 +1,4 @@
-import Icons from '@/atoms/icons';
+import Icons from '@/atoms/icons/icons';
 import React from 'react';
 
 interface Props {

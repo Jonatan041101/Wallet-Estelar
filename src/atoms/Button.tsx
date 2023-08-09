@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import Icons from './icons';
+import Icons from './icons/icons';
 import { IconsTypes } from '@/types/icons';
 
 type ButtonClass =
