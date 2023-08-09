@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import Loader from '../Loader';
 import { IconsTypes } from '@/types/icons';
-import Albedo from './Albedo';
 interface DynamicIconProps {
   icon: IconsTypes;
 }
