@@ -14,6 +14,7 @@ interface Props {
   text: string;
   classNameBtn: ButtonClass;
   icon?: IconsTypes;
+  id?: string;
 }
 
 export default function Button({
@@ -21,9 +22,14 @@ export default function Button({
   classNameBtn,
   icon,
   handleClick,
+  id,
 }: Props) {
   return (
-    <button onClick={handleClick} className={`button ${classNameBtn}`}>
+    <button
+      onClick={handleClick}
+      className={`button ${classNameBtn}`}
+      data-testid={id}
+    >
       {icon && (
         <i className="button__i">
           <Icons icon={icon} />
