@@ -13,6 +13,7 @@ describe('Button Component', () => {
     cy.get('.modal__btn').click();
     cy.contains('li', textLiKeyConfirm).should('not.exist');
   });
+
   it('Should call the handleClick function when the button is clicked and close when the cancel button is clicked', () => {
     cy.contains('li', textLiKeyConfirm).should('exist');
     cy.contains('button', 'Cancelar').click();
@@ -27,6 +28,7 @@ describe('Button Component', () => {
     cy.contains('button', 'Cerrar').click();
     cy.contains('Guarde sus llaves').should('be.visible');
   });
+
   it('Should modal close when you click the cancel button if the input is checked', () => {
     cy.contains('button', 'Continuar').click();
     cy.get('.check__input').should('exist');
@@ -37,6 +39,7 @@ describe('Button Component', () => {
     cy.contains('button', 'Cerrar').click();
     cy.get('.check__input').should('not.exist');
   });
+
   it('Should give a copy to clipboard message when i click on copy keys', () => {
     cy.contains('button', 'Continuar').click();
     cy.get('.copy__button').should('exist');
