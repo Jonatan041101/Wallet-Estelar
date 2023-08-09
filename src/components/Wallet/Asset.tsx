@@ -19,7 +19,7 @@ export default function Asset({ balance }: Props) {
         classNameBtn="button__complete"
         text="Enviar"
         handleClick={() => {}}
-        icon="send"
+        icon="Send"
       />
     </article>
   );
