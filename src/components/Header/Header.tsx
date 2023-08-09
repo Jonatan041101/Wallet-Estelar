@@ -5,9 +5,11 @@ export default function Header() {
   return (
     <div className="header">
       <div className="header__left">
-        <i className="header__i">
-          <Icons icon="Stellar" />
-        </i>
+        <a href="https://stellar.org/" target="_blank">
+          <i className="header__i">
+            <Icons icon="Stellar" />
+          </i>
+        </a>
         <h3 className="header__h3">Visor de cuenta</h3>
       </div>
 

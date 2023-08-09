@@ -5,15 +5,23 @@ export default function Footer() {
   return (
     <footer className="footer">
       <ul className="footer__ul">
-        <li className="footer__li">Términos de servicio</li>
-        <li className="footer__li">Política de privacidad</li>
+        <a href="https://www.stellar.org/terms-of-service" target="_blank">
+          <li className="footer__li">Términos de servicio</li>
+        </a>
+        <a href="https://www.stellar.org/privacy-policy" target="_blank">
+          <li className="footer__li">Política de privacidad</li>
+        </a>
       </ul>
-      <div className="footer__git">
+      <a
+        className="footer__git"
+        href="https://github.com/Jonatan041101/Wallet-Stellar"
+        target="_blank"
+      >
         <i className="footer__i">
           <Icons icon="GitHub" />
         </i>
         GitHub
-      </div>
+      </a>
     </footer>
   );
 }
