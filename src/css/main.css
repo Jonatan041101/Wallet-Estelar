@@ -561,6 +561,14 @@ button {
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
 }
+.loader__text {
+  color: #000;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5em;
+}
 
 @keyframes rotation {
   0% {
