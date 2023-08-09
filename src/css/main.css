@@ -630,6 +630,39 @@ button {
   background: #5332e6;
 }
 
+.footer {
+  color: #fff;
+  width: 90%;
+  max-width: 1100px;
+  border-top: 1.5px solid #3a3e4d;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0;
+  padding: 1em 2em 4em;
+  margin: 2em 0 0 0;
+}
+.footer__ul {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1.5em;
+}
+.footer__i {
+  width: 1.2em;
+  height: 1.2em;
+  color: #fff;
+}
+.footer__git {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5em;
+}
+
 .body {
   background: #292d3e;
   display: flex;
