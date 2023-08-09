@@ -1,18 +1,22 @@
 'use client';
 import { useBearStore } from '@/store/store';
 import { server } from '@/utils/server';
-import { useEffect, useState } from 'react';
-import { AccountResponse } from 'stellar-sdk';
+import { useEffect } from 'react';
 
 export default function useData() {
-  const [account, setAccount] = useState<AccountResponse | null>(null);
-  const publicKey = useBearStore((state) => state.account.publicKey);
+  const { publicKey, balanceAccount, changeBalanceAccount } = useBearStore(
+    ({ changeBalanceAccount, account, balanceAccount }) => ({
+      publicKey: account.publicKey,
+      balanceAccount,
+      changeBalanceAccount: changeBalanceAccount,
+    }),
+  );
 
   useEffect(() => {
     const getAccountData = async () => {
       try {
         const accountData = await server.loadAccount(publicKey);
-        setAccount(accountData);
+        changeBalanceAccount(accountData);
       } catch (error) {
         console.error(error);
       }
@@ -20,5 +24,5 @@ export default function useData() {
     getAccountData();
   }, [publicKey]);
 
-  return account;
+  return balanceAccount;
 }
