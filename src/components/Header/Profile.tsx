@@ -14,25 +14,33 @@ export default function Profile() {
   return (
     <>
       {publicKey.length > 0 && (
-        <div>
-          <article className="">
-            <Image
-              src={profile}
-              alt="Imagen de perfil random"
-              width={50}
-              height={50}
-            />
-            <button className="">
-              {`${publicKey.slice(0, 5)}...${publicKey.slice(
+        <div className="profile">
+          <article className="profile__article">
+            <div className="profile__img">
+              <Image
+                className="profile__image"
+                src={profile}
+                alt="Imagen de perfil random"
+                width={20}
+                height={20}
+              />
+            </div>
+
+            <Button
+              classNameBtn="button__transparent"
+              handleClick={() => {}}
+              text={`${publicKey.slice(0, 5)}...${publicKey.slice(
                 publicKey.length - 5,
                 publicKey.length,
               )}`}
-              <i className="">
-                <Icons icon="Copy" />
-              </i>
-            </button>
+              icon="Copy"
+            />
           </article>
-          <button>Cerrar sesión</button>
+          <Button
+            classNameBtn="button__transparent"
+            handleClick={() => {}}
+            text="Cerrar sesión"
+          />
         </div>
       )}
     </>
