@@ -6,7 +6,7 @@ interface Props {
   value: string;
   placeholder: string;
   type: InputTypes;
-  name: string;
+  name?: string;
   handleChange: (evt: React.ChangeEvent<HTMLInputElement>) => void;
 }
 export default function Input({
