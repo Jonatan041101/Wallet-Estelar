@@ -9,4 +9,5 @@ export enum MessageError {
   ERROR_SECRET_KEY = 'La llave secreta que a ingresado es incorrecta',
   ERROR_COPYING = 'Ocurrio un error al copiar al portapapeles ',
   INVALID_SECRET_KEY = 'La llave secreta ingresada no pertenece a una cuenta',
+  ERROR_ACTIVATE_ACCOUNT = 'Ocurrio un error al querer activar su cuenta',
 }
