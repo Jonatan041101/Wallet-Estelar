@@ -2,9 +2,12 @@
 import useLoadAccount from '@/hooks/useLoadAccount';
 import React from 'react';
 import Asset from './Asset';
+import useAccount from '@/hooks/useAccount';
 
 export default function Balance() {
   const { balanceAccount } = useLoadAccount();
+  useAccount();
+
   return (
     <div className="balance">
       <h2 className="balance__title">Tu balance</h2>
