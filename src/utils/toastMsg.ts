@@ -16,7 +16,11 @@ export const toastOptions: ToastOptions = {
   progress: undefined,
   theme: 'light',
 };
-
+export const optionsAsync: ToastOptions = {
+  ...toastOptions,
+  autoClose: false,
+  hideProgressBar: true,
+};
 export const errorMsg = (message: MessageError) => {
   toast.error(`🚫 ${message}`, toastOptions);
 };

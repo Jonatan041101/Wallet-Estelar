@@ -4,20 +4,14 @@ import useData from '@/hooks/useData';
 import LoaderAndText from '@/molecules/LoaderAndText';
 import activeAccount from '@/services/activeAccount';
 import { useBearStore } from '@/store/store';
-import { toastOptions } from '@/utils/toastMsg';
+import { optionsAsync } from '@/utils/toastMsg';
 import React from 'react';
 import { toast } from 'react-toastify';
-import type { ToastOptions } from 'react-toastify';
 export default function PublicKey() {
   const { publicKey } = useBearStore((state) => state.account);
   const { getAccountData } = useData();
   const handleActiveAccount = async () => {
     try {
-      const optionsAsync: ToastOptions = {
-        ...toastOptions,
-        autoClose: false,
-        hideProgressBar: true,
-      };
       const notificationId = toast(
         <LoaderAndText text="Esperando activación de la cuenta" />,
         optionsAsync,
