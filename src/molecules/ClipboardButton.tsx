@@ -4,8 +4,9 @@ import Button from '@/atoms/Button';
 import { useState } from 'react';
 import CheckComponent from '../atoms/CheckComponent';
 import Icons from '../atoms/icons/icons';
-import { errorMsg, successMsg } from '@/utils/toastMsg';
-import { MessageError, MessageSucces } from '@/utils/constants';
+import { errorMsg } from '@/utils/toastMsg';
+import { MessageError } from '@/utils/constants';
+import { handleCopy } from '@/utils/copied';
 interface Props {
   text: string;
   handleClose: () => void;
@@ -13,15 +14,6 @@ interface Props {
 function ClipboardButton({ text, handleClose }: Props) {
   const [isCopied, setIsCopied] = useState<boolean>(false);
 
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(text);
-      successMsg(MessageSucces.COPIED_TO_CLIPBOARD);
-    } catch (err) {
-      console.error('Error al copiar texto:', err);
-      errorMsg(MessageError.ERROR_COPYING);
-    }
-  };
   const handleChangeCopy = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const { checked } = evt.target;
     setIsCopied(checked);
@@ -35,7 +27,7 @@ function ClipboardButton({ text, handleClose }: Props) {
   return (
     <div className="copy">
       <div className="copy__clip">
-        <button onClick={handleCopy} className="copy__button">
+        <button onClick={() => handleCopy(text)} className="copy__button">
           Copiar Keys{' '}
           <i className="copy__i">
             <Icons icon="Copy" />

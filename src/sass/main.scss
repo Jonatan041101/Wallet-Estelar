@@ -4,7 +4,9 @@
   './molecules/warning.scss', './components/otherwallet.scss',
   './components/modal.scss', './components/key.scss',
   './components/generator.scss', './components/public.scss',
-  './components/wallet.scss', './components/balance.scss', './atoms/loader.scss';
+  './components/wallet.scss', './components/balance.scss', './atoms/loader.scss',
+  './components/header.scss', './components/footer.scss',
+  './components/profile.scss';
 
 .body {
   background: $color-header;
@@ -12,6 +14,10 @@
   &__container {
     width: 100%;
     @include flex(column, nowrap, space-between, center, 0);
+  }
+  &__children {
+    flex-grow: 1;
+    display: flex;
   }
 }
 

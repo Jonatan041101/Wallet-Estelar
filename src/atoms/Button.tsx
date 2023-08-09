@@ -7,7 +7,8 @@ type ButtonClass =
   | 'button__complete'
   | 'button__cancel'
   | 'button__under'
-  | 'button__wallet';
+  | 'button__wallet'
+  | 'button__transparent';
 
 interface Props {
   handleClick: () => void;

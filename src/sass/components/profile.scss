@@ -1,0 +1,26 @@
+.profile {
+  @include flex(row, nowrap, flex-start, center, 0.4em);
+  &__article {
+    @include flex(row, nowrap, flex-start, center, 0.4em);
+    padding: 0 0.5em 0 0;
+    border-right: 1.5px solid $color-border;
+  }
+
+  &__img {
+    width: 45px;
+    height: 45px;
+    @include flex(row, nowrap, center, center, 0);
+    background: $color-background-key;
+    border: 1px solid $color-border;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  &__image {
+  }
+  &__logout {
+    & button {
+      color: $color-violet-hover;
+      font-weight: 600;
+    }
+  }
+}
