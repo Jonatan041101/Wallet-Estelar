@@ -12,17 +12,17 @@ export default function useData() {
     }),
   );
 
-  const getAccountData = async () => {
+  const getData = async () => {
     try {
-      const accountData = await server.loadAccount(publicKey);
-      changeBalanceAccount(accountData);
+      const data = await server.loadAccount(publicKey);
+      changeBalanceAccount(data);
     } catch (error) {
       console.error(error);
     }
   };
   useEffect(() => {
-    getAccountData();
+    getData();
   }, [publicKey]);
 
-  return { balanceAccount, getAccountData };
+  return { balanceAccount, getData };
 }
