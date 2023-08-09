@@ -1,11 +1,11 @@
-import { IconsTypes } from '@/types/icons';
 import React from 'react';
 import OthersWallet from './OthersWallet';
+import { IconsTypes } from '@/types/icons';
 export interface Wallet {
   icon: IconsTypes;
   text: string;
 }
-const wallets: Wallet[] = [{ icon: 'albedo', text: 'Conéctate con Albedo' }];
+const wallets: Wallet[] = [{ icon: 'Albedo', text: 'Conéctate con Albedo' }];
 export default function Options() {
   return (
     <section className="otherwallet">

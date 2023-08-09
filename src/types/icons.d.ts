@@ -1,11 +1,1 @@
-export type IconsTypes =
-  | 'stellar'
-  | 'cross'
-  | 'cross-modal'
-  | 'sun'
-  | 'moon'
-  | 'albedo'
-  | 'github'
-  | 'copy'
-  | 'check'
-  | 'send';
+export type IconsTypes = | 'Albedo' | 'Check' | 'Copy' | 'Cross' | 'CrossModal' | 'GitHub' | 'Moon' | 'Send' | 'Stellar' | 'Sun' 

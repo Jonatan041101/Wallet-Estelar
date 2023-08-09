@@ -9,7 +9,7 @@ export default function WarningTitle({ text }: Props) {
   return (
     <h3 className="warning__h3">
       <i className="warning__i">
-        <Icons icon="cross" />
+        <Icons icon="Cross" />
       </i>
       {text}
     </h3>
