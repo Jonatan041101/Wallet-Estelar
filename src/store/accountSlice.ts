@@ -2,7 +2,7 @@ import { AccountGenerate } from '@/types/types';
 import { AccountResponse } from 'stellar-sdk';
 import { StateCreator } from 'zustand';
 
-interface Wallet {
+export interface Wallet {
   account: AccountGenerate;
   balanceAccount: AccountResponse | null;
   getAcc: (account: AccountGenerate) => void;
