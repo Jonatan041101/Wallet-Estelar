@@ -36,7 +36,12 @@ export default function Asset({ balance }: Props) {
   };
   const handleChangeTransaction = (
     evt: React.ChangeEvent<HTMLInputElement>,
-  ) => {};
+  ) => {
+    const { name, value } = evt.target;
+    if (name === 'publicKey' || name === 'amount') {
+      setTransaction((state) => ({ ...state, [name]: value }));
+    }
+  };
   return (
     <article className="balance__article">
       <p className="balance__p">
