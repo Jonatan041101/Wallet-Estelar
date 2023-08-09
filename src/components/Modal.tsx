@@ -13,7 +13,7 @@ export default function Modal({ children, title, closeModal }: Props) {
       <div className="modal__content">
         <button className="modal__btn" onClick={closeModal}>
           <i className="modal__close">
-            <Icons icon="cross-modal" />
+            <Icons icon="CrossModal" />
           </i>
         </button>
         <h3 className="modal__title">{title}</h3>
