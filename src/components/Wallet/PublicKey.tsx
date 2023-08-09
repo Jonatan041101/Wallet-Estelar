@@ -4,7 +4,8 @@ import useData from '@/hooks/useData';
 import LoaderAndText from '@/molecules/LoaderAndText';
 import activeAccount from '@/services/activeAccount';
 import { useBearStore } from '@/store/store';
-import { optionsAsync, succesMsgAsync } from '@/utils/toastMsg';
+import { MessageError } from '@/utils/constants';
+import { errorMsg, optionsAsync, succesMsgAsync } from '@/utils/toastMsg';
 import React from 'react';
 import { toast } from 'react-toastify';
 export default function PublicKey() {
@@ -25,7 +26,7 @@ export default function PublicKey() {
       }
       getAccountData();
     } catch (error) {
-      console.error(error);
+      errorMsg(MessageError.ERROR_ACTIVATE_ACCOUNT);
     }
   };
   return (
