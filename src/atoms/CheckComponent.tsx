@@ -24,7 +24,7 @@ export default function CheckComponent({
           />
           {isCopied && (
             <i className="check__i">
-              <Icons icon="check" />
+              <Icons icon="Check" />
             </i>
           )}
         </div>

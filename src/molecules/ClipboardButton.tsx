@@ -38,7 +38,7 @@ function ClipboardButton({ text, handleClose }: Props) {
         <button onClick={handleCopy} className="copy__button">
           Copiar Keys{' '}
           <i className="copy__i">
-            <Icons icon="copy" />
+            <Icons icon="Copy" />
           </i>
         </button>
       </div>
