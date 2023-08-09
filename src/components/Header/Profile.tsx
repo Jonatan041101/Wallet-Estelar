@@ -1,6 +1,5 @@
 'use client';
 import Button from '@/atoms/Button';
-import Icons from '@/atoms/icons/icons';
 import { useBearStore } from '@/store/store';
 import { getProfileRandom } from '@/utils/profiles';
 import Image from 'next/image';
@@ -25,7 +24,6 @@ export default function Profile() {
                 height={20}
               />
             </div>
-
             <Button
               classNameBtn="button__transparent"
               handleClick={() => {}}
