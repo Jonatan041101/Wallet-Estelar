@@ -76,7 +76,7 @@ describe('Button Component', () => {
     cy.wait(3000);
     cy.contains('h3', 'Su clave pública estelar').should('be.visible');
   });
-  it.only('Should give an error message when entering an invalid secret key', () => {
+  it('Should give an error message when entering an invalid secret key', () => {
     cy.get('.check__input').should('exist');
     cy.get('.check__input').should('not.be.checked');
     cy.contains('button', 'Continuar').should('exist');
@@ -103,7 +103,7 @@ describe('Button Component', () => {
     cy.contains('h3', 'Su clave pública estelar').should('be.visible');
     cy.contains('button', 'Activar Cuenta').should('exist');
     cy.contains('button', 'Activar Cuenta').click();
-    cy.wait(8000);
+    cy.wait(6000);
     cy.contains('La cuenta a sido activada').should('be.visible');
   });
 });
