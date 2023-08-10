@@ -18,4 +18,8 @@
     font-size: 2em;
     font-weight: 500;
   }
+  &__button {
+    width: 100%;
+    @include flex(row, nowrap, flex-end, flex-end, 1.5em);
+  }
 }
