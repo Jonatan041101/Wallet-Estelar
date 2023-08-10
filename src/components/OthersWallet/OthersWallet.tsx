@@ -10,7 +10,7 @@ export default function OthersWallet({ wallet }: Props) {
     <article className="otherwallet__div">
       <Button
         classNameBtn="button__wallet"
-        handleClick={() => {}}
+        handleClick={wallet.login}
         text={wallet.text}
         icon={wallet.icon}
       />
