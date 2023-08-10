@@ -54,6 +54,7 @@ describe('Payment', () => {
     cy.get('@buttonSend').click();
     cy.contains('El valor ingresado no es numero').should('be.visible');
   });
+
   it("Should give an error message when you don't type a public key", () => {
     cy.get('@checkboxInput').should('not.be.checked');
     cy.contains('button', 'Continuar').should('exist');
