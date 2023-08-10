@@ -18,3 +18,7 @@ export enum MessageError {
 export enum ERROR_CONECTION {
   STRING_IS_INVALID = 'invalid encoded string',
 }
+export enum MessageLoad {
+  TRANSACTION = 'Espere un momento a que se terminen las transacciones',
+  ACTIVATE_ACOUNT = 'Esperando activación de la cuenta',
+}
