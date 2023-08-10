@@ -778,7 +778,6 @@ button {
 .main {
   color: #fff;
   width: 100%;
-  padding: 2em 0 0 0;
   background: #292d3e;
   display: flex;
   flex-flow: column nowrap;
