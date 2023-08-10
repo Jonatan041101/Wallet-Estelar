@@ -10,7 +10,7 @@ import React from 'react';
 import { toast } from 'react-toastify';
 export default function PublicKey() {
   const { publicKey } = useBearStore((state) => state.account);
-  const { getData } = useLoadAccount();
+  const { getBalanceData } = useLoadAccount();
   const handleActiveAccount = async () => {
     try {
       const notificationId = toast(
@@ -24,7 +24,7 @@ export default function PublicKey() {
           `La cuenta ha sido activada hash:${transaction.hash}`,
         );
       }
-      getData();
+      getBalanceData();
     } catch (error) {
       errorMsg(MessageError.ERROR_ACTIVATE_ACCOUNT);
     }

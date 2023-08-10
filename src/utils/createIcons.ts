@@ -4,7 +4,7 @@ const PATH_ICONS = './src/atoms/icons';
 const PATH_CREATE_TYPES_ICONS = './src/types/icons.d.ts';
 
 const cleanFileName = (fileName: string) => fileName.split('.')[0];
-export const creteIconsTypes = () => {
+export const createIconsTypes = () => {
   let typesIcons = 'export type IconTypes = ';
   readdirSync(PATH_ICONS).filter((fileName) => {
     const cleanName = cleanFileName(fileName);

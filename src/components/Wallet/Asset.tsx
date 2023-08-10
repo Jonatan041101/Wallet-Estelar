@@ -8,7 +8,7 @@ import Form from '../Form';
 import Input from '@/atoms/Input';
 import { errorMsg, optionsAsync, succesMsgAsync } from '@/utils/toastMsg';
 import { MessageError } from '@/utils/constants';
-import { parserAmountToDecimal } from '@/utils/parserAmount';
+import { parseAmountToDecimal } from '@/utils/parserAmount';
 import { VALIDATIONS } from '@/utils/validations';
 import { useBearStore } from '@/store/store';
 import { sendTransaction } from '@/services/payment';
@@ -38,7 +38,7 @@ export default function Asset({ balance }: Props) {
   const [{ amount, publicKey }, setTransaction] =
     useState<State['transaction']>(INITIAL_STATE);
   const { view, handleChangeBoolean } = useBoolean();
-  const { getData } = useLoadAccount();
+  const { getBalanceData } = useLoadAccount();
   const { secretKey } = useBearStore(({ account }) => ({
     secretKey: account.secretKey,
   }));
@@ -55,7 +55,7 @@ export default function Asset({ balance }: Props) {
     if (!VALIDATIONS.publicKey.test(publicKey)) {
       return errorMsg(MessageError.ERROR_PUBLIC_KEY);
     }
-    const parserAmount = parserAmountToDecimal(amount);
+    const parserAmount = parseAmountToDecimal(amount);
     try {
       const notificationId = toast(
         <LoaderAndText text="Espere un momento a que se termine la transacción" />,
@@ -69,7 +69,7 @@ export default function Asset({ balance }: Props) {
         notificationId,
         `Se ha enviado ${countAmount} a ${publicKey}`,
       );
-      getData();
+      getBalanceData();
     } catch (error) {
       if (error instanceof Error) {
         errorMsg(MessageError.ERROR_IN_TRANSACTION);

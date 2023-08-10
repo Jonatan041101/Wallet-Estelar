@@ -12,7 +12,7 @@ export default function useLoadAccount() {
     }),
   );
 
-  const getData = async () => {
+  const getBalanceData = async () => {
     try {
       const data = await server.loadAccount(publicKey);
       changeBalanceAccount(data);
@@ -21,8 +21,8 @@ export default function useLoadAccount() {
     }
   };
   useEffect(() => {
-    getData();
+    getBalanceData();
   }, [publicKey]);
 
-  return { balanceAccount, getData };
+  return { balanceAccount, getBalanceData };
 }

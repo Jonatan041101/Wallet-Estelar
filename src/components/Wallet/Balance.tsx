@@ -6,7 +6,7 @@ import useAccount from '@/hooks/useAccount';
 import Button from '@/atoms/Button';
 
 export default function Balance() {
-  const { balanceAccount, getData } = useLoadAccount();
+  const { balanceAccount, getBalanceData } = useLoadAccount();
   useAccount();
 
   return (
@@ -16,7 +16,7 @@ export default function Balance() {
         <Button
           text=""
           classNameBtn="button__complete"
-          handleClick={getData}
+          handleClick={getBalanceData}
           icon="Reload"
         />
       </div>
