@@ -2,12 +2,38 @@
 import useTransaction from '@/hooks/useTransaction';
 import React from 'react';
 import RowTransaction from './RowTransaction';
+import Button from '@/atoms/Button';
+import LoaderAndText from '@/molecules/LoaderAndText';
+import { toast } from 'react-toastify';
+import { MessageLoad, MessageSucces } from '@/utils/constants';
+import { optionsAsync, succesMsgAsync } from '@/utils/toastMsg';
 
 export default function Transactions() {
-  const { transactions } = useTransaction();
+  const { transactions, handleGetTransactions } = useTransaction();
+  const handleReloadTransactions = async () => {
+    try {
+      const notificationId = toast(
+        <LoaderAndText text={MessageLoad.WAIT_A_MOMENT} />,
+        optionsAsync,
+      );
+      await handleGetTransactions();
+      succesMsgAsync(notificationId, MessageSucces.HISTORY_UPDATE);
+    } catch (error) {
+      console.log({ error });
+    }
+  };
   return (
     <div className="transaction">
-      <h3 className="transaction__h3">Historial de Pagos</h3>
+      <div className="transaction__title">
+        <h3 className="transaction__h3">Historial de Pagos</h3>
+        <Button
+          classNameBtn="button__complete"
+          handleClick={handleReloadTransactions}
+          text=""
+          id="reload-history"
+          icon="Reload"
+        />
+      </div>
       <table className="transaction__table">
         <thead className="transaction__thead">
           <tr className="transaction__tr">
