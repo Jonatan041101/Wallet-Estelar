@@ -26,7 +26,7 @@ export default function Balance() {
   return (
     <div className="balance">
       <div className="balance__top">
-        <h2 className="balance__title">Tu balance</h2>
+        <h2 className="balance__title">Tu Saldo</h2>
         <Button
           text=""
           classNameBtn="button__complete"
