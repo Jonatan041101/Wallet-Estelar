@@ -525,10 +525,19 @@ button {
 
 .wallet {
   width: 100%;
-  max-width: 1100px;
-  padding: 0 3em;
-  background: #303448;
+  padding: 1.5em 3em;
   flex-grow: 1;
+  background: #303448;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2em;
+}
+.wallet__container {
+  background: #303448;
+  max-width: 1100px;
+  width: 100%;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
@@ -762,6 +771,7 @@ button {
   gap: 0;
 }
 .body__children {
+  width: 100%;
   flex-grow: 1;
   display: flex;
 }

@@ -5,8 +5,10 @@ import React from 'react';
 export default function PageWallet() {
   return (
     <div className="wallet">
-      <Balance />
-      <PublicKey />
+      <div className="wallet__container">
+        <Balance />
+        <PublicKey />
+      </div>
     </div>
   );
 }
