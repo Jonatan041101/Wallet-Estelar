@@ -3,6 +3,7 @@ export type MessageSuccessWithVariable =
   | `Se ha enviado ${string} a ${string}`;
 export enum MessageSucces {
   COPIED_TO_CLIPBOARD = 'Copiado al portapapeles',
+  LOAD_BALANCE = 'Su saldo ha sido actualizado',
 }
 export enum MessageError {
   READ_CAREFULLY = 'Lee con atención',
@@ -21,4 +22,5 @@ export enum ERROR_CONECTION {
 export enum MessageLoad {
   TRANSACTION = 'Espere un momento a que se terminen las transacciones',
   ACTIVATE_ACOUNT = 'Esperando activación de la cuenta',
+  WAIT_A_MOMENT = 'Espere un momento',
 }
