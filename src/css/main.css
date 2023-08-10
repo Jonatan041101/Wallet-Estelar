@@ -753,6 +753,47 @@ button {
   color: #fff;
 }
 
+.transaction {
+  width: 100%;
+  color: #fff;
+}
+.transaction__h3 {
+  font-size: 2em;
+}
+.transaction__table {
+  width: 100%;
+}
+.transaction__thead {
+  width: 100%;
+  font-weight: normal;
+}
+.transaction__tr {
+  width: 100%;
+  padding: 1.5em 0;
+  border-bottom: 1.5px solid #3a3e4d;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0;
+}
+.transaction__th {
+  font-weight: normal;
+  width: 20%;
+  text-align: left;
+  text-transform: uppercase;
+}
+.transaction__td {
+  width: 20%;
+  color: #d4d5d8;
+  font-size: 0.9em;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.3em;
+}
+
 .body {
   background: #292d3e;
   display: flex;
