@@ -2,7 +2,6 @@
 import React from 'react';
 import OthersWallet from './OthersWallet';
 import { IconTypes } from '@/types/icons';
-import albedo from '@albedo-link/intent';
 import { useBearStore } from '@/store/store';
 import useNavigate from '@/hooks/useNavigate';
 import type { AccountGenerate } from '@/types/types';
@@ -16,14 +15,18 @@ export interface Wallet {
   login: () => Promise<void>;
 }
 export default function Options() {
-  const { getAccount } = useBearStore(({ getAcc }) => ({
-    getAccount: getAcc,
-  }));
+  const { getAccount, changePayment } = useBearStore(
+    ({ getAcc, changePayment }) => ({
+      getAccount: getAcc,
+      changePayment,
+    }),
+  );
   const { handleNavigate } = useNavigate();
   const loginAlbedo = async () => {
     try {
-      const res = await albedo.publicKey({});
-      await albedo.signMessage({
+      const albedo = await import('@albedo-link/intent');
+      const res = await albedo.default.publicKey({});
+      await albedo.default.signMessage({
         message: res.signed_message,
       });
       const isValid = verifyMessageSignature(
@@ -40,6 +43,7 @@ export default function Options() {
       getAccount(pairKeys);
 
       handleNavigate('/wallet');
+      changePayment('Albedo');
     } catch (error) {
       console.log(error);
     }
