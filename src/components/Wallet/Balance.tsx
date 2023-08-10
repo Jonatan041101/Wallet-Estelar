@@ -4,11 +4,25 @@ import React from 'react';
 import Asset from './Asset';
 import useAccount from '@/hooks/useAccount';
 import Button from '@/atoms/Button';
-
+import { toast } from 'react-toastify';
+import { MessageLoad, MessageSucces } from '@/utils/constants';
+import LoaderAndText from '@/molecules/LoaderAndText';
+import { optionsAsync, succesMsgAsync } from '@/utils/toastMsg';
 export default function Balance() {
   const { balanceAccount, getBalanceData } = useLoadAccount();
   useAccount();
-
+  const handleGetBalanceData = async () => {
+    try {
+      const notificationId = toast(
+        <LoaderAndText text={MessageLoad.WAIT_A_MOMENT} />,
+        optionsAsync,
+      );
+      await getBalanceData();
+      succesMsgAsync(notificationId, MessageSucces.LOAD_BALANCE);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="balance">
       <div className="balance__top">
@@ -16,7 +30,7 @@ export default function Balance() {
         <Button
           text=""
           classNameBtn="button__complete"
-          handleClick={getBalanceData}
+          handleClick={handleGetBalanceData}
           icon="Reload"
         />
       </div>
