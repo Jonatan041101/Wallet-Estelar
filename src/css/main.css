@@ -778,12 +778,11 @@ button {
 .main {
   color: #fff;
   width: 100%;
-  max-width: 1100px;
   padding: 2em 0 0 0;
   background: #292d3e;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 0;
 }
@@ -807,6 +806,10 @@ button {
 .main__h1 {
   font-size: 2.5em;
   text-align: center;
+}
+.main__container {
+  width: 100%;
+  max-width: 1100px;
 }
 
 .layout {
