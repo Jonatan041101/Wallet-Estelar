@@ -4,7 +4,7 @@ import useLoadAccount from '@/hooks/useLoadAccount';
 import LoaderAndText from '@/molecules/LoaderAndText';
 import activeAccount from '@/services/activeAccount';
 import { useBearStore } from '@/store/store';
-import { MessageError } from '@/utils/constants';
+import { MessageError, MessageLoad } from '@/utils/constants';
 import { errorMsg, optionsAsync, succesMsgAsync } from '@/utils/toastMsg';
 import React from 'react';
 import { toast } from 'react-toastify';
@@ -14,7 +14,7 @@ export default function PublicKey() {
   const handleActiveAccount = async () => {
     try {
       const notificationId = toast(
-        <LoaderAndText text="Esperando activación de la cuenta" />,
+        <LoaderAndText text={MessageLoad.ACTIVATE_ACOUNT} />,
         optionsAsync,
       );
       const transaction = await activeAccount(publicKey);

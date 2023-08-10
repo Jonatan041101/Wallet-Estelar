@@ -7,7 +7,7 @@ import useBoolean from '@/hooks/useBoolean';
 import Form from '../Form';
 import Input from '@/atoms/Input';
 import { errorMsg, optionsAsync, succesMsgAsync } from '@/utils/toastMsg';
-import { MessageError } from '@/utils/constants';
+import { MessageError, MessageLoad } from '@/utils/constants';
 import { parseAmountToDecimal } from '@/utils/parserAmount';
 import { VALIDATIONS } from '@/utils/validations';
 import { useBearStore } from '@/store/store';
@@ -58,7 +58,7 @@ export default function Asset({ balance }: Props) {
     const parserAmount = parseAmountToDecimal(amount);
     try {
       const notificationId = toast(
-        <LoaderAndText text="Espere un momento a que se termine la transacción" />,
+        <LoaderAndText text={MessageLoad.TRANSACTION} />,
         optionsAsync,
       );
       handleChangeBoolean();
