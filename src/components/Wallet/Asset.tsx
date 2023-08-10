@@ -6,19 +6,15 @@ import Modal from '../Modal';
 import useBoolean from '@/hooks/useBoolean';
 import Form from '../Form';
 import Input from '@/atoms/Input';
-import {
-  errorMsg,
-  optionsAsync,
-  succesMsgAsync,
-  successMsg,
-} from '@/utils/toastMsg';
-import { MessageError, MessageSucces } from '@/utils/constants';
+import { errorMsg, optionsAsync, succesMsgAsync } from '@/utils/toastMsg';
+import { MessageError } from '@/utils/constants';
 import { parserAmountToDecimal } from '@/utils/parserAmount';
 import { VALIDATIONS } from '@/utils/validations';
 import { useBearStore } from '@/store/store';
 import { sendTransaction } from '@/services/payment';
 import { toast } from 'react-toastify';
 import LoaderAndText from '@/molecules/LoaderAndText';
+import useLoadAccount from '@/hooks/useLoadAccount';
 interface Props {
   balance:
     | Horizon.BalanceLineNative
@@ -42,6 +38,7 @@ export default function Asset({ balance }: Props) {
   const [{ amount, publicKey }, setTransaction] =
     useState<State['transaction']>(INITIAL_STATE);
   const { view, handleChangeBoolean } = useBoolean();
+  const { getData } = useLoadAccount();
   const { secretKey } = useBearStore(({ account }) => ({
     secretKey: account.secretKey,
   }));
@@ -63,13 +60,15 @@ export default function Asset({ balance }: Props) {
         <LoaderAndText text="Espere un momento a que se termine la transacción" />,
         optionsAsync,
       );
-
+      handleChangeBoolean();
+      setTransaction(INITIAL_STATE);
       await sendTransaction(secretKey, publicKey, parserAmount);
       const countAmount = `${parserAmount} ${asset}`;
       succesMsgAsync(
         notificationId,
         `Se ha enviado ${countAmount} a ${publicKey}`,
       );
+      getData();
     } catch (error) {
       if (error instanceof Error) {
         errorMsg(MessageError.ERROR_IN_TRANSACTION);
