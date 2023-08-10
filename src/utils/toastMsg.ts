@@ -29,7 +29,10 @@ export const successMsg = (
 ) => {
   toast.success(`✅ ${message}`, toastOptions);
 };
-export const succesMsgAsync = (id: Id, message: MessageSuccessWithVariable) => {
+export const succesMsgAsync = (
+  id: Id,
+  message: MessageSuccessWithVariable | MessageSucces,
+) => {
   toast.update(id, {
     render: message,
     type: 'success',
