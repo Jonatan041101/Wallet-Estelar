@@ -11,7 +11,10 @@ import { MessageError, MessageLoad } from '@/utils/constants';
 import { parseAmountToDecimal } from '@/utils/parserAmount';
 import { VALIDATIONS } from '@/utils/validations';
 import { useBearStore } from '@/store/store';
-import { sendTransaction } from '@/services/payment';
+import {
+  sendTransactionOnlyStellar,
+  sendTransactionWithAlbedo,
+} from '@/services/payment';
 import { toast } from 'react-toastify';
 import LoaderAndText from '@/molecules/LoaderAndText';
 import useLoadAccount from '@/hooks/useLoadAccount';
@@ -39,9 +42,13 @@ export default function Asset({ balance }: Props) {
     useState<State['transaction']>(INITIAL_STATE);
   const { view, handleChangeBoolean } = useBoolean();
   const { getBalanceData } = useLoadAccount();
-  const { secretKey } = useBearStore(({ account }) => ({
-    secretKey: account.secretKey,
-  }));
+  const { secretKey, payment, publicKeySend } = useBearStore(
+    ({ account, payment }) => ({
+      secretKey: account.secretKey,
+      publicKeySend: account.publicKey,
+      payment,
+    }),
+  );
   const asset =
     balance.asset_type === 'native' ? 'Lumens (XLM)' : balance.asset_type;
 
@@ -63,7 +70,29 @@ export default function Asset({ balance }: Props) {
       );
       handleChangeBoolean();
       setTransaction(INITIAL_STATE);
-      await sendTransaction(secretKey, publicKey, parserAmount);
+      let signature = false;
+      if (payment === 'Albedo') {
+        const signatureTransaction = await sendTransactionWithAlbedo(
+          publicKeySend,
+          publicKey,
+          amount,
+        );
+        if (signatureTransaction && signatureTransaction.successful) {
+          signature = true;
+        }
+      } else {
+        const signatureTransaction = await sendTransactionOnlyStellar(
+          secretKey,
+          publicKey,
+          parserAmount,
+        );
+        if (signatureTransaction && signatureTransaction.successful) {
+          signature = true;
+        }
+      }
+      if (!signature) {
+        errorMsg(MessageError.ERROR_IN_TRANSACTION);
+      }
       const countAmount = `${parserAmount} ${asset}`;
       succesMsgAsync(
         notificationId,
