@@ -757,6 +757,14 @@ button {
   width: 100%;
   color: #fff;
 }
+.transaction__title {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0;
+}
 .transaction__h3 {
   font-size: 2em;
 }

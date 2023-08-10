@@ -1,6 +1,10 @@
 .transaction {
   width: 100%;
   color: #fff;
+  &__title {
+    width: 100%;
+    @include flex(row, nowrap, space-between, center, 0);
+  }
   &__h3 {
     font-size: 2em;
   }
