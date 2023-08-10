@@ -8,7 +8,10 @@ import Form from '../Form';
 import Input from '@/atoms/Input';
 import { errorMsg, optionsAsync, succesMsgAsync } from '@/utils/toastMsg';
 import { MessageError, MessageLoad } from '@/utils/constants';
-import { parseAmountToDecimal } from '@/utils/parserAmount';
+import {
+  parseAmountToDecimal,
+  parseAssetTypeNativeToXML,
+} from '@/utils/parsers';
 import { VALIDATIONS } from '@/utils/validations';
 import { useBearStore } from '@/store/store';
 import {
@@ -37,6 +40,7 @@ const INITIAL_STATE: State['transaction'] = {
   amount: '',
   publicKey: '',
 };
+
 export default function Asset({ balance }: Props) {
   const [{ amount, publicKey }, setTransaction] =
     useState<State['transaction']>(INITIAL_STATE);
@@ -49,8 +53,7 @@ export default function Asset({ balance }: Props) {
       payment,
     }),
   );
-  const asset =
-    balance.asset_type === 'native' ? 'Lumens (XLM)' : balance.asset_type;
+  const asset = parseAssetTypeNativeToXML(balance.asset_type);
 
   const handleSendTransaction = async (
     evt: React.FormEvent<HTMLFormElement>,
