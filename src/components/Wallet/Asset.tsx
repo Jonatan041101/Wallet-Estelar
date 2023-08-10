@@ -44,6 +44,7 @@ export default function Asset({ balance }: Props) {
   }));
   const asset =
     balance.asset_type === 'native' ? 'Lumens (XLM)' : balance.asset_type;
+
   const handleSendTransaction = async (
     evt: React.FormEvent<HTMLFormElement>,
   ) => {
@@ -96,7 +97,10 @@ export default function Asset({ balance }: Props) {
         icon="Send"
       />
       {view && (
-        <Modal closeModal={handleChangeBoolean}>
+        <Modal
+          closeModal={handleChangeBoolean}
+          title={`Enviar transacción de ${asset}`}
+        >
           <Form handleSubmit={handleSendTransaction}>
             <Input
               name="publicKey"
@@ -114,12 +118,15 @@ export default function Asset({ balance }: Props) {
               type="number"
               value={amount}
             />
-            <Button
-              handleClick={() => {}}
-              classNameBtn="button__complete"
-              text="Enviar"
-              icon="Send"
-            />
+            <div className="balance__button">
+              <Button
+                id="send-transaction"
+                handleClick={() => {}}
+                classNameBtn="button__complete"
+                text="Enviar"
+                icon="Send"
+              />
+            </div>
           </Form>
         </Modal>
       )}
