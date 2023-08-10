@@ -6,8 +6,13 @@ import Modal from '../Modal';
 import useBoolean from '@/hooks/useBoolean';
 import Form from '../Form';
 import Input from '@/atoms/Input';
-import { errorMsg, optionsAsync, succesMsgAsync } from '@/utils/toastMsg';
-import { MessageError, MessageLoad } from '@/utils/constants';
+import {
+  errorMsg,
+  optionsAsync,
+  succesMsgAsync,
+  successMsg,
+} from '@/utils/toastMsg';
+import { MessageError, MessageLoad, MessageSucces } from '@/utils/constants';
 import {
   parseAmountToDecimal,
   parseAssetTypeNativeToXML,
@@ -21,6 +26,7 @@ import {
 import { toast } from 'react-toastify';
 import LoaderAndText from '@/molecules/LoaderAndText';
 import useLoadAccount from '@/hooks/useLoadAccount';
+import useTransaction from '@/hooks/useTransaction';
 interface Props {
   balance:
     | Horizon.BalanceLineNative
@@ -46,6 +52,7 @@ export default function Asset({ balance }: Props) {
     useState<State['transaction']>(INITIAL_STATE);
   const { view, handleChangeBoolean } = useBoolean();
   const { getBalanceData } = useLoadAccount();
+  const { handleGetTransactions } = useTransaction();
   const { secretKey, payment, publicKeySend } = useBearStore(
     ({ account, payment }) => ({
       secretKey: account.secretKey,
@@ -102,6 +109,8 @@ export default function Asset({ balance }: Props) {
         `Se ha enviado ${countAmount} a ${publicKey}`,
       );
       getBalanceData();
+      await handleGetTransactions();
+      successMsg(MessageSucces.HISTORY_UPDATE);
     } catch (error) {
       if (error instanceof Error) {
         errorMsg(MessageError.ERROR_IN_TRANSACTION);
