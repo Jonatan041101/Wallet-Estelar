@@ -29,6 +29,7 @@ export default function Balance() {
         <h2 className="balance__title">Tu Saldo</h2>
         <Button
           text=""
+          id="load-balance"
           classNameBtn="button__complete"
           handleClick={handleGetBalanceData}
           icon="Reload"
