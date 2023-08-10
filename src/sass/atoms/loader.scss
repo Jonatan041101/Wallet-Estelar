@@ -1,6 +1,6 @@
 .loader {
-  width: 24px;
-  height: 24px;
+  min-width: 16px;
+  min-height: 16px;
   border: 1px solid #000;
   border-bottom-color: transparent;
   border-radius: 50%;
@@ -8,7 +8,7 @@
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
   &__text {
-    color: #000;
+    color: #757575;
     @include flex(row, nowrap, flex-start, center, 0.5em);
   }
 }

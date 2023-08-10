@@ -1,8 +1,8 @@
 import React from 'react';
 import OthersWallet from './OthersWallet';
-import { IconsTypes } from '@/types/icons';
+import { IconTypes } from '@/types/icons';
 export interface Wallet {
-  icon: IconsTypes;
+  icon: IconTypes;
   text: string;
 }
 const wallets: Wallet[] = [{ icon: 'Albedo', text: 'Conéctate con Albedo' }];

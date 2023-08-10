@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import Icons from './icons/icons';
-import { IconsTypes } from '@/types/icons';
+import { IconTypes } from '@/types/icons';
 
 type ButtonClass =
   | 'button__complete'
@@ -14,7 +14,7 @@ interface Props {
   handleClick: () => void;
   text: string;
   classNameBtn: ButtonClass;
-  icon?: IconsTypes;
+  icon?: IconTypes;
   id?: string;
 }
 

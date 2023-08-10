@@ -11,7 +11,7 @@ import {
 export const sendTransaction = async (
   secretKey: string,
   destination: string,
-  amount: number,
+  amount: string,
 ) => {
   try {
     const sourceKey = Keypair.fromSecret(secretKey);
@@ -23,7 +23,7 @@ export const sendTransaction = async (
     })
       .addOperation(
         Operation.payment({
-          amount: String(amount),
+          amount,
           asset: Asset.native(),
           destination,
         }),

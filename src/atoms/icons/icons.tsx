@@ -1,9 +1,9 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import Loader from '../Loader';
-import { IconsTypes } from '@/types/icons';
+import { IconTypes } from '@/types/icons';
 interface DynamicIconProps {
-  icon: IconsTypes;
+  icon: IconTypes;
 }
 
 const Icons = ({ icon }: DynamicIconProps): JSX.Element => {

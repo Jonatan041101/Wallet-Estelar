@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
+import { createIconsTypes } from '@/utils/createIcons';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -18,6 +19,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  createIconsTypes();
   return (
     <html lang="en">
       <body className={`${inter.className} body`}>
