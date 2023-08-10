@@ -1,22 +1,22 @@
 'use client';
 import Button from '@/atoms/Button';
 import useNavigate from '@/hooks/useNavigate';
+import useProfile from '@/hooks/useProfile';
 import { useBearStore } from '@/store/store';
 import { handleCopy } from '@/utils/copied';
-import { getRandomProfile } from '@/utils/profiles';
 import { getShortedPublicKey } from '@/utils/shortString';
 import Image from 'next/image';
 import React from 'react';
 
 export default function Profile() {
   const { handleNavigate } = useNavigate();
+  const { profile } = useProfile();
   const { publicKey, resetAccount } = useBearStore(
     ({ account, resetAccount }) => ({
       publicKey: account.publicKey,
       resetAccount,
     }),
   );
-  const profile = getRandomProfile();
   const handleCopied = () => {
     if (publicKey.length > 0) {
       handleCopy(publicKey);
