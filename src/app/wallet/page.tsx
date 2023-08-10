@@ -1,3 +1,4 @@
+import Transactions from '@/components/Payments/Transactions';
 import Balance from '@/components/Wallet/Balance';
 import PublicKey from '@/components/Wallet/PublicKey';
 import React from 'react';
@@ -8,6 +9,7 @@ export default function PageWallet() {
       <div className="wallet__container">
         <Balance />
         <PublicKey />
+        <Transactions />
       </div>
     </div>
   );
