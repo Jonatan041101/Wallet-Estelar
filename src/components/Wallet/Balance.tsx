@@ -14,9 +14,10 @@ export default function Balance() {
       <div className="balance__top">
         <h2 className="balance__title">Tu balance</h2>
         <Button
-          text="Recargar"
+          text=""
           classNameBtn="button__complete"
           handleClick={getData}
+          icon="Reload"
         />
       </div>
       {balanceAccount ? (
