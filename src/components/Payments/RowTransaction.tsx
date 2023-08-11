@@ -30,8 +30,9 @@ export default function RowTransaction({ transaction }: Props) {
       <td className="transaction__td">{`${transaction.amount ?? ''} ${
         asset ?? ''
       }`}</td>
-      <td className="transaction__td">{''}</td>
-      <td className="transaction__td">{transaction.id}</td>
+      <td className="transaction__td">
+        <code>{transaction.id}</code>
+      </td>
     </tr>
   );
 }
