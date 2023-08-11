@@ -5,6 +5,10 @@
   border-top: 1.5px solid $color-border;
   @include flex(row, nowrap, space-between, center, 0);
   padding: 1em 2em 4em;
+  @include responsive($query-tablet) {
+    width: 100%;
+    padding: 1em 0.5em;
+  }
   &__ul {
     @include flex(row, nowrap, flex-start, center, 1.5em);
   }

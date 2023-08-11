@@ -5,6 +5,9 @@
   @include flex(row, nowrap, space-between, center, 1em);
   background: $color-header;
   padding: 3em 1.5em;
+  @include responsive($query-tablet) {
+    padding: 1em 0.5em;
+  }
   &__left {
     @include flex(row, nowrap, flex-start, center, 1em);
   }
@@ -35,6 +38,9 @@
     border-radius: 0.2em;
     font-size: 0.85em;
     background: $color-violet;
+    @include responsive($query-tablet) {
+      display: none;
+    }
   }
   &__profile {
     @include flex(row, nowrap, space-between, center, 1em);

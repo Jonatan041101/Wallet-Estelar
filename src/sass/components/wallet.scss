@@ -4,7 +4,9 @@
   flex-grow: 1;
   background: $color-background-key;
   @include flex(column, nowrap, flex-start, center, 2em);
-
+  @include responsive(700px) {
+    padding: 1em 0.5em;
+  }
   &__container {
     background: $color-background-key;
     max-width: $max-width;
