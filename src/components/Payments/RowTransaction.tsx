@@ -25,11 +25,11 @@ export default function RowTransaction({ transaction }: Props) {
             height={20}
           />
         </div>
-        {publicKeyDestination}
+        {publicKeyDestination.length === 3 ? 'Fondeo' : publicKeyDestination}
       </td>
-      <td className="transaction__td">{`${transaction.amount ?? ''} ${
-        asset ?? ''
-      }`}</td>
+      <td className="transaction__td">{`${
+        transaction.amount ?? '+10000.0000000'
+      } ${asset ?? ''}`}</td>
       <td className="transaction__td">
         <code>{transaction.id}</code>
       </td>
