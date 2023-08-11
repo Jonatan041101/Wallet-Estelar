@@ -1,7 +1,7 @@
 import type { ServerApi } from 'stellar-sdk';
 import { StateCreator } from 'zustand';
 
-type Payment = 'Albedo' | 'Only-Stellar';
+export type Payment = 'Albedo' | 'Only-Stellar';
 export interface TypePayment {
   payment: Payment;
   transactions: ServerApi.PaymentOperationRecord[];
