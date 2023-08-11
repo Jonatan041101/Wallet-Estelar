@@ -1,7 +1,6 @@
 'use client';
 import Button from '@/atoms/Button';
 import React, { useState } from 'react';
-import { Horizon } from 'stellar-sdk';
 import Modal from '../Modal';
 import useBoolean from '@/hooks/useBoolean';
 import Form from '../Form';
@@ -17,22 +16,17 @@ import {
   parseAmountToDecimal,
   parseAssetTypeNativeToXML,
 } from '@/utils/parsers';
-import { VALIDATIONS } from '@/utils/regExp';
 import { useBearStore } from '@/store/store';
-import {
-  sendTransactionOnlyStellar,
-  sendTransactionWithAlbedo,
-} from '@/services/payment';
 import useLoadAccount from '@/hooks/useLoadAccount';
 import useTransaction from '@/hooks/useTransaction';
-interface Props {
-  balance:
-    | Horizon.BalanceLineNative
-    | Horizon.BalanceLineAsset<'credit_alphanum4'>
-    | Horizon.BalanceLineAsset<'credit_alphanum12'>
-    | Horizon.BalanceLineLiquidityPool;
-}
+import { TransactionError, ValidationError } from '@/helpers/handlerError';
+import { isNumberValidate, isPublicKey } from '@/utils/validations';
+import { BalanceProp } from '@/types/types';
+import usePayment from '@/hooks/usePayment';
 
+interface Props {
+  balance: BalanceProp;
+}
 interface Transaction {
   publicKey: string;
   amount: string;
@@ -49,68 +43,44 @@ export default function Asset({ balance }: Props) {
   const [{ amount, publicKey }, setTransaction] =
     useState<State['transaction']>(INITIAL_STATE);
   const { view, handleChangeBoolean } = useBoolean();
+  const { handleTransaction } = usePayment();
   const { getBalanceData } = useLoadAccount();
   const { handleGetTransactions } = useTransaction();
-  const { secretKey, payment, publicKeySend } = useBearStore(
-    ({ account, payment }) => ({
-      secretKey: account.secretKey,
-      publicKeySend: account.publicKey,
-      payment,
-    }),
-  );
+  const { secretKey, publicKeySend } = useBearStore(({ account }) => ({
+    secretKey: account.secretKey,
+    publicKeySend: account.publicKey,
+  }));
   const asset = parseAssetTypeNativeToXML(balance.asset_type);
 
   const handleSendTransaction = async (
     evt: React.FormEvent<HTMLFormElement>,
   ) => {
     evt.preventDefault();
-    if (isNaN(Number(amount)) || amount.length === 0) {
-      return errorMsg(MessageError.INVALID_NUMBER);
-    }
-    if (!VALIDATIONS.publicKey.test(publicKey)) {
-      return errorMsg(MessageError.ERROR_PUBLIC_KEY);
-    }
-    const parserAmount = parseAmountToDecimal(amount);
     try {
+      isNumberValidate(amount);
+      isPublicKey(publicKey);
+      const parserAmount = parseAmountToDecimal(amount);
       const notificationId = succesLoaderMsg(MessageLoad.TRANSACTION);
       handleChangeBoolean();
       setTransaction(INITIAL_STATE);
-      let signature = false;
-      if (payment === 'Albedo') {
-        const signatureTransaction = await sendTransactionWithAlbedo(
-          publicKeySend,
-          publicKey,
-          amount,
-        );
-        if (signatureTransaction && signatureTransaction.successful) {
-          signature = true;
-        }
-      } else {
-        const signatureTransaction = await sendTransactionOnlyStellar(
-          secretKey,
-          publicKey,
-          parserAmount,
-        );
-        if (signatureTransaction && signatureTransaction.successful) {
-          signature = true;
-        }
-      }
-      if (!signature) {
-        errorMsg(MessageError.ERROR_IN_TRANSACTION);
-      }
-      const countAmount = `${parserAmount} ${asset}`;
+      await handleTransaction(
+        secretKey.length === 0 ? publicKeySend : secretKey,
+        publicKey,
+        parserAmount,
+      );
       succesMsgAsync(
         notificationId,
-        `Se ha enviado ${countAmount} a ${publicKey}`,
+        `Se ha enviado ${`${parserAmount} ${asset}`} a ${publicKey}`,
       );
       getBalanceData();
       await handleGetTransactions();
       successMsg(MessageSucces.HISTORY_UPDATE);
     } catch (error) {
-      if (error instanceof Error) {
-        errorMsg(MessageError.ERROR_IN_TRANSACTION);
+      if (error instanceof ValidationError) {
+        errorMsg(error.message as MessageError);
+      } else if (error instanceof TransactionError) {
+        errorMsg(error.message as MessageError);
       }
-      console.log(error);
     }
   };
   const handleChangeTransaction = (
