@@ -2,9 +2,11 @@ import { toast } from 'react-toastify';
 import type { ToastOptions, Id } from 'react-toastify';
 import {
   MessageError,
+  MessageLoad,
   MessageSucces,
   MessageSuccessWithVariable,
 } from './constants';
+import LoaderAndText from '@/molecules/LoaderAndText';
 
 export const toastOptions: ToastOptions = {
   position: 'bottom-center',
@@ -39,3 +41,5 @@ export const succesMsgAsync = (
     autoClose: 3000,
   });
 };
+export const succesLoaderMsg = (message: MessageLoad) =>
+  toast(<LoaderAndText text={message} />, optionsAsync);

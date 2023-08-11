@@ -1,11 +1,10 @@
 'use client';
 import Button from '@/atoms/Button';
 import useLoadAccount from '@/hooks/useLoadAccount';
-import LoaderAndText from '@/molecules/LoaderAndText';
 import activeAccount from '@/services/activeAccount';
 import { useBearStore } from '@/store/store';
 import { MessageError, MessageLoad } from '@/utils/constants';
-import { errorMsg, optionsAsync, succesMsgAsync } from '@/utils/toastMsg';
+import { errorMsg, succesLoaderMsg, succesMsgAsync } from '@/utils/toastMsg';
 import React from 'react';
 import { toast } from 'react-toastify';
 export default function PublicKey() {
@@ -13,10 +12,8 @@ export default function PublicKey() {
   const { getBalanceData } = useLoadAccount();
   const handleActiveAccount = async () => {
     try {
-      const notificationId = toast(
-        <LoaderAndText text={MessageLoad.ACTIVATE_ACOUNT} />,
-        optionsAsync,
-      );
+      const notificationId = succesLoaderMsg(MessageLoad.ACTIVATE_ACOUNT);
+
       const transaction = await activeAccount(publicKey);
       if (transaction) {
         succesMsgAsync(

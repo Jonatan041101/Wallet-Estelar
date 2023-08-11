@@ -8,7 +8,7 @@ import Form from '../Form';
 import Input from '@/atoms/Input';
 import {
   errorMsg,
-  optionsAsync,
+  succesLoaderMsg,
   succesMsgAsync,
   successMsg,
 } from '@/utils/toastMsg';
@@ -23,8 +23,6 @@ import {
   sendTransactionOnlyStellar,
   sendTransactionWithAlbedo,
 } from '@/services/payment';
-import { toast } from 'react-toastify';
-import LoaderAndText from '@/molecules/LoaderAndText';
 import useLoadAccount from '@/hooks/useLoadAccount';
 import useTransaction from '@/hooks/useTransaction';
 interface Props {
@@ -74,10 +72,7 @@ export default function Asset({ balance }: Props) {
     }
     const parserAmount = parseAmountToDecimal(amount);
     try {
-      const notificationId = toast(
-        <LoaderAndText text={MessageLoad.TRANSACTION} />,
-        optionsAsync,
-      );
+      const notificationId = succesLoaderMsg(MessageLoad.TRANSACTION);
       handleChangeBoolean();
       setTransaction(INITIAL_STATE);
       let signature = false;

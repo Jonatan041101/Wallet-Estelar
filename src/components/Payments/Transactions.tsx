@@ -3,19 +3,15 @@ import useTransaction from '@/hooks/useTransaction';
 import React from 'react';
 import RowTransaction from './RowTransaction';
 import Button from '@/atoms/Button';
-import LoaderAndText from '@/molecules/LoaderAndText';
-import { toast } from 'react-toastify';
 import { MessageLoad, MessageSucces } from '@/utils/constants';
-import { optionsAsync, succesMsgAsync } from '@/utils/toastMsg';
+import { succesLoaderMsg, succesMsgAsync } from '@/utils/toastMsg';
 
 export default function Transactions() {
   const { transactions, handleGetTransactions } = useTransaction();
   const handleReloadTransactions = async () => {
     try {
-      const notificationId = toast(
-        <LoaderAndText text={MessageLoad.WAIT_A_MOMENT} />,
-        optionsAsync,
-      );
+      const notificationId = succesLoaderMsg(MessageLoad.WAIT_A_MOMENT);
+
       await handleGetTransactions();
       succesMsgAsync(notificationId, MessageSucces.HISTORY_UPDATE);
     } catch (error) {
