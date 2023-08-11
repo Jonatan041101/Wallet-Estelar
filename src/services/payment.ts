@@ -1,3 +1,5 @@
+import { SubmitError, TransactionError } from '@/helpers/handlerError';
+import { MessageError } from '@/utils/constants';
 import { server } from '@/utils/server';
 import albedo from '@albedo-link/intent';
 import {
@@ -5,6 +7,8 @@ import {
   Asset,
   BASE_FEE,
   Keypair,
+  Memo,
+  MemoType,
   Networks,
   Operation,
   Transaction,
@@ -12,27 +16,6 @@ import {
   xdr,
 } from 'stellar-sdk';
 
-export const sendTransactionOnlyStellar = async (
-  secretKey: string,
-  destination: string,
-  amount: string,
-) => {
-  try {
-    const sourceKey = Keypair.fromSecret(secretKey);
-    await server.loadAccount(destination);
-    const sourceAccount = await server.loadAccount(sourceKey.publicKey());
-    const transaction = await transactionBuilder(
-      sourceAccount,
-      destination,
-      amount,
-    );
-    transaction.sign(sourceKey);
-    const signIn = await server.submitTransaction(transaction);
-    return signIn;
-  } catch (error) {
-    console.log({ error });
-  }
-};
 export const transactionBuilder = async (
   sourceAccount: AccountResponse,
   destination: string,
@@ -52,6 +35,41 @@ export const transactionBuilder = async (
     .setTimeout(600)
     .build();
   return transaction;
+};
+
+export const submitTransaction = async (
+  transaction: Transaction<Memo<MemoType>, Operation[]>,
+) => {
+  try {
+    return await server.submitTransaction(transaction);
+  } catch (error) {
+    if (error instanceof SubmitError) {
+      throw new SubmitError(MessageError.ERROR_SUBMIT);
+    }
+    throw new Error(MessageError.ERROR_SUBMIT);
+  }
+};
+
+export const sendTransactionOnlyStellar = async (
+  secretKey: string,
+  destination: string,
+  amount: string,
+) => {
+  try {
+    const sourceKey = Keypair.fromSecret(secretKey);
+    await server.loadAccount(destination);
+    const sourceAccount = await server.loadAccount(sourceKey.publicKey());
+    const transaction = await transactionBuilder(
+      sourceAccount,
+      destination,
+      amount,
+    );
+    transaction.sign(sourceKey);
+    return await submitTransaction(transaction);
+  } catch (error) {
+    console.error({ error });
+    throw new TransactionError(MessageError.ERROR_IN_TRANSACTION);
+  }
 };
 
 export const sendTransactionWithAlbedo = async (
@@ -76,11 +94,9 @@ export const sendTransactionWithAlbedo = async (
       'base64',
     );
     const transactionAlbedo = new Transaction(transactionR, '');
-    const signIn = await server.submitTransaction(transactionAlbedo);
-    console.log({ signIn });
-
-    return signIn;
+    return await submitTransaction(transactionAlbedo);
   } catch (error) {
-    console.log({ error });
+    console.error({ error });
+    throw new TransactionError(MessageError.ERROR_IN_TRANSACTION);
   }
 };
