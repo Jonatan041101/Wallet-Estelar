@@ -8,7 +8,7 @@ import { errorMsg, succesLoaderMsg, succesMsgAsync } from '@/utils/toastMsg';
 import React from 'react';
 export default function PublicKey() {
   const { publicKey } = useBearStore((state) => state.account);
-  const { getBalanceData } = useLoadAccount();
+  const { getBalance: getBalanceData } = useLoadAccount();
   const handleActiveAccount = async () => {
     try {
       const notificationId = succesLoaderMsg(MessageLoad.ACTIVATE_ACOUNT);

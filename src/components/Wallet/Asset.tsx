@@ -44,7 +44,7 @@ export default function Asset({ balance }: Props) {
     useState<State['transaction']>(INITIAL_STATE);
   const { view, handleChangeBoolean } = useBoolean();
   const { handleTransaction } = usePayment();
-  const { getBalanceData } = useLoadAccount();
+  const { getBalance: getBalanceData } = useLoadAccount();
   const { handleGetTransactions } = useTransaction();
   const { secretKey, publicKeySend } = useBearStore(({ account }) => ({
     secretKey: account.secretKey,
