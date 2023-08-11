@@ -17,7 +17,7 @@ import {
   parseAmountToDecimal,
   parseAssetTypeNativeToXML,
 } from '@/utils/parsers';
-import { VALIDATIONS } from '@/utils/validations';
+import { VALIDATIONS } from '@/utils/regExp';
 import { useBearStore } from '@/store/store';
 import {
   sendTransactionOnlyStellar,
