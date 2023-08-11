@@ -44,7 +44,7 @@ export default function Asset({ balance }: Props) {
     useState<State['transaction']>(INITIAL_STATE);
   const { view, handleChangeBoolean } = useBoolean();
   const { handleTransaction } = usePayment();
-  const { getBalance: getBalanceData } = useLoadAccount();
+  const { getBalance } = useLoadAccount();
   const { handleGetTransactions } = useTransaction();
   const { secretKey, publicKeySend } = useBearStore(({ account }) => ({
     secretKey: account.secretKey,
@@ -72,7 +72,7 @@ export default function Asset({ balance }: Props) {
         notificationId,
         `Se ha enviado ${`${parserAmount} ${asset}`} a ${publicKey}`,
       );
-      getBalanceData();
+      getBalance();
       await handleGetTransactions();
       successMsg(MessageSucces.HISTORY_UPDATE);
     } catch (error) {

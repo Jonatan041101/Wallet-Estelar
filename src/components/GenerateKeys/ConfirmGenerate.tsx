@@ -7,6 +7,7 @@ interface Props {
   handleContinue: () => void;
   handleClose: () => void;
 }
+
 const warnings: string[] = [
   ` Pegar su clave secreta lo hace vulnerable a accidentes, ataques y estafas
 que pueden provocar la pérdida de fondos.`,
@@ -14,6 +15,7 @@ que pueden provocar la pérdida de fondos.`,
 secreta con sitios web, como carteras de hardware o extensiones de
 navegador.`,
 ];
+
 export default function ConfirmGenerate({
   handleClose,
   handleContinue,

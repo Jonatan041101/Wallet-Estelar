@@ -7,12 +7,12 @@ import Button from '@/atoms/Button';
 import { MessageLoad, MessageSucces } from '@/utils/constants';
 import { succesLoaderMsg, succesMsgAsync } from '@/utils/toastMsg';
 export default function Balance() {
-  const { balanceAccount, getBalance: getBalanceData } = useLoadAccount();
+  const { balanceAccount, getBalance } = useLoadAccount();
   useAccount();
   const handleGetBalanceData = async () => {
     try {
       const notificationId = succesLoaderMsg(MessageLoad.WAIT_A_MOMENT);
-      await getBalanceData();
+      await getBalance();
       succesMsgAsync(notificationId, MessageSucces.LOAD_BALANCE);
     } catch (error) {
       console.error(error);

@@ -8,7 +8,7 @@ import { errorMsg, succesLoaderMsg, succesMsgAsync } from '@/utils/toastMsg';
 import React from 'react';
 export default function PublicKey() {
   const { publicKey } = useBearStore((state) => state.account);
-  const { getBalance: getBalanceData } = useLoadAccount();
+  const { getBalance } = useLoadAccount();
   const handleActiveAccount = async () => {
     try {
       const notificationId = succesLoaderMsg(MessageLoad.ACTIVATE_ACOUNT);
@@ -20,7 +20,7 @@ export default function PublicKey() {
           `La cuenta ha sido activada hash:${transaction.hash}`,
         );
       }
-      getBalanceData();
+      getBalance();
     } catch (error) {
       errorMsg(MessageError.ERROR_ACTIVATE_ACCOUNT);
     }
@@ -28,7 +28,7 @@ export default function PublicKey() {
   return (
     <article className="public">
       <div className="public__contain">
-        <h3 className="public__h3">Su clave pública estelar</h3>
+        <h3 className="public__h3">Su clave pública Stellar</h3>
         <Button
           classNameBtn="button__complete"
           handleClick={handleActiveAccount}
