@@ -37,7 +37,7 @@ export default function Transactions() {
             <th className="transaction__th">Dirección</th>
             <th className="transaction__th">Cantidad</th>
             <th className="transaction__th">Memo</th>
-            <th className="transaction__th">Id de Operación</th>
+            <th className="transaction__th">Id de la Operación</th>
           </tr>
         </thead>
         <tbody>
