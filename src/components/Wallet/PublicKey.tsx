@@ -6,7 +6,6 @@ import { useBearStore } from '@/store/store';
 import { MessageError, MessageLoad } from '@/utils/constants';
 import { errorMsg, succesLoaderMsg, succesMsgAsync } from '@/utils/toastMsg';
 import React from 'react';
-import { toast } from 'react-toastify';
 export default function PublicKey() {
   const { publicKey } = useBearStore((state) => state.account);
   const { getBalanceData } = useLoadAccount();
