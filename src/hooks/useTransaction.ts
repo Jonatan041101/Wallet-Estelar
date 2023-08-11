@@ -1,5 +1,8 @@
+import { LoadError } from '@/helpers/handlerError';
 import { loadTransactions } from '@/services/loadTransactions';
 import { useBearStore } from '@/store/store';
+import { MessageError } from '@/utils/constants';
+import { errorMsg } from '@/utils/toastMsg';
 import { useEffect } from 'react';
 
 export default function useTransaction() {
@@ -13,10 +16,11 @@ export default function useTransaction() {
   const handleGetTransactions = async () => {
     try {
       const transactions = await loadTransactions(publicKey);
-      if (transactions) {
-        getTransactions(transactions);
-      }
+      getTransactions(transactions);
     } catch (error) {
+      if (error instanceof LoadError) {
+        errorMsg(error.message as MessageError);
+      }
       console.error({ error });
     }
   };
