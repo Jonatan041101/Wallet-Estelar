@@ -32,7 +32,7 @@ export default function PublicKey() {
         <Button
           classNameBtn="button__complete"
           handleClick={handleActiveAccount}
-          text="Activar Cuenta"
+          text="Fondear Cuenta"
         />
       </div>
       <p className="public__p">{publicKey}</p>

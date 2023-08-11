@@ -110,8 +110,7 @@ describe('Button Component', () => {
     cy.get('button[class="button button__complete"]').click();
     cy.wait(3000);
     cy.contains('h3', 'Su clave pública estelar').should('be.visible');
-    cy.contains('button', 'Activar Cuenta').should('exist');
-    cy.contains('button', 'Activar Cuenta').click();
+    cy.contains('button', 'Fondear Cuenta').should('exist').click();
     cy.wait(6000);
     cy.contains('La cuenta a sido activada').should('be.visible');
   });
