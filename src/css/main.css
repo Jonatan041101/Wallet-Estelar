@@ -186,6 +186,17 @@ button {
   gap: 0.5em;
   transition: 0.3s ease;
 }
+@media screen and (max-width: 600px) {
+  .button {
+    padding: 0.4em;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    font-size: 0.8em;
+  }
+}
 .button__complete {
   border: 1.5px solid #937eef;
   background: #5332e6;
