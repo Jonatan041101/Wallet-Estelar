@@ -17,6 +17,7 @@ export enum MessageError {
   INVALID_NUMBER = 'El valor ingresado no es numero',
   ERROR_IN_TRANSACTION = 'Ocurrio un error en la transacción',
   ERROR_SUBMIT = 'Error en el envio de la transacción',
+  LOAD_ERROR = 'Error de carga',
 }
 export enum ERROR_CONECTION {
   STRING_IS_INVALID = 'invalid encoded string',
