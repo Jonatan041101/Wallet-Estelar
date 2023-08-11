@@ -18,19 +18,23 @@ export const toastOptions: ToastOptions = {
   progress: undefined,
   theme: 'light',
 };
+
 export const optionsAsync: ToastOptions = {
   ...toastOptions,
   autoClose: false,
   hideProgressBar: true,
 };
+
 export const errorMsg = (message: MessageError) => {
   toast.error(`🚫 ${message}`, toastOptions);
 };
+
 export const successMsg = (
   message: MessageSucces | MessageSuccessWithVariable,
 ) => {
   toast.success(`✅ ${message}`, toastOptions);
 };
+
 export const succesMsgAsync = (
   id: Id,
   message: MessageSuccessWithVariable | MessageSucces,
@@ -41,5 +45,6 @@ export const succesMsgAsync = (
     autoClose: 3000,
   });
 };
+
 export const succesLoaderMsg = (message: MessageLoad) =>
   toast(<LoaderAndText text={message} />, optionsAsync);
