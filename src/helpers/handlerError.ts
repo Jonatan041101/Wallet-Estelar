@@ -18,3 +18,9 @@ export class SubmitError extends Error {
     this.name = 'Submit Error';
   }
 }
+export class LoadError extends Error {
+  constructor(message: MessageError) {
+    super(message);
+    this.name = 'Load Error';
+  }
+}
