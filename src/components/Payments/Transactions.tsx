@@ -15,7 +15,7 @@ export default function Transactions() {
       await handleGetTransactions();
       succesMsgAsync(notificationId, MessageSucces.HISTORY_UPDATE);
     } catch (error) {
-      console.log({ error });
+      console.error({ error });
     }
   };
   return (

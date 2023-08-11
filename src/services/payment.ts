@@ -21,7 +21,7 @@ export const transactionBuilder = async (
   destination: string,
   amount: string,
 ) => {
-  const transaction = new TransactionBuilder(sourceAccount, {
+  return new TransactionBuilder(sourceAccount, {
     fee: BASE_FEE,
     networkPassphrase: Networks.TESTNET,
   })
@@ -34,7 +34,6 @@ export const transactionBuilder = async (
     )
     .setTimeout(600)
     .build();
-  return transaction;
 };
 
 export const submitTransaction = async (

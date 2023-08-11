@@ -15,7 +15,7 @@ export default function Balance() {
       await getBalanceData();
       succesMsgAsync(notificationId, MessageSucces.LOAD_BALANCE);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
   return (

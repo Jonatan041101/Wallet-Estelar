@@ -12,14 +12,12 @@ export default function useTransaction() {
   );
   const handleGetTransactions = async () => {
     try {
-      console.log({ publicKey });
-
       const transactions = await loadTransactions(publicKey);
       if (transactions) {
         getTransactions(transactions);
       }
     } catch (error) {
-      console.log({ error });
+      console.error({ error });
     }
   };
   useEffect(() => {

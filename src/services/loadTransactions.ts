@@ -5,6 +5,6 @@ export const loadTransactions = async (publicKey: string) => {
     const transactions = await server.payments().forAccount(publicKey).call();
     return transactions.records;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };

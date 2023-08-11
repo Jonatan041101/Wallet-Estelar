@@ -8,7 +8,7 @@ const activeAccount = async (publicKey: string) => {
     const responseJSON = await response.json();
     return responseJSON as FriendbotResponse;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
