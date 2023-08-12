@@ -1,12 +1,11 @@
-import { AccountGenerate } from '@/types/types';
-import { AccountResponse } from 'stellar-sdk';
+import { AccountGenerate, BalanceProp } from '@/types/types';
 import { StateCreator } from 'zustand';
 
 export interface Wallet {
   account: AccountGenerate;
-  balanceAccount: AccountResponse | null;
+  balanceAccount: BalanceProp[];
   getAcc: (account: AccountGenerate) => void;
-  changeBalanceAccount: (balanceAccount: AccountResponse) => void;
+  changeBalanceAccount: (balanceAccount: BalanceProp[]) => void;
   resetAccount: () => void;
 }
 
@@ -15,7 +14,7 @@ export const accountSlice: StateCreator<Wallet> = (set) => ({
     publicKey: '',
     secretKey: '',
   },
-  balanceAccount: null,
+  balanceAccount: [],
   getAcc: (account) => {
     set((state) => ({
       ...state,
@@ -32,7 +31,7 @@ export const accountSlice: StateCreator<Wallet> = (set) => ({
     set((state) => ({
       ...state,
       account: { publicKey: '', secretKey: '' },
-      balanceAccount: null,
+      balanceAccount: [],
     }));
   },
 });

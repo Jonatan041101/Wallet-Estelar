@@ -17,7 +17,7 @@ import {
   parseAssetTypeNativeToXML,
 } from '@/utils/parsers';
 import { useBearStore } from '@/store/store';
-import useLoadAccount from '@/hooks/useLoadAccount';
+import useBalance from '@/hooks/useBalance';
 import useTransaction from '@/hooks/useTransaction';
 import { TransactionError, ValidationError } from '@/helpers/handlerError';
 import { isNumberValid, isPublicKey } from '@/utils/validations';
@@ -44,7 +44,7 @@ export default function Asset({ balance }: Props) {
     useState<State['transaction']>(INITIAL_STATE);
   const { view, handleChangeBoolean } = useBoolean();
   const { handleTransaction } = usePayment();
-  const { getBalance } = useLoadAccount();
+  const { getBalance } = useBalance();
   const { handleGetTransactions } = useTransaction();
   const { secretKey, publicKey } = useBearStore(({ account }) => ({
     secretKey: account.secretKey,

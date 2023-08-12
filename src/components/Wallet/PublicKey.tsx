@@ -1,6 +1,6 @@
 'use client';
 import Button from '@/atoms/Button';
-import useLoadAccount from '@/hooks/useLoadAccount';
+import useBalance from '@/hooks/useBalance';
 import activeAccount from '@/services/activeAccount';
 import { useBearStore } from '@/store/store';
 import { MessageError, MessageLoad } from '@/utils/constants';
@@ -8,7 +8,7 @@ import { errorMsg, succesLoaderMsg, succesMsgAsync } from '@/utils/toastMsg';
 import React from 'react';
 export default function PublicKey() {
   const { publicKey } = useBearStore((state) => state.account);
-  const { getBalance } = useLoadAccount();
+  const { getBalance } = useBalance();
   const handleActiveAccount = async () => {
     try {
       const notificationId = succesLoaderMsg(MessageLoad.ACTIVATE_ACOUNT);

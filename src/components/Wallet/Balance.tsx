@@ -1,5 +1,5 @@
 'use client';
-import useLoadAccount from '@/hooks/useLoadAccount';
+import useBalance from '@/hooks/useBalance';
 import React from 'react';
 import Asset from './Asset';
 import useAccount from '@/hooks/useAccount';
@@ -7,7 +7,7 @@ import Button from '@/atoms/Button';
 import { MessageLoad, MessageSucces } from '@/utils/constants';
 import { succesLoaderMsg, succesMsgAsync } from '@/utils/toastMsg';
 export default function Balance() {
-  const { balanceAccount, getBalance } = useLoadAccount();
+  const { balanceAccount, getBalance } = useBalance();
   useAccount();
   const handleGetBalanceData = async () => {
     try {
@@ -32,7 +32,7 @@ export default function Balance() {
       </div>
       {balanceAccount ? (
         <section className="balance__section">
-          {balanceAccount.balances.map((balance, index) => (
+          {balanceAccount.map((balance, index) => (
             <Asset balance={balance} key={index} />
           ))}
         </section>
