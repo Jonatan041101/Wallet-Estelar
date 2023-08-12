@@ -3,34 +3,24 @@ import {
   sendTransactionWithPrivateKey,
   sendTransactionWithAlbedo,
 } from '@/services/payment';
+import { Payment } from '@/store/paymentSlice';
 import { useBearStore } from '@/store/store';
 import { MessageError } from '@/utils/constants';
 import { Horizon } from 'stellar-sdk';
 
-export default function usePayment() {
-  const { payment } = useBearStore(({ payment }) => ({ payment }));
-  const transaction = async (
+type PaymentMethod = {
+  [key in Payment]: (
     key: string,
     destination: string,
     amount: string,
-    sendTransaction: (
-      key: string,
-      destination: string,
-      amount: string,
-    ) => Promise<Horizon.SubmitTransactionResponse>,
-  ): Promise<boolean> => {
-    try {
-      let signature: boolean = false;
-      const signatureTransaction = await sendTransaction(
-        key,
-        destination,
-        amount,
-      );
-      signature = signatureTransaction.successful;
-      return signature;
-    } catch (error) {
-      throw new TransactionError(MessageError.ERROR_IN_TRANSACTION);
-    }
+  ) => Promise<Horizon.SubmitTransactionResponse>;
+};
+
+export default function usePayment() {
+  const { payment } = useBearStore(({ payment }) => ({ payment }));
+  const paymentsMethod: PaymentMethod = {
+    Albedo: sendTransactionWithAlbedo,
+    'Only-Stellar': sendTransactionWithPrivateKey,
   };
   const handleTransaction = async (
     key: string,
@@ -38,24 +28,12 @@ export default function usePayment() {
     amount: string,
   ) => {
     try {
-      let signature: boolean = false;
-      if (payment === 'Albedo') {
-        signature = await transaction(
-          key,
-          destination,
-          amount,
-          sendTransactionWithAlbedo,
-        );
-      }
-      if (payment === 'Only-Stellar') {
-        signature = await transaction(
-          key,
-          destination,
-          amount,
-          sendTransactionWithPrivateKey,
-        );
-      }
-      if (!signature)
+      const { successful } = await paymentsMethod[payment](
+        key,
+        destination,
+        amount,
+      );
+      if (!successful)
         throw new TransactionError(MessageError.ERROR_IN_TRANSACTION);
     } catch (error) {
       console.error(error);

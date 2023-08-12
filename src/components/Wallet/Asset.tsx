@@ -65,7 +65,7 @@ export default function Asset({ balance }: Props) {
       setTransaction(INITIAL_STATE);
       await handleTransaction(
         secretKey.length === 0 ? publicKey : secretKey,
-        publicKey,
+        destination,
         parserAmount,
       );
       succesMsgAsync(
@@ -87,7 +87,7 @@ export default function Asset({ balance }: Props) {
     evt: React.ChangeEvent<HTMLInputElement>,
   ) => {
     const { name, value } = evt.target;
-    if (name === 'publicKey' || name === 'amount') {
+    if (name === 'destination' || name === 'amount') {
       setTransaction((state) => ({ ...state, [name]: value }));
     }
   };
@@ -109,12 +109,12 @@ export default function Asset({ balance }: Props) {
         >
           <Form handleSubmit={handleSendTransaction}>
             <Input
-              name="publicKey"
+              name="destination"
               handleChange={handleChangeTransaction}
               labelText="Pubic Key"
               placeholder="Comienza con G ejemplo: GBS7...H6XG"
               type="text"
-              value={publicKey}
+              value={destination}
             />
             <Input
               name="amount"
