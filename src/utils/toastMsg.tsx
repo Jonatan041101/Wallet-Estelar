@@ -38,13 +38,18 @@ export const successMsg = (
 export const succesMsgAsync = (
   id: Id,
   message: MessageSuccessWithVariable | MessageSucces,
-) => {
+) =>
   toast.update(id, {
     render: message,
     type: 'success',
     autoClose: 3000,
   });
-};
 
+export const errorMsgAsync = (id: Id, message: MessageError) =>
+  toast.update(id, {
+    render: message,
+    type: 'error',
+    autoClose: 3000,
+  });
 export const succesLoaderMsg = (message: MessageLoad) =>
   toast(<LoaderAndText text={message} />, optionsAsync);
