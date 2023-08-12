@@ -1,28 +1,21 @@
 import { SubmitError, TransactionError } from '@/helpers/handlerError';
+import { TypeTransaction } from '@/types/types';
 import { MessageError } from '@/utils/constants';
 import { server } from '@/utils/server';
-import albedo from '@albedo-link/intent';
 import {
   AccountResponse,
   Asset,
   BASE_FEE,
-  Keypair,
-  Memo,
-  MemoType,
   Networks,
   Operation,
-  Transaction,
   TransactionBuilder,
-  xdr,
 } from 'stellar-sdk';
-import { loadAccount } from './loadAccount';
-
 export const transactionBuilder = (
   sourceAccount: AccountResponse,
   destination: string,
   amount: string,
-) => {
-  return new TransactionBuilder(sourceAccount, {
+) =>
+  new TransactionBuilder(sourceAccount, {
     fee: BASE_FEE,
     networkPassphrase: Networks.TESTNET,
   })
@@ -35,11 +28,8 @@ export const transactionBuilder = (
     )
     .setTimeout(30)
     .build();
-};
 
-export const submitTransaction = async (
-  transaction: Transaction<Memo<MemoType>, Operation[]>,
-) => {
+export const submitTransaction = async (transaction: TypeTransaction) => {
   try {
     return await server.submitTransaction(transaction);
   } catch (error) {
@@ -51,18 +41,12 @@ export const submitTransaction = async (
 };
 
 export const sendTransactionWithPrivateKey = async (
-  secretKey: string,
+  account: AccountResponse,
   destination: string,
   amount: string,
 ) => {
   try {
-    const sourceKey = Keypair.fromSecret(secretKey);
-    await loadAccount(destination);
-    const sourceAccount = await loadAccount(sourceKey.publicKey());
-
-    const transaction = transactionBuilder(sourceAccount, destination, amount);
-    transaction.sign(sourceKey);
-    return await submitTransaction(transaction);
+    return transactionBuilder(account, destination, amount);
   } catch (error) {
     console.error({ error });
     throw new TransactionError(MessageError.ERROR_IN_TRANSACTION);
@@ -70,27 +54,12 @@ export const sendTransactionWithPrivateKey = async (
 };
 
 export const sendTransactionWithAlbedo = async (
-  publicKey: string,
+  account: AccountResponse,
   destination: string,
   amount: string,
 ) => {
   try {
-    await loadAccount(destination);
-    const sourceAccount = await loadAccount(publicKey);
-    const transaction = transactionBuilder(sourceAccount, destination, amount);
-
-    const albedoXDR = await albedo.tx({
-      xdr: transaction.toXDR(),
-      network: process.env.NEXT_PUBLIC_TESTNET ?? 'testnet',
-    });
-
-    const transactionEnvelope = xdr.TransactionEnvelope.fromXDR(
-      albedoXDR.signed_envelope_xdr,
-      'base64',
-    );
-
-    const transactionAlbedo = new Transaction(transactionEnvelope, '');
-    return await submitTransaction(transactionAlbedo);
+    return transactionBuilder(account, destination, amount);
   } catch (error) {
     console.error({ error });
     throw new TransactionError(MessageError.ERROR_IN_TRANSACTION);
