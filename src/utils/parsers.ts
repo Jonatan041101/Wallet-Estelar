@@ -6,3 +6,5 @@ export const parseAmountToDecimal = (amount: string) => {
 };
 export const parseAssetTypeNativeToXML = (asset: string) =>
   asset === 'native' ? 'Lumens (XLM)' : asset;
+export const parseAssetType = (asset: string) =>
+  asset === 'native' ? 'XLM' : asset;
