@@ -4,7 +4,7 @@
   color: #fff;
   @include flex(row, nowrap, space-between, center, 1em);
   background: $color-header;
-  padding: 3em 1.5em;
+  padding: 2em 1.5em;
   @include responsive($query-tablet) {
     padding: 1em 0.5em;
   }

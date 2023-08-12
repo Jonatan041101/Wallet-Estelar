@@ -1,6 +1,9 @@
 .warning {
   border-radius: 0.5em;
   padding: 1em 0.5em;
+  @include responsive($query-550) {
+    padding: 0.5em;
+  }
   &__red {
     background: $content-color-red;
     border: 1.5px solid $border-color-red;
@@ -13,10 +16,12 @@
   &__yellow {
   }
   &__h3 {
-    font-size: 1.2em;
+    font-size: clamp(0.9em, 0.3vw + 0.9em, 1.2em);
     @include flex(row, nowrap, flex-start, flex-start, 0.3em);
   }
   &__i {
+    min-width: 1em;
+    min-height: 1em;
     width: 1em;
     height: 1em;
     color: $icon-color-red;

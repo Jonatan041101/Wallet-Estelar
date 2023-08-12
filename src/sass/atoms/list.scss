@@ -1,6 +1,9 @@
 .list {
   padding: 1em 0em 1em 2em;
   @include flex(column, nowrap, flex-start, flex-start, 0.5em);
+  @include responsive($query-550) {
+    padding: 0.5em 0.5em 0.5em 1.5em;
+  }
   &__a {
     display: inline;
     color: $color-text-cancel;
@@ -11,9 +14,10 @@
   &__li {
     color: $gray-color-text;
     list-style-type: circle;
+    font-size: clamp(0.85em, 0.3vw + 0.8em, 1em);
   }
   &__question {
-    font-size: 1.2em;
-    line-height: 1.5;
+    font-size: clamp(0.9em, 0.3vw + 0.8em, 1.2em);
+    line-height: 1.3;
   }
 }
