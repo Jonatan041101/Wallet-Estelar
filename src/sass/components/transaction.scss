@@ -45,4 +45,9 @@
   }
   &__p {
   }
+  &__none {
+    width: 100%;
+    padding: 2em 0;
+    @include flex(row, nowrap, center, center, 0);
+  }
 }

@@ -848,6 +848,16 @@ button {
   font-size: 0.9em;
   overflow-wrap: break-word;
 }
+.transaction__none {
+  width: 100%;
+  padding: 2em 0;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+}
+
 .body {
   background: #292d3e;
   display: flex;
