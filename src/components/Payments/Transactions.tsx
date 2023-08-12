@@ -43,15 +43,21 @@ export default function Transactions() {
             <th className="transaction__th">Id de la Operación</th>
           </tr>
         </thead>
-        <tbody>
-          {transactions.map((transaction) => (
-            <RowTransaction
-              transaction={transaction}
-              key={transaction.id}
-              publicKey={publicKey}
-            />
-          ))}
-        </tbody>
+        {transactions.length > 0 ? (
+          <tbody>
+            {transactions.map((transaction) => (
+              <RowTransaction
+                transaction={transaction}
+                key={transaction.id}
+                publicKey={publicKey}
+              />
+            ))}
+          </tbody>
+        ) : (
+          <div className="transaction__none">
+            Todavia no se han realizado transacciones
+          </div>
+        )}
       </table>
     </div>
   );
