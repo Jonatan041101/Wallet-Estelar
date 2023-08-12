@@ -28,7 +28,7 @@ interface Props {
   balance: BalanceProp;
 }
 interface Transaction {
-  publicKey: string;
+  destination: string;
   amount: string;
 }
 interface State {
@@ -36,19 +36,19 @@ interface State {
 }
 const INITIAL_STATE: State['transaction'] = {
   amount: '',
-  publicKey: '',
+  destination: '',
 };
 
 export default function Asset({ balance }: Props) {
-  const [{ amount, publicKey }, setTransaction] =
+  const [{ amount, destination }, setTransaction] =
     useState<State['transaction']>(INITIAL_STATE);
   const { view, handleChangeBoolean } = useBoolean();
   const { handleTransaction } = usePayment();
   const { getBalance } = useLoadAccount();
   const { handleGetTransactions } = useTransaction();
-  const { secretKey, publicKeySend } = useBearStore(({ account }) => ({
+  const { secretKey, publicKey } = useBearStore(({ account }) => ({
     secretKey: account.secretKey,
-    publicKeySend: account.publicKey,
+    publicKey: account.publicKey,
   }));
   const asset = parseAssetTypeNativeToXML(balance.asset_type);
 
@@ -64,7 +64,7 @@ export default function Asset({ balance }: Props) {
       handleChangeBoolean();
       setTransaction(INITIAL_STATE);
       await handleTransaction(
-        secretKey.length === 0 ? publicKeySend : secretKey,
+        secretKey.length === 0 ? publicKey : secretKey,
         publicKey,
         parserAmount,
       );

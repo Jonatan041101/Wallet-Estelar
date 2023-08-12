@@ -14,7 +14,7 @@ export default function RowTransaction({ transaction, publicKey }: Props) {
   const asset = parseAssetType(transaction.asset_type);
   const profile = getRandomProfile();
   const amount =
-    publicKeyDestination === publicKey
+    transaction.from === publicKey
       ? `-${transaction.amount}`
       : `+${transaction.amount}`;
   return (
