@@ -806,6 +806,8 @@ button {
   font-size: clamp(1em, 0.8vw + 1.05em, 2em);
 }
 .transaction__table {
+  display: flex;
+  flex-direction: column;
   width: 100%;
 }
 .transaction__thead {
@@ -828,6 +830,7 @@ button {
   text-align: left;
   text-transform: uppercase;
   font-size: clamp(0.4em, 0.8vw + 0.45em, 1em);
+  overflow-wrap: break-word;
 }
 .transaction__td {
   width: 25%;
@@ -839,7 +842,12 @@ button {
   align-items: center;
   gap: 0.3em;
 }
-
+.transaction__td--2 {
+  width: 25%;
+  color: #d4d5d8;
+  font-size: 0.9em;
+  overflow-wrap: break-word;
+}
 .body {
   background: #292d3e;
   display: flex;
