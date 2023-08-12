@@ -18,6 +18,7 @@ export default function Balance() {
       console.error(error);
     }
   };
+
   return (
     <div className="balance">
       <div className="balance__top">
@@ -30,7 +31,7 @@ export default function Balance() {
           icon="Reload"
         />
       </div>
-      {balanceAccount ? (
+      {balanceAccount.length > 0 ? (
         <section className="balance__section">
           {balanceAccount.map((balance, index) => (
             <Asset balance={balance} key={index} />
