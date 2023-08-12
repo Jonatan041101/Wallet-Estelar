@@ -10,10 +10,10 @@ export interface Wallet {
   login: () => Promise<void>;
 }
 export default function Options() {
-  const { albedo } = useLogin();
+  const { handleAlbedo } = useLogin();
 
   const wallets: Wallet[] = [
-    { icon: 'Albedo', text: 'Conéctate con Albedo', login: albedo },
+    { icon: 'Albedo', text: 'Conéctate con Albedo', login: handleAlbedo },
   ];
   return (
     <section className="otherwallet">

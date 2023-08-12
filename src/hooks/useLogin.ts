@@ -11,7 +11,7 @@ export default function useLogin() {
     changePayment: state.changePayment,
   }));
   const { handleNavigate } = useNavigate();
-  const albedo = async () => {
+  const handleAlbedo = async () => {
     try {
       const albedo = await import('@albedo-link/intent');
       const res = await albedo.default.publicKey({});
@@ -41,6 +41,6 @@ export default function useLogin() {
     }
   };
   return {
-    albedo,
+    handleAlbedo,
   };
 }
