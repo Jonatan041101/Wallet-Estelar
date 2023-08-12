@@ -86,7 +86,7 @@ export default function Asset({ balance }: Props) {
         `Se ha enviado ${`${parserAmount} ${asset}`} a ${publicKey}`,
       );
       getBalance();
-      await handleGetTransactions();
+      await handleGetTransactions(false);
       successMsg(MessageSucces.HISTORY_UPDATE);
     } catch (error) {
       if (error instanceof ValidationError) {
