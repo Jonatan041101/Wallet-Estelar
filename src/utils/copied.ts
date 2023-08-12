@@ -6,7 +6,7 @@ export const handleCopy = async (text: string) => {
     await navigator.clipboard.writeText(text);
     successMsg(MessageSucces.COPIED_TO_CLIPBOARD);
   } catch (err) {
-    console.error('Error al copiar texto:', err);
+    console.error(err);
     errorMsg(MessageError.ERROR_COPYING);
   }
 };
