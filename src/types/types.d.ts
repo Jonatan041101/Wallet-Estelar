@@ -1,5 +1,13 @@
 import type { Payment } from '@/store/paymentSlice';
-import type { Horizon } from 'stellar-sdk';
+import type {
+  AccountResponse,
+  Horizon,
+  Keypair,
+  Memo,
+  MemoType,
+  Operation,
+  Transaction,
+} from 'stellar-sdk';
 
 export interface AccountGenerate {
   secretKey: string;
@@ -12,8 +20,15 @@ export type BalanceProp =
   | Horizon.BalanceLineLiquidityPool;
 export type PaymentMethod = {
   [key in Payment]: (
-    key: string,
+    account: AccountResponse,
     destination: string,
     amount: string,
-  ) => Promise<Horizon.SubmitTransactionResponse>;
+  ) => Promise<TypeTransaction>;
 };
+export type SingInTransaction = {
+  [key in Payment]: (
+    transaction: TypeTransaction,
+    keypair?: Keypair,
+  ) => Promise<TypeTransaction>;
+};
+export type TypeTransaction = Transaction<Memo<MemoType>, Operation[]>;
