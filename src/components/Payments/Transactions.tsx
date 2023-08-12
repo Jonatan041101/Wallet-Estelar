@@ -15,8 +15,7 @@ export default function Transactions() {
   const handleReloadTransactions = async () => {
     try {
       const notificationId = succesLoaderMsg(MessageLoad.WAIT_A_MOMENT);
-
-      await handleGetTransactions();
+      await handleGetTransactions(false, notificationId);
       succesMsgAsync(notificationId, MessageSucces.HISTORY_UPDATE);
     } catch (error) {
       console.error({ error });
