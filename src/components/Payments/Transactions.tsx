@@ -5,9 +5,13 @@ import RowTransaction from './RowTransaction';
 import Button from '@/atoms/Button';
 import { MessageLoad, MessageSucces } from '@/utils/constants';
 import { succesLoaderMsg, succesMsgAsync } from '@/utils/toastMsg';
+import { useBearStore } from '@/store/store';
 
 export default function Transactions() {
   const { transactions, handleGetTransactions } = useTransaction();
+  const { publicKey } = useBearStore(({ account }) => ({
+    publicKey: account.publicKey,
+  }));
   const handleReloadTransactions = async () => {
     try {
       const notificationId = succesLoaderMsg(MessageLoad.WAIT_A_MOMENT);
@@ -41,7 +45,11 @@ export default function Transactions() {
         </thead>
         <tbody>
           {transactions.map((transaction) => (
-            <RowTransaction transaction={transaction} key={transaction.id} />
+            <RowTransaction
+              transaction={transaction}
+              key={transaction.id}
+              publicKey={publicKey}
+            />
           ))}
         </tbody>
       </table>
