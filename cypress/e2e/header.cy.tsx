@@ -45,19 +45,16 @@ describe('Header Component', () => {
   it('Should copy the public key when you click on it', () => {
     cy.get('@checkboxInput').should('exist');
     cy.get('@checkboxInput').should('not.be.checked');
-    cy.contains('button', 'Continuar').should('exist');
+    cy.contains('button', 'Continuar').should('exist').as('buttonContinue');
     cy.get('@checkboxInput').check();
     cy.get('@checkboxInput').should('be.checked');
-    cy.contains('button', 'Continuar').click();
+    cy.get('@buttonContinue').click();
     cy.contains('label', 'TU CLAVE SECRETA').should('be.visible');
     cy.get('input[type="password"]').type(Cypress.env('secret_key'));
     cy.get('button[class="button button__complete"]').click();
     cy.wait(3000);
     cy.get('div[class="profile__img"]').should('be.visible');
-    cy.get('button[data-testid="public-key"]')
-      .should('be.visible')
-      .as('publicKeyButton');
-    cy.get('@publicKeyButton').click();
+    cy.get('button[data-testid="public-key"]').should('be.visible').click();
     cy.wait(500);
     cy.contains('Copiado al portapapeles').should('be.visible');
   });
