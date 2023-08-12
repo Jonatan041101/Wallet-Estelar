@@ -15,8 +15,9 @@ import {
   TransactionBuilder,
   xdr,
 } from 'stellar-sdk';
+import { loadAccount } from './loadAccount';
 
-export const transactionBuilder = async (
+export const transactionBuilder = (
   sourceAccount: AccountResponse,
   destination: string,
   amount: string,
@@ -56,13 +57,10 @@ export const sendTransactionWithPrivateKey = async (
 ) => {
   try {
     const sourceKey = Keypair.fromSecret(secretKey);
-    await server.loadAccount(destination);
-    const sourceAccount = await server.loadAccount(sourceKey.publicKey());
-    const transaction = await transactionBuilder(
-      sourceAccount,
-      destination,
-      amount,
-    );
+    await loadAccount(destination);
+    const sourceAccount = await loadAccount(sourceKey.publicKey());
+
+    const transaction = transactionBuilder(sourceAccount, destination, amount);
     transaction.sign(sourceKey);
     return await submitTransaction(transaction);
   } catch (error) {
@@ -77,22 +75,21 @@ export const sendTransactionWithAlbedo = async (
   amount: string,
 ) => {
   try {
-    await server.loadAccount(destination);
-    const sourceAccount = await server.loadAccount(publicKey);
-    const transaction = await transactionBuilder(
-      sourceAccount,
-      destination,
-      amount,
-    );
+    await loadAccount(destination);
+    const sourceAccount = await loadAccount(publicKey);
+    const transaction = transactionBuilder(sourceAccount, destination, amount);
+
     const albedoXDR = await albedo.tx({
       xdr: transaction.toXDR(),
       network: process.env.NEXT_PUBLIC_TESTNET ?? 'testnet',
     });
-    const transactionR = xdr.TransactionEnvelope.fromXDR(
+
+    const transactionEnvelope = xdr.TransactionEnvelope.fromXDR(
       albedoXDR.signed_envelope_xdr,
       'base64',
     );
-    const transactionAlbedo = new Transaction(transactionR, '');
+
+    const transactionAlbedo = new Transaction(transactionEnvelope, '');
     return await submitTransaction(transactionAlbedo);
   } catch (error) {
     console.error({ error });
