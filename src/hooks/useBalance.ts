@@ -1,6 +1,6 @@
 'use client';
+import { loadAccount } from '@/services/loadAccount';
 import { useBearStore } from '@/store/store';
-import { server } from '@/utils/server';
 import { useEffect } from 'react';
 
 export default function useBalance() {
@@ -14,7 +14,7 @@ export default function useBalance() {
 
   const getBalance = async () => {
     try {
-      const { balances } = await server.loadAccount(publicKey);
+      const { balances } = await loadAccount(publicKey);
       changeBalanceAccount(balances);
     } catch (error) {
       console.error(error);
