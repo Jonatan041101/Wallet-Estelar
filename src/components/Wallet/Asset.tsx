@@ -133,7 +133,7 @@ export default function Asset({ balance }: Props) {
               name="amount"
               handleChange={handleChangeTransaction}
               labelText={`Cantidad de ${asset} para enviar`}
-              placeholder={`Ejemplo 1.0000000 un ${asset}`}
+              placeholder={`Ejemplo 1.0000000 ${asset}`}
               type="number"
               value={amount}
             />
