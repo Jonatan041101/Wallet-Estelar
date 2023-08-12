@@ -23,6 +23,9 @@ import { TransactionError, ValidationError } from '@/helpers/handlerError';
 import { isNumberValid, isPublicKey } from '@/utils/validations';
 import { BalanceProp } from '@/types/types';
 import usePayment from '@/hooks/usePayment';
+import { getElementsTransactions } from '@/services/elementsTransactions';
+import useSignIn from '@/hooks/useSignIn';
+import { submitTransaction } from '@/services/payment';
 
 interface Props {
   balance: BalanceProp;
@@ -44,6 +47,7 @@ export default function Asset({ balance }: Props) {
     useState<State['transaction']>(INITIAL_STATE);
   const { view, handleChangeBoolean } = useBoolean();
   const { handleTransaction } = usePayment();
+  const { handleSignInTransaction } = useSignIn();
   const { getBalance } = useBalance();
   const { handleGetTransactions } = useTransaction();
   const { secretKey, publicKey } = useBearStore(({ account }) => ({
@@ -63,11 +67,20 @@ export default function Asset({ balance }: Props) {
       const notificationId = succesLoaderMsg(MessageLoad.TRANSACTION);
       handleChangeBoolean();
       setTransaction(INITIAL_STATE);
-      await handleTransaction(
-        secretKey.length === 0 ? publicKey : secretKey,
+      const { sourceAccount, keypair } = await getElementsTransactions(
+        secretKey,
+        publicKey,
+      );
+      const transaction = await handleTransaction(
+        sourceAccount,
         destination,
         parserAmount,
       );
+      const transactionSignIn = await handleSignInTransaction(
+        transaction,
+        keypair,
+      );
+      await submitTransaction(transactionSignIn);
       succesMsgAsync(
         notificationId,
         `Se ha enviado ${`${parserAmount} ${asset}`} a ${publicKey}`,
