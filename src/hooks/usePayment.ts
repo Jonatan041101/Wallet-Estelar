@@ -1,27 +1,11 @@
 import { TransactionError } from '@/helpers/handlerError';
-import {
-  sendTransactionWithPrivateKey,
-  sendTransactionWithAlbedo,
-} from '@/services/payment';
-import { Payment } from '@/store/paymentSlice';
 import { useBearStore } from '@/store/store';
 import { MessageError } from '@/utils/constants';
-import { Horizon } from 'stellar-sdk';
-
-type PaymentMethod = {
-  [key in Payment]: (
-    key: string,
-    destination: string,
-    amount: string,
-  ) => Promise<Horizon.SubmitTransactionResponse>;
-};
+import { paymentsMethod } from '@/utils/paymentMethods';
 
 export default function usePayment() {
   const { payment } = useBearStore(({ payment }) => ({ payment }));
-  const paymentsMethod: PaymentMethod = {
-    Albedo: sendTransactionWithAlbedo,
-    'Only-Stellar': sendTransactionWithPrivateKey,
-  };
+
   const handleTransaction = async (
     key: string,
     destination: string,
