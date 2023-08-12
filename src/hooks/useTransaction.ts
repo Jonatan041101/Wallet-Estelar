@@ -2,8 +2,9 @@ import { LoadError } from '@/helpers/handlerError';
 import { loadTransactions } from '@/services/loadTransactions';
 import { useBearStore } from '@/store/store';
 import { MessageError } from '@/utils/constants';
-import { errorMsg } from '@/utils/toastMsg';
+import { errorMsg, errorMsgAsync } from '@/utils/toastMsg';
 import { useEffect } from 'react';
+import { Id } from 'react-toastify';
 
 export default function useTransaction() {
   const { getTransactions, publicKey, transactions } = useBearStore(
@@ -13,19 +14,25 @@ export default function useTransaction() {
       transactions,
     }),
   );
-  const handleGetTransactions = async () => {
+  const handleGetTransactions = async (firstLoad: boolean, id?: Id) => {
     try {
       const transactions = await loadTransactions(publicKey);
       getTransactions(transactions);
     } catch (error) {
-      if (error instanceof LoadError) {
-        errorMsg(error.message as MessageError);
+      if (error instanceof LoadError && !firstLoad) {
+        if (id) {
+          errorMsgAsync(id, MessageError.NOT_TRANSACTIONS);
+        } else {
+          errorMsg(error.message as MessageError);
+        }
+        throw new LoadError(MessageError.ERROR);
       }
       console.error({ error });
+      // throw new Error(MessageError.ERROR);
     }
   };
   useEffect(() => {
-    handleGetTransactions();
+    handleGetTransactions(true);
   }, [publicKey]);
   return {
     handleGetTransactions,

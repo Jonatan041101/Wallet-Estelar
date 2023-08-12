@@ -15,6 +15,7 @@ export default function useBalance() {
   const getBalance = async () => {
     try {
       const { balances } = await loadAccount(publicKey);
+
       changeBalanceAccount(balances);
     } catch (error) {
       console.error(error);
