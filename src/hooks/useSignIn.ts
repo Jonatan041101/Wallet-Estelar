@@ -1,5 +1,6 @@
 import { useBearStore } from '@/store/store';
 import { TypeTransaction } from '@/types/types';
+import { MessageError } from '@/utils/constants';
 import { signInTransaction } from '@/utils/transactionsMethod';
 import { Keypair } from 'stellar-sdk';
 
@@ -12,7 +13,7 @@ export default function useSignIn() {
     try {
       return await signInTransaction[payment](transaction, keypair);
     } catch (error) {
-      throw new Error('');
+      throw new Error(MessageError.ERROR);
     }
   };
   return {

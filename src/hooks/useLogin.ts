@@ -38,6 +38,7 @@ export default function useLogin() {
       if (error instanceof Error) {
         throw new Error(error.message);
       }
+      throw new Error(MessageError.ERROR);
     }
   };
   return {
