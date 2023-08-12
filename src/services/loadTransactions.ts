@@ -9,6 +9,6 @@ export const loadTransactions = async (publicKey: string) => {
     const { records } = await transactions.call();
     return records;
   } catch (error) {
-    throw new LoadError(MessageError.LOAD_ERROR);
+    throw new LoadError(MessageError.NOT_TRANSACTIONS);
   }
 };
