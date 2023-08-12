@@ -1,6 +1,6 @@
 import { TransactionError } from '@/helpers/handlerError';
 import {
-  sendTransactionOnlyStellar,
+  sendTransactionWithPrivateKey,
   sendTransactionWithAlbedo,
 } from '@/services/payment';
 import { useBearStore } from '@/store/store';
@@ -52,7 +52,7 @@ export default function usePayment() {
           key,
           destination,
           amount,
-          sendTransactionOnlyStellar,
+          sendTransactionWithPrivateKey,
         );
       }
       if (!signature)

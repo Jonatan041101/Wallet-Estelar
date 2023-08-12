@@ -32,7 +32,7 @@ export const transactionBuilder = async (
         destination,
       }),
     )
-    .setTimeout(600)
+    .setTimeout(30)
     .build();
 };
 
@@ -49,7 +49,7 @@ export const submitTransaction = async (
   }
 };
 
-export const sendTransactionOnlyStellar = async (
+export const sendTransactionWithPrivateKey = async (
   secretKey: string,
   destination: string,
   amount: string,
@@ -86,7 +86,7 @@ export const sendTransactionWithAlbedo = async (
     );
     const albedoXDR = await albedo.tx({
       xdr: transaction.toXDR(),
-      network: 'testnet',
+      network: process.env.NEXT_PUBLIC_TESTNET ?? 'testnet',
     });
     const transactionR = xdr.TransactionEnvelope.fromXDR(
       albedoXDR.signed_envelope_xdr,

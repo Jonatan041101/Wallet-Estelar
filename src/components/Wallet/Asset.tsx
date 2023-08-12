@@ -20,7 +20,7 @@ import { useBearStore } from '@/store/store';
 import useLoadAccount from '@/hooks/useLoadAccount';
 import useTransaction from '@/hooks/useTransaction';
 import { TransactionError, ValidationError } from '@/helpers/handlerError';
-import { isNumberValidate, isPublicKey } from '@/utils/validations';
+import { isNumberValid, isPublicKey } from '@/utils/validations';
 import { BalanceProp } from '@/types/types';
 import usePayment from '@/hooks/usePayment';
 
@@ -57,7 +57,7 @@ export default function Asset({ balance }: Props) {
   ) => {
     evt.preventDefault();
     try {
-      isNumberValidate(amount);
+      isNumberValid(amount);
       isPublicKey(publicKey);
       const parserAmount = parseAmountToDecimal(amount);
       const notificationId = succesLoaderMsg(MessageLoad.TRANSACTION);
