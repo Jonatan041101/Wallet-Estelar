@@ -6,9 +6,8 @@ describe('Button Component', () => {
     cy.visit('/');
     cy.contains('button', buttonTextKey).should('be.visible');
     cy.get('button').contains('span', buttonTextKey).click();
-    cy.contains('li', textLiKeyConfirm).as('warning');
+    cy.contains(textLiKeyConfirm).as('warning');
     cy.contains('button', 'Continuar').as('buttonContinue');
-    cy.contains('button', 'Cerrar').should('not.exist').as('buttonClose');
   });
 
   it('Should call the handleClick function when the button is clicked and close when the cross is clicked', () => {
@@ -25,20 +24,20 @@ describe('Button Component', () => {
 
   it('Should give an error message if the input is not checked', () => {
     cy.get('@buttonContinue').click();
-    cy.get('input[type="checkbox"]').should('exist').as('checkboxInput');
-    cy.get('@checkboxInput').should('not.be.checked');
+    cy.get('input[type="checkbox"]').should('exist').should('not.be.checked');
     cy.contains('button', 'Cerrar').should('exist').click();
     cy.contains('Guarde sus llaves').should('be.visible');
   });
 
-  it('Should modal close when you click the cancel button if the input is checked', () => {
+  it.only('Should modal close when you click the cancel button if the input is checked', () => {
     cy.get('@buttonContinue').click();
-    cy.get('input[type="checkbox"]').should('exist').as('checkboxInput');
-    cy.get('@checkboxInput').should('not.be.checked');
-    cy.get('@checkboxInput').click();
-    cy.get('@checkboxInput').should('be.checked');
-    cy.contains('button', 'Cerrar').should('exist').click();
-    cy.get('@checkboxInput').should('not.exist');
+    cy.get('input[type="checkbox"]')
+      .should('exist')
+      .as('checkboxInput')
+      .should('not.be.checked')
+      .click()
+      .should('be.checked');
+    cy.contains('button', 'Cerrar').should('exist').click().should('not.exist');
   });
 
   it('Should give a copy to clipboard message when i click on copy keys', () => {

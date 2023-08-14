@@ -5,7 +5,6 @@ describe('Payment', () => {
     cy.get('.check__input').as('checkboxInput');
     cy.contains('button', 'Continuar').as('buttonContinue');
     cy.get('@checkboxInput').check();
-    cy.get('@checkboxInput');
     cy.get('@buttonContinue').click();
     cy.get('input[type="password"]').type(Cypress.env('secret_key'));
     cy.get('button[class="button button__complete"]').click();

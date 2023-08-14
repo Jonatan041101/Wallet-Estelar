@@ -17,14 +17,13 @@ describe('Transactions Component', () => {
 
   it('Should see an updated history message when making a payment', () => {
     cy.contains('button', 'Enviar').should('be.visible').click();
-    cy.get('input[name="publicKey"]').should('be.visible').as('inputPublicKey');
-    cy.get('input[name="amount"]').as('inputAssets');
+    cy.get('input[name="publicKey"]')
+      .should('be.visible')
+      .type(Cypress.env('public_key_send'));
+    cy.get('input[name="amount"]').type('200');
     cy.get('button[data-testid="send-transaction"]')
       .should('be.visible')
-      .as('buttonSend');
-    cy.get('@inputPublicKey').type(Cypress.env('public_key_send'));
-    cy.get('@inputAssets').type('200');
-    cy.get('@buttonSend').click();
+      .click();
     cy.contains('Espere un momento a que se termine la transacción').should(
       'be.visible',
     );

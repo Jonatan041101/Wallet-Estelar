@@ -1,13 +1,14 @@
 const buttonText = 'Conectar con una clave secreta';
 const textLiLoginConfirm =
   'Copiar y pegar su clave secreta lo hace vulnerable a accidentes, ataques y estafas que pueden provocar la pérdida de fondos.';
-const secretKey = 'SDMKSLMZTXCXG4OAJVZKISPJ4NML2H23DWNXZI4XJBG3L2PNQ4XJYRJ';
+const secretKey = 'SDMKSLMZTXCXG4OAJVZKISPJ4NML2H23DWNXZI4XJBG3L2PNQ4XJYRJ5';
 describe('Button Component', () => {
   beforeEach(() => {
     cy.visit('/');
     cy.contains('button', buttonText).click();
     cy.get('.check__input').as('checkboxInput');
-    cy.contains('li', textLiLoginConfirm).as('warning');
+    cy.contains(textLiLoginConfirm).as('warning');
+    cy.contains('button', 'Continuar').as('buttonContinue');
   });
 
   it('Should render the button text correctly', () => {
@@ -28,27 +29,27 @@ describe('Button Component', () => {
   it('Should give an error message when clicking continue regardless of the risks', () => {
     cy.get('@checkboxInput').should('exist');
     cy.get('@checkboxInput').should('not.be.checked');
-    cy.contains('button', 'Continuar').should('exist').click();
+    cy.get('@buttonContinue').should('exist').click();
     cy.contains('Lee con atención').should('be.visible');
   });
 
   it('Should when clicking on continue taking into account the risks with the input in check show the login modal', () => {
     cy.get('@checkboxInput').should('exist');
     cy.get('@checkboxInput').should('not.be.checked');
-    cy.contains('button', 'Continuar').should('exist');
+    cy.get('@buttonContinue').should('exist');
     cy.get('@checkboxInput').check();
     cy.get('@checkboxInput').should('be.checked');
-    cy.contains('button', 'Continuar').click();
+    cy.get('@buttonContinue').click();
     cy.contains('label', 'TU CLAVE SECRETA').should('be.visible');
   });
 
   it('Should login modal close when I click the cross button', () => {
     cy.get('@checkboxInput').should('exist');
     cy.get('@checkboxInput').should('not.be.checked');
-    cy.contains('button', 'Continuar').should('exist');
+    cy.get('@buttonContinue').should('exist');
     cy.get('@checkboxInput').check();
     cy.get('@checkboxInput').should('be.checked');
-    cy.contains('button', 'Continuar').click();
+    cy.get('@buttonContinue').click();
     cy.contains('label', 'TU CLAVE SECRETA').should('be.visible');
     cy.get('.modal__btn').click().as('buttonClose');
     cy.get('@buttonClose').should('not.exist');
@@ -57,10 +58,10 @@ describe('Button Component', () => {
   it('Should log in by entering the secret key and changing to the wallet path', () => {
     cy.get('@checkboxInput').should('exist');
     cy.get('@checkboxInput').should('not.be.checked');
-    cy.contains('button', 'Continuar').should('exist');
+    cy.get('@buttonContinue').should('exist');
     cy.get('@checkboxInput').check();
     cy.get('@checkboxInput').should('be.checked');
-    cy.contains('button', 'Continuar').click();
+    cy.get('@buttonContinue').click();
     cy.contains('label', 'TU CLAVE SECRETA').should('be.visible');
     cy.get('input[type="password"]').type(Cypress.env('secret_key'));
     cy.get('button[class="button button__complete"]').click();
@@ -71,10 +72,10 @@ describe('Button Component', () => {
   it('Should log in by entering the secret key and changing to the wallet path', () => {
     cy.get('@checkboxInput').should('exist');
     cy.get('@checkboxInput').should('not.be.checked');
-    cy.contains('button', 'Continuar').should('exist');
+    cy.get('@buttonContinue').should('exist');
     cy.get('@checkboxInput').check();
     cy.get('@checkboxInput').should('be.checked');
-    cy.contains('button', 'Continuar').click();
+    cy.get('@buttonContinue').click();
     cy.contains('label', 'TU CLAVE SECRETA').should('be.visible');
     cy.get('input[type="password"]').type(Cypress.env('secret_key'));
     cy.get('button[class="button button__complete"]').click();
@@ -85,10 +86,10 @@ describe('Button Component', () => {
   it('Should give an error message when entering an invalid secret key', () => {
     cy.get('@checkboxInput').should('exist');
     cy.get('@checkboxInput').should('not.be.checked');
-    cy.contains('button', 'Continuar').should('exist');
+    cy.get('@buttonContinue').should('exist');
     cy.get('@checkboxInput').check();
     cy.get('@checkboxInput').should('be.checked');
-    cy.contains('button', 'Continuar').click();
+    cy.get('@buttonContinue').click();
     cy.contains('label', 'TU CLAVE SECRETA').should('be.visible');
     cy.get('input[type="password"]').type(secretKey);
     cy.get('button[class="button button__complete"]').click();
@@ -99,7 +100,7 @@ describe('Button Component', () => {
   it('Should show a message that the account has been activated when clicking on the activate account button', () => {
     cy.get('@checkboxInput').should('exist');
     cy.get('@checkboxInput').should('not.be.checked');
-    cy.contains('button', 'Continuar').should('exist').as('buttonContinue');
+    cy.get('@buttonContinue').should('exist').as('buttonContinue');
     cy.get('@checkboxInput').check();
     cy.get('@checkboxInput').should('be.checked');
     cy.get('@buttonContinue').click();

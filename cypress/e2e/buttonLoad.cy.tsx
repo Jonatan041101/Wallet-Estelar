@@ -12,10 +12,7 @@ describe('Buttons Reload', () => {
   });
 
   it('Should see a Your balance has been updated message when you click the reload payments button', () => {
-    cy.get('button[data-testid="load-balance"]')
-      .should('be.visible')
-      .as('buttonBalance');
-    cy.get('@buttonBalance').click();
+    cy.get('button[data-testid="load-balance"]').should('be.visible').click();
     cy.contains('Su saldo ha sido actualizado').should('be.visible');
   });
 
