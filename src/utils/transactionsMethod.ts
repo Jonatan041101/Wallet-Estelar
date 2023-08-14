@@ -5,7 +5,7 @@ import {
 import {
   signTransactionWithAlbedo,
   signTransactionWithPrivateKey,
-} from '@/services/signIn';
+} from '@/services/sign';
 import { PaymentMethod, SingInTransaction } from '@/types/types';
 
 export const paymentsMethod: PaymentMethod = {

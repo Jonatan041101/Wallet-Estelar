@@ -28,7 +28,7 @@ export default function useTransaction() {
         throw new LoadError(MessageError.ERROR);
       }
       console.error({ error });
-      // throw new Error(MessageError.ERROR);
+      throw new Error(MessageError.ERROR);
     }
   };
   useEffect(() => {
