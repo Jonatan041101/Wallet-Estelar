@@ -1,6 +1,6 @@
 import { ValidationError } from '@/helpers/handlerError';
 import { MessageError } from './constants';
-import { VALIDATIONS } from './regExp';
+import { VALIDATIONS } from './Ivalidations';
 
 export const isNumberValid = (amount: string) => {
   if (isNaN(Number(amount)) || amount.length === 0) {

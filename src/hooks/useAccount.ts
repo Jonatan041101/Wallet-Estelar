@@ -1,7 +1,7 @@
 import { useBearStore } from '@/store/store';
 import useNavigate from './useNavigate';
 import { useEffect } from 'react';
-import { VALIDATIONS } from '@/utils/regExp';
+import { VALIDATIONS } from '@/utils/Ivalidations';
 
 export default function useAccount() {
   const { publicKey, resetAccount } = useBearStore(
