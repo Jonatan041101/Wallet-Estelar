@@ -29,6 +29,6 @@ export type SingInTransaction = {
   [key in Payment]: (
     transaction: TypeTransaction,
     keypair?: Keypair,
-  ) => Promise<TypeTransaction>;
+  ) => Promise<TypeTransaction> | TypeTransaction;
 };
 export type TypeTransaction = Transaction<Memo<MemoType>, Operation[]>;

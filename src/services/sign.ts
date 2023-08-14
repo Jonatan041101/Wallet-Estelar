@@ -11,7 +11,7 @@ export const signTransactionWithAlbedo = async (
   try {
     const albedoXDR = await albedo.tx({
       xdr: transaction.toXDR(),
-      network: process.env.NEXT_PUBLIC_TESTNET ?? 'testnet',
+      network: process.env.NEXT_PUBLIC_STELLAR_NETWORK ?? 'testnet',
     });
 
     const transactionEnvelope = xdr.TransactionEnvelope.fromXDR(
@@ -24,14 +24,10 @@ export const signTransactionWithAlbedo = async (
     throw new TransactionError(MessageError.ERROR_IN_TRANSACTION);
   }
 };
-export const signTransactionWithPrivateKey = async (
+export const signTransactionWithPrivateKey = (
   transaction: TypeTransaction,
   keypair?: Keypair,
-): Promise<TypeTransaction> => {
-  try {
-    if (keypair) transaction.sign(keypair);
-    return transaction;
-  } catch (error) {
-    throw new TransactionError(MessageError.ERROR_IN_TRANSACTION);
-  }
+): TypeTransaction => {
+  if (keypair) transaction.sign(keypair);
+  return transaction;
 };
