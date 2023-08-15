@@ -1,8 +1,9 @@
 describe('Header Component', () => {
   beforeEach(() => {
     cy.visit('/');
-    cy.contains('button', 'Conectar con una clave secreta').click();
+    cy.contains('Conectar con una clave secreta').click();
     cy.get('.check__input').should('exist').as('checkboxInput');
+    cy.contains('Continuar').as('buttonContinue');
   });
 
   it('Should see the header', () => {
@@ -10,11 +11,11 @@ describe('Header Component', () => {
   });
 
   it('Should profile seen when you login', () => {
-    cy.get('@checkboxInput').should('not.be.checked');
-    cy.contains('button', 'Continuar').should('exist');
-    cy.get('@checkboxInput').check();
-    cy.get('@checkboxInput').should('be.checked');
-    cy.contains('button', 'Continuar').click();
+    cy.get('@checkboxInput')
+      .should('not.be.checked')
+      .check()
+      .should('be.checked');
+    cy.get('@buttonContinue').click();
     cy.contains('label', 'TU CLAVE SECRETA').should('be.visible');
     cy.get('input[type="password"]').type(Cypress.env('secret_key'));
     cy.get('button[class="button button__complete"]').click();
@@ -23,12 +24,9 @@ describe('Header Component', () => {
   });
 
   it('Should log out when the log out button is clicked', () => {
-    cy.get('@checkboxInput').should('exist');
-    cy.get('@checkboxInput').should('not.be.checked');
-    cy.contains('button', 'Continuar').should('exist');
-    cy.get('@checkboxInput').check();
+    cy.get('@checkboxInput').should('exist').should('not.be.checked').check();
     cy.get('@checkboxInput').should('be.checked');
-    cy.contains('button', 'Continuar').click();
+    cy.get('@buttonContinue').click();
     cy.contains('label', 'TU CLAVE SECRETA').should('be.visible');
     cy.get('input[type="password"]').type(Cypress.env('secret_key'));
     cy.get('button[class="button button__complete"]').click();
@@ -48,7 +46,7 @@ describe('Header Component', () => {
       .should('not.be.checked')
       .check()
       .should('be.checked');
-    cy.contains('Continuar').should('exist').click();
+    cy.get('@buttonContinue').should('exist').click();
     cy.contains('label', 'TU CLAVE SECRETA').should('be.visible');
     cy.get('input[type="password"]').type(Cypress.env('secret_key'));
     cy.get('button[class="button button__complete"]').click();
