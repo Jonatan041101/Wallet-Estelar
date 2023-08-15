@@ -98,12 +98,12 @@ describe('Button Component', () => {
   });
 
   it('Should show a message that the account has been activated when clicking on the activate account button', () => {
-    cy.get('@checkboxInput').should('exist');
-    cy.get('@checkboxInput').should('not.be.checked');
-    cy.get('@buttonContinue').should('exist').as('buttonContinue');
-    cy.get('@checkboxInput').check();
-    cy.get('@checkboxInput').should('be.checked');
-    cy.get('@buttonContinue').click();
+    cy.get('@checkboxInput')
+      .should('exist')
+      .should('not.be.checked')
+      .check()
+      .should('be.checked');
+    cy.get('@buttonContinue').should('exist').click();
     cy.contains('label', 'TU CLAVE SECRETA').should('be.visible');
     cy.get('input[type="password"]').type(Cypress.env('secret_key'));
     cy.get('button[class="button button__complete"]').click();

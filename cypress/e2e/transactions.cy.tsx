@@ -11,11 +11,11 @@ describe('Transactions Component', () => {
     cy.wait(3000);
   });
 
-  it('Should see the transactions component', () => {
+  it('Should show the transactions component', () => {
     cy.contains('Historial de Pagos').should('be.visible');
   });
 
-  it('Should see an updated history message when making a payment', () => {
+  it('Should show an updated history message when making a payment', () => {
     cy.contains('button', 'Enviar').should('be.visible').click();
     cy.get('input[name="publicKey"]')
       .should('be.visible')
