@@ -22,7 +22,7 @@ describe('Button Component', () => {
     cy.get('@warning').should('not.exist');
   });
 
-  it('Should give an error message if the input is not checked', () => {
+  it('Should show an error message if the input is not checked', () => {
     cy.get('@buttonContinue').click();
     cy.get('input[type="checkbox"]').should('exist').should('not.be.checked');
     cy.contains('Cerrar').should('exist').click();

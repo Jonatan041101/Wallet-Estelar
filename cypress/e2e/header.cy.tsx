@@ -6,11 +6,11 @@ describe('Header Component', () => {
     cy.contains('Continuar').as('buttonContinue');
   });
 
-  it('Should see the header', () => {
+  it('Should show the header', () => {
     cy.contains('h3', 'Visor de cuenta').should('be.visible');
   });
 
-  it('Should profile seen when you login', () => {
+  it('Should show the profile at login', () => {
     cy.get('@checkboxInput')
       .should('not.be.checked')
       .check()
@@ -23,7 +23,7 @@ describe('Header Component', () => {
     cy.get('div[class="profile__img"]').should('be.visible');
   });
 
-  it('Should log out when the log out button is clicked', () => {
+  it('Should log out when the logout button is clicked', () => {
     cy.get('@checkboxInput').should('exist').should('not.be.checked').check();
     cy.get('@checkboxInput').should('be.checked');
     cy.get('@buttonContinue').click();

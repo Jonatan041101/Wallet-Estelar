@@ -20,20 +20,20 @@ describe('Button Component', () => {
     cy.get('@warning').should('not.exist');
   });
 
-  it('Should modal close when the cancel button is clicked', () => {
+  it('Should the modal close when the cancel button is clicked', () => {
     cy.get('@warning').should('exist');
     cy.contains('button', 'Cancelar').click();
     cy.get('@warning').should('not.exist');
   });
 
-  it('Should give an error message when clicking continue regardless of the risks', () => {
+  it('Should display an error message when clicking continue regardless of the risks', () => {
     cy.get('@checkboxInput').should('exist');
     cy.get('@checkboxInput').should('not.be.checked');
     cy.get('@buttonContinue').should('exist').click();
     cy.contains('Lee con atención').should('be.visible');
   });
 
-  it('Should when clicking on continue taking into account the risks with the input in check show the login modal', () => {
+  it('Should show the login if the risks are accepted when clicking the continue button', () => {
     cy.get('@checkboxInput').should('exist');
     cy.get('@checkboxInput').should('not.be.checked');
     cy.get('@buttonContinue').should('exist');
@@ -43,7 +43,7 @@ describe('Button Component', () => {
     cy.contains('label', 'TU CLAVE SECRETA').should('be.visible');
   });
 
-  it('Should login modal close when I click the cross button', () => {
+  it('Should the login modal close when I click the cross button', () => {
     cy.get('@checkboxInput').should('exist');
     cy.get('@checkboxInput').should('not.be.checked');
     cy.get('@buttonContinue').should('exist');

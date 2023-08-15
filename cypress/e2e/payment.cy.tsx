@@ -26,13 +26,13 @@ describe('Payment', () => {
     cy.contains('Se ha enviado').should('be.visible');
   });
 
-  it("Should give an error message when you don't type an amount", () => {
+  it("Should show an error message when you don't type an amount", () => {
     cy.get('@inputPublicKey').type(Cypress.env('public_key_send'));
     cy.get('@buttonSend').click();
     cy.contains('El valor ingresado no es numero').should('be.visible');
   });
 
-  it("Should give an error message when you don't type a public key", () => {
+  it("Should show an error message when you don't type a public key", () => {
     cy.get('@inputAssets').type('200');
     cy.get('@buttonSend').click();
     cy.contains('La llave publica que ha ingresado es incorrecta').should(
