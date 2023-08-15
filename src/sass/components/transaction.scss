@@ -1,0 +1,53 @@
+.transaction {
+  width: 100%;
+  color: #fff;
+  &__title {
+    width: 100%;
+    @include flex(row, nowrap, space-between, center, 0);
+  }
+  &__h3 {
+    font-size: clamp(1em, 0.8vw + 1.05em, 2em);
+  }
+  &__table {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  &__thead {
+    width: 100%;
+    font-weight: normal;
+  }
+  &__tr {
+    width: 100%;
+    padding: 1.5em 0;
+    border-bottom: 1.5px solid $color-border;
+    @include flex(row, nowrap, space-between, center, 0);
+  }
+  &__th {
+    font-weight: normal;
+    width: 25%;
+    text-align: left;
+    text-transform: uppercase;
+    font-size: clamp(0.4em, 0.8vw + 0.45em, 1em);
+    overflow-wrap: break-word;
+  }
+  &__td {
+    width: 25%;
+    color: $gray-color-text;
+    font-size: 0.9em;
+    @include flex(row, nowrap, flex-start, center, 0.3em);
+    &--2 {
+      width: 25%;
+      color: $gray-color-text;
+      font-size: 0.9em;
+      overflow-wrap: break-word;
+    }
+  }
+  &__p {
+  }
+  &__none {
+    width: 100%;
+    padding: 2em 0;
+    @include flex(row, nowrap, center, center, 0);
+  }
+}

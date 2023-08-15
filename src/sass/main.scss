@@ -6,7 +6,8 @@
   './components/generator.scss', './components/public.scss',
   './components/wallet.scss', './components/balance.scss', './atoms/loader.scss',
   './components/header.scss', './components/footer.scss',
-  './components/profile.scss', './components/form.scss';
+  './components/profile.scss', './components/form.scss',
+  './components/transaction.scss';
 
 .body {
   background: $color-header;
@@ -27,12 +28,12 @@
   width: 100%;
   background: $color-header;
   @include flex(column, nowrap, flex-start, center, 0);
+  padding: 4em 0;
   @include responsive($query-850) {
     @include flex(column, nowrap, flex-start, center, 0);
   }
   &__wallets {
-    @include flex(column, nowrap, center, center, 3em);
-    padding: 4em 0;
+    @include flex(column, nowrap, center, center, 2em);
   }
   &__h1 {
     font-size: 2.5em;
@@ -40,6 +41,8 @@
   }
   &__container {
     width: 100%;
+    height: 100%;
+    @include flex(column, nowrap, center, center, 2em);
     max-width: $max-width;
   }
 }

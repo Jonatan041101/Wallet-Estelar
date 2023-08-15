@@ -1,30 +1,37 @@
 'use client';
 import Button from '@/atoms/Button';
 import React, { useState } from 'react';
-import { Horizon } from 'stellar-sdk';
 import Modal from '../Modal';
 import useBoolean from '@/hooks/useBoolean';
 import Form from '../Form';
 import Input from '@/atoms/Input';
-import { errorMsg, optionsAsync, succesMsgAsync } from '@/utils/toastMsg';
-import { MessageError, MessageLoad } from '@/utils/constants';
-import { parseAmountToDecimal } from '@/utils/parserAmount';
-import { VALIDATIONS } from '@/utils/validations';
+import {
+  errorMsg,
+  succesLoaderMsg,
+  succesMsgAsync,
+  successMsg,
+} from '@/utils/toastMsg';
+import { MessageError, MessageLoad, MessageSucces } from '@/utils/constants';
+import {
+  parseAmountToDecimal,
+  parseAssetTypeNativeToXML,
+} from '@/utils/parsers';
 import { useBearStore } from '@/store/store';
-import { sendTransaction } from '@/services/payment';
-import { toast } from 'react-toastify';
-import LoaderAndText from '@/molecules/LoaderAndText';
-import useLoadAccount from '@/hooks/useLoadAccount';
-interface Props {
-  balance:
-    | Horizon.BalanceLineNative
-    | Horizon.BalanceLineAsset<'credit_alphanum4'>
-    | Horizon.BalanceLineAsset<'credit_alphanum12'>
-    | Horizon.BalanceLineLiquidityPool;
-}
+import useBalance from '@/hooks/useBalance';
+import useTransaction from '@/hooks/useTransaction';
+import { TransactionError, ValidationError } from '@/helpers/handlerError';
+import { isNumberValid, isPublicKey } from '@/utils/validations';
+import { BalanceProp } from '@/types/types';
+import usePayment from '@/hooks/usePayment';
+import { getElementsTransactions } from '@/services/elementsTransactions';
+import useSignIn from '@/hooks/useSignIn';
+import { submitTransaction } from '@/services/payment';
 
+interface Props {
+  balance: BalanceProp;
+}
 interface Transaction {
-  publicKey: string;
+  destination: string;
   amount: string;
 }
 interface State {
@@ -32,56 +39,68 @@ interface State {
 }
 const INITIAL_STATE: State['transaction'] = {
   amount: '',
-  publicKey: '',
+  destination: '',
 };
+
 export default function Asset({ balance }: Props) {
-  const [{ amount, publicKey }, setTransaction] =
+  const [{ amount, destination }, setTransaction] =
     useState<State['transaction']>(INITIAL_STATE);
   const { view, handleChangeBoolean } = useBoolean();
-  const { getBalanceData } = useLoadAccount();
-  const { secretKey } = useBearStore(({ account }) => ({
+  const { handleTransaction } = usePayment();
+  const { handleSignInTransaction } = useSignIn();
+  const { getBalance } = useBalance();
+  const { handleGetTransactions } = useTransaction();
+  const { secretKey, publicKey } = useBearStore(({ account }) => ({
     secretKey: account.secretKey,
+    publicKey: account.publicKey,
   }));
-  const asset =
-    balance.asset_type === 'native' ? 'Lumens (XLM)' : balance.asset_type;
+  const asset = parseAssetTypeNativeToXML(balance.asset_type);
 
   const handleSendTransaction = async (
     evt: React.FormEvent<HTMLFormElement>,
   ) => {
     evt.preventDefault();
-    if (isNaN(Number(amount)) || amount.length === 0) {
-      return errorMsg(MessageError.INVALID_NUMBER);
-    }
-    if (!VALIDATIONS.publicKey.test(publicKey)) {
-      return errorMsg(MessageError.ERROR_PUBLIC_KEY);
-    }
-    const parserAmount = parseAmountToDecimal(amount);
     try {
-      const notificationId = toast(
-        <LoaderAndText text={MessageLoad.TRANSACTION} />,
-        optionsAsync,
-      );
+      isNumberValid(amount);
+      isPublicKey(publicKey);
+      const parserAmount = parseAmountToDecimal(amount);
+      const notificationId = succesLoaderMsg(MessageLoad.TRANSACTION);
       handleChangeBoolean();
       setTransaction(INITIAL_STATE);
-      await sendTransaction(secretKey, publicKey, parserAmount);
-      const countAmount = `${parserAmount} ${asset}`;
+      const { sourceAccount, keypair } = await getElementsTransactions(
+        secretKey,
+        publicKey,
+      );
+      const transaction = await handleTransaction(
+        sourceAccount,
+        destination,
+        parserAmount,
+      );
+      const transactionSignIn = await handleSignInTransaction(
+        transaction,
+        keypair,
+      );
+      await submitTransaction(transactionSignIn);
       succesMsgAsync(
         notificationId,
-        `Se ha enviado ${countAmount} a ${publicKey}`,
+        `Se ha enviado ${`${parserAmount} ${asset}`} a ${publicKey}`,
       );
-      getBalanceData();
+      getBalance();
+      await handleGetTransactions(false);
+      successMsg(MessageSucces.HISTORY_UPDATE);
     } catch (error) {
-      if (error instanceof Error) {
-        errorMsg(MessageError.ERROR_IN_TRANSACTION);
+      if (error instanceof ValidationError) {
+        errorMsg(error.message as MessageError);
+      } else if (error instanceof TransactionError) {
+        errorMsg(error.message as MessageError);
       }
-      console.log(error);
     }
   };
   const handleChangeTransaction = (
     evt: React.ChangeEvent<HTMLInputElement>,
   ) => {
     const { name, value } = evt.target;
-    if (name === 'publicKey' || name === 'amount') {
+    if (name === 'destination' || name === 'amount') {
       setTransaction((state) => ({ ...state, [name]: value }));
     }
   };
@@ -103,18 +122,18 @@ export default function Asset({ balance }: Props) {
         >
           <Form handleSubmit={handleSendTransaction}>
             <Input
-              name="publicKey"
+              name="destination"
               handleChange={handleChangeTransaction}
               labelText="Pubic Key"
               placeholder="Comienza con G ejemplo: GBS7...H6XG"
               type="text"
-              value={publicKey}
+              value={destination}
             />
             <Input
               name="amount"
               handleChange={handleChangeTransaction}
               labelText={`Cantidad de ${asset} para enviar`}
-              placeholder={`Ejemplo 1.0000000 un ${asset}`}
+              placeholder={`Ejemplo 1.0000000 ${asset}`}
               type="number"
               value={amount}
             />

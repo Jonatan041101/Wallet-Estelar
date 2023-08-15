@@ -14,6 +14,9 @@
     border: 1px solid $color-border;
     border-radius: 50%;
     cursor: pointer;
+    @include responsive($query-tablet) {
+      display: none;
+    }
   }
   &__image {
   }

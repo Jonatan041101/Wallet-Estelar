@@ -1,22 +1,18 @@
 'use client';
 import Button from '@/atoms/Button';
-import useLoadAccount from '@/hooks/useLoadAccount';
-import LoaderAndText from '@/molecules/LoaderAndText';
+import useBalance from '@/hooks/useBalance';
 import activeAccount from '@/services/activeAccount';
 import { useBearStore } from '@/store/store';
 import { MessageError, MessageLoad } from '@/utils/constants';
-import { errorMsg, optionsAsync, succesMsgAsync } from '@/utils/toastMsg';
+import { errorMsg, succesLoaderMsg, succesMsgAsync } from '@/utils/toastMsg';
 import React from 'react';
-import { toast } from 'react-toastify';
 export default function PublicKey() {
   const { publicKey } = useBearStore((state) => state.account);
-  const { getBalanceData } = useLoadAccount();
+  const { getBalance } = useBalance();
   const handleActiveAccount = async () => {
     try {
-      const notificationId = toast(
-        <LoaderAndText text={MessageLoad.ACTIVATE_ACOUNT} />,
-        optionsAsync,
-      );
+      const notificationId = succesLoaderMsg(MessageLoad.ACTIVATE_ACOUNT);
+
       const transaction = await activeAccount(publicKey);
       if (transaction) {
         succesMsgAsync(
@@ -24,7 +20,7 @@ export default function PublicKey() {
           `La cuenta ha sido activada hash:${transaction.hash}`,
         );
       }
-      getBalanceData();
+      getBalance();
     } catch (error) {
       errorMsg(MessageError.ERROR_ACTIVATE_ACCOUNT);
     }
@@ -32,11 +28,11 @@ export default function PublicKey() {
   return (
     <article className="public">
       <div className="public__contain">
-        <h3 className="public__h3">Su clave pública estelar</h3>
+        <h3 className="public__h3">Su clave pública Stellar</h3>
         <Button
           classNameBtn="button__complete"
           handleClick={handleActiveAccount}
-          text="Activar Cuenta"
+          text="Fondear Cuenta"
         />
       </div>
       <p className="public__p">{publicKey}</p>

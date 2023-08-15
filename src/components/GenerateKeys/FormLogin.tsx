@@ -5,7 +5,7 @@ import Form from '../Form';
 import { errorMsg } from '@/utils/toastMsg';
 import { ERROR_CONECTION, MessageError } from '@/utils/constants';
 import { Keypair } from 'stellar-sdk';
-import { VALIDATIONS } from '@/utils/validations';
+import { VALIDATIONS } from '@/utils/Ivalidations';
 import { useBearStore } from '@/store/store';
 import useNavigate from '@/hooks/useNavigate';
 
