@@ -29,3 +29,7 @@ export enum MessageLoad {
   ACTIVATE_ACOUNT = 'Esperando activación de la cuenta',
   WAIT_A_MOMENT = 'Espere un momento',
 }
+export const FUNDING_AMOUNT: string = '+10000.0000000';
+export const FUNDING_NAME: string = 'Fondeo';
+export const NO_PUBLIC_KEY_LENGTH = 3;
+export const NO_ASSET = 'XLM';

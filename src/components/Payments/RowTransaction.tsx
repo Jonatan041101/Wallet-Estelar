@@ -1,3 +1,9 @@
+import {
+  FUNDING_AMOUNT,
+  FUNDING_NAME,
+  NO_ASSET,
+  NO_PUBLIC_KEY_LENGTH,
+} from '@/utils/constants';
 import { parseAssetType, parseAssetTypeNativeToXML } from '@/utils/parsers';
 import { getRandomProfile } from '@/utils/profiles';
 import { getShortedPublicKey } from '@/utils/shortString';
@@ -30,11 +36,13 @@ export default function RowTransaction({ transaction, publicKey }: Props) {
             height={20}
           />
         </div>
-        {publicKeyDestination.length === 3 ? 'Fondeo' : publicKeyDestination}
+        {publicKeyDestination.length === NO_PUBLIC_KEY_LENGTH
+          ? FUNDING_NAME
+          : publicKeyDestination}
       </td>
       <td className="transaction__td--2">{`${
-        transaction.amount ? amount : '+10000.0000000'
-      } ${asset ?? 'XLM'}`}</td>
+        transaction.amount ? amount : FUNDING_AMOUNT
+      } ${asset ?? NO_ASSET}`}</td>
       <td className="transaction__td--2">{transaction.id}</td>
     </tr>
   );
