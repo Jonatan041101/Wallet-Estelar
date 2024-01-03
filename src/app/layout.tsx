@@ -55,6 +55,9 @@ export default function RootLayout({
           property="og:image"
           content="https://res.cloudinary.com/damjxqb5f/image/upload/v1704225504/avatar_7_ftmrh8.png"
         />
+        <meta property="og:image:height" content="1200" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:type" content="image/png" />
       </head>
       <body className={`${inter.className} body`}>
         <Header />
