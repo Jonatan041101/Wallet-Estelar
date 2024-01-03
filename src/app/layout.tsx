@@ -22,6 +22,19 @@ export default function RootLayout({
   createIconsTypes();
   return (
     <html lang="en">
+      <head>
+        <meta property="og:url" content="https://wallet-stellar.vercel.app/" />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="Tap4Change donor" />
+        <meta
+          property="og:description"
+          content="Aplicacion para donar a caridades de todo el mundo con una amplia seleccion."
+        />
+        <meta
+          property="og:image"
+          content="https://res.cloudinary.com/damjxqb5f/image/upload/v1704225504/avatar_7_ftmrh8.png"
+        />
+      </head>
       <body className={`${inter.className} body`}>
         <Header />
         <div className="body__children">
